@@ -13,15 +13,15 @@ const router = createBrowserRouter([
     element: <LandingPage></LandingPage>,
   },
   {
-    path: "/games/vocab",
+    path: "/games/:id",
     element: <HomeVocabGame></HomeVocabGame>,
   },
   {
-    path: "/games/vocab/quiz",
+    path: "/games/:id/quiz",
     element: <QuizVocabGame></QuizVocabGame>,
   },
   {
-    path: "/games/vocab/result",
+    path: "/games/result",
     element: <ResultVocabGame></ResultVocabGame>,
   },
 ]);

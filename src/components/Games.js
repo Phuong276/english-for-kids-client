@@ -3,13 +3,19 @@ import { Link } from "react-router-dom";
 import "../styles/Games.css";
 
 const Games = (props) => {
-  const { id, src, alt } = props;
+  const { id, image, name } = props;
+
+  let linkTo = "";
+  if (name === "Game Vocab") {
+    linkTo = "/games/"+id;
+  }
+
   return (
     <div className="column">
-      <Link to="/games/vocab" id={id} className="image">
-        <img src={src} alt={alt} />
+      <Link to={linkTo} id={id} className="image">
+        <img src={image} alt={name} />
         <div className="middle">
-          <div className="text"> {alt}</div>
+          <div className="text"> {name}</div>
         </div>
       </Link>
     </div>
