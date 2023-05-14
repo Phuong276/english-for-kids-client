@@ -1,13 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import "../../styles/VocabGame/Questions.css";
 
 export default function QuestionsVocabGame(props) {
   const { question, onChecked } = props;
 
-  const [checked, setChecked] = useState(undefined);
-
   const onSelect = (i) => {
-    setChecked(i);
     onChecked(i);
   };
 
@@ -20,17 +17,17 @@ export default function QuestionsVocabGame(props) {
       />
       <h2 className="text-light">{question?.questionText}</h2>
       <ul key={question?.id}>
-        {question?.answers.map((q, i) => (
+        {question?.answers.map((item, i) => (
           <li key={i}>
             <input
               type="radio"
               value={false}
               name="options"
               id={`q${i}-options`}
-              onChange={() => onSelect(i)}
+              onChange={() => onSelect(item.answerText)}
             />
             <label className="text-primary" htmlFor={`q${i}-options`}>
-              {question?.answers[i].answerText}
+              {item?.answerText}
             </label>
             <div className="check"></div>
           </li>

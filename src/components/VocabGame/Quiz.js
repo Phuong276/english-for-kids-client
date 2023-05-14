@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { getAllData } from "../../helper/helper";
 import QuestionsVocabGame from "./Questions";
+import { Navigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function QuizVocabGame() {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const roundId = searchParams.get("roundId");
-  // console.log(searchParams.get("roundId"));
-  // searchParams.set("roundId", "7");
 
-  const [check, setChecked] = useState(undefined);
+  const [checked, setChecked] = useState(undefined);
 
   const [questions, setQuestionsData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -30,12 +30,19 @@ export default function QuizVocabGame() {
     }
   };
 
-  const onChecked = (check) => {
-    setChecked(check);
+  const onChecked = (checked) => {
+    setChecked(checked);
   };
 
   const moveNextQuestion = () => {
-    if (trace < questions.length - 1) {
+    if (trace < questions.length) {
+      if (checked === questions[trace].answerText) {
+        console.log(true);
+        toast.success("Correct!");
+      } else {
+        console.log(false);
+        toast.error("Wrong! The answer is: " + questions[trace].answerText);
+      }
       setTrace(trace + 1);
     }
   };
@@ -44,6 +51,11 @@ export default function QuizVocabGame() {
     fecthAllQuestion();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const link = `/`;
+  if (questions.length && questions.length <= trace) {
+    return <Navigate to={link} replace="true"></Navigate>;
+  }
 
   if (isLoading) return;
 

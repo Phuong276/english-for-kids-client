@@ -6,6 +6,8 @@ import ResultVocabGame from "./VocabGame/Result";
 import HomeVocabGame from "./VocabGame/Home";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +23,7 @@ const router = createBrowserRouter([
     element: <QuizVocabGame></QuizVocabGame>,
   },
   {
-    path: "/games/result",
+    path: "/games/:id/result",
     element: <ResultVocabGame></ResultVocabGame>,
   },
 ]);
@@ -29,6 +31,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
+      <ToastContainer />
       <RouterProvider router={router} />
     </>
   );
