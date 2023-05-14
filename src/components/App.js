@@ -4,12 +4,17 @@ import LandingPage from "./LandingPage";
 import QuizVocabGame from "./VocabGame/Quiz";
 import ResultVocabGame from "./VocabGame/Result";
 import HomeVocabGame from "./VocabGame/Home";
+import Login from "./Login/Login";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter([
+  {
+    path: "/login",
+    element: <Login></Login>,
+  },
   {
     path: "/",
     element: <LandingPage></LandingPage>,
