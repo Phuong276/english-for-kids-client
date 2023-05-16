@@ -1,20 +1,21 @@
-import { useRef, useState, useEffect, useContext } from "react";
-import AuthContext from "../../context/AuthProvider";
+import { useRef, useState, useEffect } from "react";
 import "../../styles/Login/Login.css";
 import helper from "../../helper/helper";
-import LandingPage from "../LandingPage";
-
+import { useDispatch } from "react-redux";
+import { setAuth } from "../../redux/auth_reducer";
+import { useNavigate } from "react-router-dom";
 const LOGIN_URL = "/api/login";
 
 export default function Login() {
-  const { setAuth } = useContext(AuthContext);
+  const dispatch = useDispatch();
+
   const userRef = useRef();
   const errRef = useRef();
+  const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
-  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     userRef.current.focus();
@@ -40,9 +41,15 @@ export default function Login() {
       );
       const accessToken = response?.data?.data.token;
       setAuth({ username, password, accessToken });
+      const auth = {
+        username,
+        password,
+        accessToken,
+      };
+      dispatch(setAuth({ auth }));
       setUsername("");
       setPassword("");
-      setSuccess(true);
+      navigate("/");
     } catch (error) {
       setErrMsg("Login Failed");
       errRef.current.focus();
@@ -53,50 +60,46 @@ export default function Login() {
 
   return (
     <>
-      {success ? (
-        <div>
-          <LandingPage></LandingPage>
-        </div>
-      ) : (
-        <section>
-          <p
-            ref={errRef}
-            className={errMsg ? "errmsg" : "offscreen"}
-            aria-live="assertive"
-          >
-            {errMsg}
-          </p>
-          <h1>Sign In</h1>
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="username">Username:</label>
-            <input
-              type="text"
-              id="username"
-              ref={userRef}
-              autoComplete="off"
-              onChange={(e) => setUsername(e.target.value)}
-              value={username}
-              required
-            />
-            <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              id="password"
-              ref={userRef}
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
-              required
-            />
-            <button>Sign In</button>
-          </form>
-          <p>
-            Need an Account? <br />
-            <span className="line">
-              <a href="/">Sign Up</a>
-            </span>
-          </p>
-        </section>
-      )}
+      (
+      <section>
+        <p
+          ref={errRef}
+          className={errMsg ? "errmsg" : "offscreen"}
+          aria-live="assertive"
+        >
+          {errMsg}
+        </p>
+        <h1>Sign In</h1>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            ref={userRef}
+            autoComplete="off"
+            onChange={(e) => setUsername(e.target.value)}
+            value={username}
+            required
+          />
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            ref={userRef}
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            required
+          />
+          <button>Sign In</button>
+        </form>
+        <p>
+          Need an Account? <br />
+          <span className="line">
+            <a href="/">Sign Up</a>
+          </span>
+        </p>
+      </section>
+      )
     </>
   );
 }
