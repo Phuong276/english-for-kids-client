@@ -5,6 +5,7 @@ import "../../styles/VocabGame/Round.css";
 
 export default function RoundVocabGame(props) {
   const { gameId, id, image, name } = props;
+
   const navigate = useNavigate();
   const link = `/games/${gameId}/quiz`;
 

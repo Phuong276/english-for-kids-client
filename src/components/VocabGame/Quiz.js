@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { getAllData } from "../../helper/helper";
 import QuestionsVocabGame from "./Questions";
-import { Navigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function QuizVocabGame() {
   const [searchParams] = useSearchParams();
+
+  const params = useParams();
+  const link = `/games/${params.id}`;
+
   const roundId = searchParams.get("roundId");
+
+  const navigate = useNavigate();
 
   const [checked, setChecked] = useState(undefined);
 
@@ -35,7 +40,7 @@ export default function QuizVocabGame() {
   };
 
   const moveNextQuestion = () => {
-    if (trace < questions.length) {
+    if (trace < questions.length - 1) {
       if (checked === questions[trace].answerText) {
         console.log(true);
         toast.success("Correct!");
@@ -44,6 +49,8 @@ export default function QuizVocabGame() {
         toast.error("Wrong! The answer is: " + questions[trace].answerText);
       }
       setTrace(trace + 1);
+    } else {
+      navigate(link);
     }
   };
 
@@ -51,11 +58,6 @@ export default function QuizVocabGame() {
     fecthAllQuestion();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const link = `/`;
-  if (questions.length && questions.length <= trace) {
-    return <Navigate to={link} replace="true"></Navigate>;
-  }
 
   if (isLoading) return;
 
