@@ -11,6 +11,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import NavBar from "./NavBar";
 
 axios.defaults.headers.common["Authorization"] =
   "Bearer " + window.localStorage.getItem("token");
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <CheckLogin>
+        <NavBar></NavBar>
         <LandingPage></LandingPage>
       </CheckLogin>
     ),
@@ -32,6 +34,7 @@ const router = createBrowserRouter([
     path: "/games/:id",
     element: (
       <CheckLogin>
+        <NavBar></NavBar>
         <HomeVocabGame></HomeVocabGame>
       </CheckLogin>
     ),

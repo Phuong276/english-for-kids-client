@@ -66,7 +66,6 @@ export default function Login() {
 
   return (
     <>
-      (
       <section>
         <p
           ref={errRef}
@@ -105,7 +104,6 @@ export default function Login() {
           </span>
         </p>
       </section>
-      )
     </>
   );
 }
