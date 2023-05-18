@@ -3,6 +3,7 @@ import "../styles/NavBar.css";
 export default function NavBar() {
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
   };
 
   return (

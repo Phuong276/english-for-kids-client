@@ -8,7 +8,7 @@ export default function QuizVocabGame() {
   const [searchParams] = useSearchParams();
 
   const params = useParams();
-  const link = `/games/${params.id}`;
+  const link = `/games/${params.id}/result`;
 
   const roundId = searchParams.get("roundId");
 
@@ -20,6 +20,7 @@ export default function QuizVocabGame() {
   const [isLoading, setIsLoading] = useState(true);
 
   const [trace, setTrace] = useState(0);
+  const [point, setPoint] = useState(0);
 
   const fecthAllQuestion = async () => {
     try {
@@ -39,20 +40,23 @@ export default function QuizVocabGame() {
     setChecked(checked);
   };
 
+  const totalQuestions = questions.length;
+
   const moveNextQuestion = () => {
-    if (trace < questions.length - 1) {
+    if (trace < questions.length) {
       if (checked === questions[trace].answerText) {
-        console.log(true);
+        setPoint(point + 1);
         toast.success("Correct!");
       } else {
-        console.log(false);
         toast.error("Wrong! The answer is: " + questions[trace].answerText);
       }
       setTrace(trace + 1);
-    } else {
-      navigate(link);
     }
   };
+
+  if (questions.length <= trace) {
+    navigate(link, { state: { totalQuestions, totalPoints: point } });
+  }
 
   useEffect(() => {
     fecthAllQuestion();

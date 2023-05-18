@@ -47,7 +47,9 @@ export default function Login() {
         "Bearer " + window.localStorage.getItem("token");
 
       const user = response?.data?.data.user;
-      setAuth({ username, password, accessToken, user });
+      window.localStorage.setItem("user", JSON.stringify(user));
+
+      setAuth({ accessToken, user });
       const auth = {
         username,
         password,

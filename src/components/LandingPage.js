@@ -13,8 +13,8 @@ export default function LandingPage() {
   const dispatch = useDispatch();
 
   // const [{ isLoading, serverError }] = useFetchGames();
-  // const games = useSelector((state) => state);
-  // console.log(games);
+  // const states = useSelector((state) => state);
+  // console.log(states);
 
   const fetchAllGame = async () => {
     try {

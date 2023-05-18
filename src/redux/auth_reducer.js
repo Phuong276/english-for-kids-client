@@ -3,15 +3,20 @@ import { createSlice } from "@reduxjs/toolkit";
 export const authReducer = createSlice({
   name: "auth",
   initialState: {
-    auth: {},
+    auth: window.localStorage.getItem("token")
+      ? {
+          accessToken: window.localStorage.getItem("token"),
+          user: window.localStorage.getItem("user"),
+        }
+      : {},
   },
   reducers: {
     setAuth: (state, action) => {
       const auth = action.payload;
-        return {
-          ...state,
-          auth: auth
-        }
+      return {
+        ...state,
+        auth: auth,
+      };
     },
   },
 });

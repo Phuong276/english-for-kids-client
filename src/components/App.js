@@ -50,9 +50,10 @@ const router = createBrowserRouter([
   {
     path: "/games/:id/result",
     element: (
-      <LandingPage>
+      <CheckLogin>
+        <NavBar></NavBar>
         <ResultVocabGame></ResultVocabGame>
-      </LandingPage>
+      </CheckLogin>
     ),
   },
 ]);
