@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { getAllData } from "../../helper/helper";
+import helper, { getAllData } from "../../helper/helper";
 import QuestionsVocabGame from "./Questions";
 import { toast } from "react-toastify";
 
@@ -15,10 +15,8 @@ export default function QuizVocabGame() {
   const navigate = useNavigate();
 
   const [checked, setChecked] = useState(undefined);
-
   const [questions, setQuestionsData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
   const [trace, setTrace] = useState(0);
   const [point, setPoint] = useState(0);
 
@@ -42,13 +40,39 @@ export default function QuizVocabGame() {
 
   const totalQuestions = questions.length;
 
-  const moveNextQuestion = () => {
+  const user = JSON.parse(window.localStorage.getItem("user"));
+
+  const UPSET_POINT_URL = "/api/points";
+  const upsetPoint = async (status, userId, questionId) => {
+    try {
+      await helper.post(
+        UPSET_POINT_URL,
+        JSON.stringify({
+          status,
+          userId,
+          questionId,
+        }),
+        {
+          headers: {
+            Authorization: "Bearer " + window.localStorage.getItem("token"),
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const moveNextQuestion = async () => {
     if (trace < questions.length) {
       if (checked === questions[trace].answerText) {
         setPoint(point + 1);
         toast.success("Correct!");
+        upsetPoint(true, user.id, questions[trace].id);
       } else {
         toast.error("Wrong! The answer is: " + questions[trace].answerText);
+        upsetPoint(false, user.id, questions[trace].id);
       }
       setTrace(trace + 1);
     }
