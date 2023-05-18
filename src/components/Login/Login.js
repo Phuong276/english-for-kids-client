@@ -4,6 +4,7 @@ import helper from "../../helper/helper";
 import { useDispatch } from "react-redux";
 import { setAuth } from "../../redux/auth_reducer";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 const LOGIN_URL = "/api/login";
 
 export default function Login() {
@@ -40,11 +41,18 @@ export default function Login() {
         }
       );
       const accessToken = response?.data?.data.token;
-      setAuth({ username, password, accessToken });
+
+      window.localStorage.setItem("token", accessToken);
+      axios.defaults.headers.common["Authorization"] =
+        "Bearer " + window.localStorage.getItem("token");
+
+      const user = response?.data?.data.user;
+      setAuth({ username, password, accessToken, user });
       const auth = {
         username,
         password,
         accessToken,
+        user,
       };
       dispatch(setAuth({ auth }));
       setUsername("");
@@ -55,8 +63,6 @@ export default function Login() {
       errRef.current.focus();
     }
   };
-
-  console.log(errMsg);
 
   return (
     <>

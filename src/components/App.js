@@ -5,10 +5,15 @@ import QuizVocabGame from "./VocabGame/Quiz";
 import ResultVocabGame from "./VocabGame/Result";
 import HomeVocabGame from "./VocabGame/Home";
 import Login from "./Login/Login";
+import { CheckLogin } from "../helper/helper";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
+
+axios.defaults.headers.common["Authorization"] =
+  "Bearer " + window.localStorage.getItem("token");
 
 const router = createBrowserRouter([
   {
@@ -17,19 +22,35 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <LandingPage></LandingPage>,
+    element: (
+      <CheckLogin>
+        <LandingPage></LandingPage>
+      </CheckLogin>
+    ),
   },
   {
     path: "/games/:id",
-    element: <HomeVocabGame></HomeVocabGame>,
+    element: (
+      <CheckLogin>
+        <HomeVocabGame></HomeVocabGame>
+      </CheckLogin>
+    ),
   },
   {
     path: "/games/:id/quiz",
-    element: <QuizVocabGame></QuizVocabGame>,
+    element: (
+      <CheckLogin>
+        <QuizVocabGame></QuizVocabGame>
+      </CheckLogin>
+    ),
   },
   {
     path: "/games/:id/result",
-    element: <ResultVocabGame></ResultVocabGame>,
+    element: (
+      <LandingPage>
+        <ResultVocabGame></ResultVocabGame>
+      </LandingPage>
+    ),
   },
 ]);
 

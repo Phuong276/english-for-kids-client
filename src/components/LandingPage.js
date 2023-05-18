@@ -32,7 +32,7 @@ export default function LandingPage() {
   };
   useEffect(() => {
     fetchAllGame();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // if (isLoading) return <h3 className="text-light">isLoading</h3>;
