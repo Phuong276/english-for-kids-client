@@ -6,6 +6,9 @@ import ResultVocabGame from "./VocabGame/Result";
 import HomeVocabGame from "./VocabGame/Home";
 import Login from "./Login/Login";
 import { CheckLogin } from "../helper/helper";
+import HomeHangmanGame from "./HangmanGame/Home";
+import QuizHangmanGame from "./HangmanGame/Quiz";
+import ResultHangmanGame from "./HangmanGame/Result";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -53,6 +56,32 @@ const router = createBrowserRouter([
       <CheckLogin>
         <NavBar></NavBar>
         <ResultVocabGame></ResultVocabGame>
+      </CheckLogin>
+    ),
+  },
+  {
+    path: "/gamehangman/:id",
+    element: (
+      <CheckLogin>
+        <NavBar></NavBar>
+        <HomeHangmanGame></HomeHangmanGame>
+      </CheckLogin>
+    ),
+  },
+  {
+    path: "/gamehangman/:id/quiz",
+    element: (
+      <CheckLogin>
+        <QuizHangmanGame></QuizHangmanGame>
+      </CheckLogin>
+    ),
+  },
+  {
+    path: "/gamehangman/:id/result",
+    element: (
+      <CheckLogin>
+        <NavBar></NavBar>
+        <ResultHangmanGame></ResultHangmanGame>
       </CheckLogin>
     ),
   },
