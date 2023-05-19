@@ -31,7 +31,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/games/:id",
+    path: "/gamevocab/:id",
     element: (
       <CheckLogin>
         <NavBar></NavBar>
@@ -40,7 +40,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/games/:id/quiz",
+    path: "/gamevocab/:id/quiz",
     element: (
       <CheckLogin>
         <QuizVocabGame></QuizVocabGame>
@@ -48,7 +48,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/games/:id/result",
+    path: "/gamevocab/:id/result",
     element: (
       <CheckLogin>
         <NavBar></NavBar>

@@ -10,7 +10,7 @@ export default function ResultVocabGame() {
   const location = useLocation();
 
   const params = useParams();
-  const link = `/games/${params.id}`;
+  const link = `/gamevocab/${params.id}`;
 
   const backGame = () => {
     navigate(link);

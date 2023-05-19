@@ -8,7 +8,7 @@ export default function QuizVocabGame() {
   const [searchParams] = useSearchParams();
 
   const params = useParams();
-  const link = `/games/${params.id}/result`;
+  const link = `/gamevocab/${params.id}/result`;
 
   const roundId = searchParams.get("roundId");
 

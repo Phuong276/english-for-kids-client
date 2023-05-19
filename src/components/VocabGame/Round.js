@@ -7,7 +7,7 @@ export default function RoundVocabGame(props) {
   const { gameId, id, image, name } = props;
 
   const navigate = useNavigate();
-  const link = `/games/${gameId}/quiz`;
+  const link = `/gamevocab/${gameId}/quiz`;
 
   const handleNavigate = () => {
     navigate({
