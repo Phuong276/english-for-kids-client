@@ -16,10 +16,8 @@ export default function ResultVocabGame() {
     navigate(link);
   };
 
-  console.log(location);
   const totalPoints = location.state.totalPoints;
   const totalQuestions = location.state.totalQuestions;
-  console.log(totalQuestions, totalPoints);
 
   return (
     <div className="container">
