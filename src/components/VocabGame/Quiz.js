@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import helper, { getAllData } from "../../helper/helper";
+import { getAllData } from "../../helper/helper";
 import QuestionsVocabGame from "./Questions";
 import { toast } from "react-toastify";
+import { upsetPoint } from "../../until/point";
 
 export default function QuizVocabGame() {
   const [searchParams] = useSearchParams();
@@ -41,28 +42,6 @@ export default function QuizVocabGame() {
   const totalQuestions = questions.length;
 
   const user = JSON.parse(window.localStorage.getItem("user"));
-
-  const UPSET_POINT_URL = "/api/points";
-  const upsetPoint = async (status, userId, questionId) => {
-    try {
-      await helper.post(
-        UPSET_POINT_URL,
-        JSON.stringify({
-          status,
-          userId,
-          questionId,
-        }),
-        {
-          headers: {
-            Authorization: "Bearer " + window.localStorage.getItem("token"),
-            "Content-Type": "application/json",
-          },
-        }
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const moveNextQuestion = async () => {
     if (trace < questions.length) {

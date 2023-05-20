@@ -1,35 +1,31 @@
 import { useEffect, useState } from "react";
 
 export default function QuestionsHangmanGame(props) {
-  const { question } = props;
-
-  const word = question.answerText;
+  const { answerText, answers, question } = props;
+  const word = answerText;
 
   const [guesses, setGuesses] = useState([]);
   const [incorrectGuesses, setIncorrectGuesses] = useState(0);
-  const [gameOver, setGameOver] = useState(false);
-  const [won, setWon] = useState(false);
 
-  const sendData = (status) => {
-    props.parentCallback(status);
+  const sendData = (status, statusWon) => {
+    props.parentCallback(status, statusWon);
   };
 
   useEffect(() => {
     if (incorrectGuesses > 5) {
-      setGameOver(true);
-      setWon(false);
-      sendData(false);
+      sendData(true, false);
+      setGuesses([]);
+      setIncorrectGuesses(0);
     }
     if (word.split("").every((letter) => guesses.includes(letter))) {
-      setGameOver(true);
-      setWon(true);
-      sendData(true);
+      sendData(true, true);
+      setGuesses([]);
+      setIncorrectGuesses(0);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [incorrectGuesses, guesses, word]);
 
   const handleGuess = (guess) => {
-    if (gameOver) return;
     if (guesses.includes(guess)) return;
     if (word.includes(guess)) {
       setGuesses([...guesses, guess]);
@@ -37,21 +33,18 @@ export default function QuestionsHangmanGame(props) {
       setIncorrectGuesses(incorrectGuesses + 1);
     }
   };
-  const resetGame = () => {
-    setGuesses([]);
-    setIncorrectGuesses(0);
-    setGameOver(false);
-    setWon(false);
-  };
+
   return (
     <div>
-      {gameOver ? (
-        <div>
-          {won ? "You Won!" : "You lost"}
-          <button onClick={() => resetGame()}>Play Again</button>
-        </div>
+      {word === "quit" ? (
+        <div>No Question</div>
       ) : (
         <div>
+          <img
+            src={question.questionImage}
+            alt={question.id}
+            className="questionImage"
+          />
           <p className="incorrect">Incorrect guesses: {incorrectGuesses}</p>
           <p className="incorrect">{word}</p>
           <p className="guess">
@@ -60,7 +53,7 @@ export default function QuestionsHangmanGame(props) {
               .map((letter) => (guesses.includes(letter) ? letter : "_"))}
           </p>
           <p className="buttons">
-            {"abcdpleorng".split("").map((letter) => (
+            {answers.split("").map((letter) => (
               <button ket={letter} onClick={() => handleGuess(letter)}>
                 {letter}
               </button>

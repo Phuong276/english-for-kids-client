@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 export default function ResultHangmanGame() {
   const user = JSON.parse(window.localStorage.getItem("user"));
@@ -8,12 +8,14 @@ export default function ResultHangmanGame() {
   const params = useParams();
   const link = `/gamehangman/${params.id}`;
 
+  const location = useLocation();
+  const totalPoints = location.state.totalPoints;
+  const totalQuestions = location.state.totalQuestions;
+
   const backGame = () => {
     navigate(link);
   };
 
-  const totalPoints = 1;
-  const totalQuestions = 1;
   return (
     <div className="container">
       <div className="result flex-center">
