@@ -9,12 +9,15 @@ import { CheckLogin } from "../helper/helper";
 import HomeHangmanGame from "./HangmanGame/Home";
 import QuizHangmanGame from "./HangmanGame/Quiz";
 import ResultHangmanGame from "./HangmanGame/Result";
+import QuizListenGame from "./ListenGame/Quiz";
+import Upload from "./Firebase/Upload";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import NavBar from "./NavBar";
+import HomeListenGame from "./ListenGame/Home";
 
 axios.defaults.headers.common["Authorization"] =
   "Bearer " + window.localStorage.getItem("token");
@@ -82,6 +85,31 @@ const router = createBrowserRouter([
       <CheckLogin>
         <NavBar></NavBar>
         <ResultHangmanGame></ResultHangmanGame>
+      </CheckLogin>
+    ),
+  },
+  {
+    path: "/gamelisten/:id",
+    element: (
+      <CheckLogin>
+        <NavBar></NavBar>
+        <HomeListenGame></HomeListenGame>
+      </CheckLogin>
+    ),
+  },
+  {
+    path: "/gamelisten/:id/quiz",
+    element: (
+      <CheckLogin>
+        <QuizListenGame></QuizListenGame>
+      </CheckLogin>
+    ),
+  },
+  {
+    path: "/firebase/upload",
+    element: (
+      <CheckLogin>
+        <Upload></Upload>
       </CheckLogin>
     ),
   },
