@@ -18,6 +18,9 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import NavBar from "./NavBar";
 import HomeListenGame from "./ListenGame/Home";
+import HomeScrambleGame from "./ScrambleGame/Home";
+import QuizScrambleGame from "./ScrambleGame/Quiz";
+import ResultScrambleGame from "./ScrambleGame/Result";
 
 axios.defaults.headers.common["Authorization"] =
   "Bearer " + window.localStorage.getItem("token");
@@ -102,6 +105,31 @@ const router = createBrowserRouter([
     element: (
       <CheckLogin>
         <QuizListenGame></QuizListenGame>
+      </CheckLogin>
+    ),
+  },
+  {
+    path: "/gamescramble/:id",
+    element: (
+      <CheckLogin>
+        <NavBar></NavBar>
+        <HomeScrambleGame></HomeScrambleGame>
+      </CheckLogin>
+    ),
+  },
+  {
+    path: "/gamescramble/:id/quiz",
+    element: (
+      <CheckLogin>
+        <QuizScrambleGame></QuizScrambleGame>
+      </CheckLogin>
+    ),
+  },
+  {
+    path: "/gamescramble/:id/result",
+    element: (
+      <CheckLogin>
+        <ResultScrambleGame></ResultScrambleGame>
       </CheckLogin>
     ),
   },
