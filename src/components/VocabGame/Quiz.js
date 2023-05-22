@@ -25,7 +25,6 @@ export default function QuizVocabGame() {
     try {
       const { data } = await getAllData(
         `${process.env.REACT_APP_SERVERHOST}/api/rounds/${roundId}`,
-        (data) => data
       );
       setQuestionsData(data);
       setIsLoading(false);

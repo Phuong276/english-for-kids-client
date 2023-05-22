@@ -56,10 +56,20 @@ export default function Login() {
         accessToken,
         user,
       };
+
+      let link = "";
+      if (user.role === "USER") {
+        link = "/";
+      } else if (user.role === "ADMIN") {
+        link = "/admin";
+      } else {
+        link = "/login";
+      }
+
       dispatch(setAuth({ auth }));
       setUsername("");
       setPassword("");
-      navigate("/");
+      navigate(link);
     } catch (error) {
       setErrMsg("Login Failed");
       errRef.current.focus();

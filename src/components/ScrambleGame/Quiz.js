@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import { getAllData } from "../../helper/helper";
 import { upsetPoint } from "../../until/point";
 import QuestionsScreambleGame from "./Question";
@@ -20,7 +21,6 @@ export default function QuizScrambleGame() {
     try {
       const { data } = await getAllData(
         `${process.env.REACT_APP_SERVERHOST}/api/rounds/${roundId}`,
-        (data) => data
       );
       setQuestionsData(data);
       setIsLoading(false);
@@ -58,8 +58,10 @@ export default function QuizScrambleGame() {
   if (answerText.length === answers.length) {
     if (answerText === answers) {
       setPoint(point + 1);
+      toast.success("Correct!");
       upsetPoint(true, user.id, questions[trace].id);
     } else {
+      toast.error("Wrong! The answer is: " + answerText);
       upsetPoint(false, user.id, questions[trace].id);
     }
     moveNextQuestion();

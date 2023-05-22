@@ -12,7 +12,6 @@ export default function HomeListenGame() {
     try {
       const { data } = await getAllData(
         `${process.env.REACT_APP_SERVERHOST}/api/games/${params.id}`,
-        (data) => data
       );
       setRoundsData(data);
       setIsLoading(false);

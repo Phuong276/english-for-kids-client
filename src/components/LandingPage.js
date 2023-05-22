@@ -20,7 +20,6 @@ export default function LandingPage() {
     try {
       const { data } = await getAllData(
         `${process.env.REACT_APP_SERVERHOST}/api/games`,
-        (data) => data
       );
       setGamesData(data);
       dispatch(setGames({ games: data }));

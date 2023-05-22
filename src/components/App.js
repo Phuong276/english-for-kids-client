@@ -21,6 +21,11 @@ import HomeListenGame from "./ListenGame/Home";
 import HomeScrambleGame from "./ScrambleGame/Home";
 import QuizScrambleGame from "./ScrambleGame/Quiz";
 import ResultScrambleGame from "./ScrambleGame/Result";
+import HomeAdmin from "./Admin/Home";
+import UsersAdmin from "./Admin/Users";
+import GamesAdmin from "./Admin/Games";
+import UpdateUserAdmin from "./Admin/User/Update";
+import CreateUserAdmin from "./Admin/User/Create";
 
 axios.defaults.headers.common["Authorization"] =
   "Bearer " + window.localStorage.getItem("token");
@@ -130,6 +135,46 @@ const router = createBrowserRouter([
     element: (
       <CheckLogin>
         <ResultScrambleGame></ResultScrambleGame>
+      </CheckLogin>
+    ),
+  },
+  {
+    path: "/admin",
+    element: (
+      <CheckLogin>
+        <HomeAdmin></HomeAdmin>
+      </CheckLogin>
+    ),
+  },
+  {
+    path: "/admin/users",
+    element: (
+      <CheckLogin>
+        <UsersAdmin></UsersAdmin>
+      </CheckLogin>
+    ),
+  },
+  {
+    path: "/admin/users/:id",
+    element: (
+      <CheckLogin>
+        <UpdateUserAdmin></UpdateUserAdmin>
+      </CheckLogin>
+    ),
+  },
+  {
+    path: "/admin/users/add",
+    element: (
+      <CheckLogin>
+        <CreateUserAdmin></CreateUserAdmin>
+      </CheckLogin>
+    ),
+  },
+  {
+    path: "/admin/games",
+    element: (
+      <CheckLogin>
+        <GamesAdmin></GamesAdmin>
       </CheckLogin>
     ),
   },
