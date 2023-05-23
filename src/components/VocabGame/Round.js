@@ -14,11 +14,15 @@ export default function RoundVocabGame(props) {
     });
   };
   return (
-    <div className="column">
+    <div>
       <div onClick={handleNavigate} className="image">
-        <img src={image} alt={name} />
-        <div className="middle">
-          <div className="text"> {name}</div>
+        <img
+          alt={name}
+          className="hover:grow hover:shadow-lg rounded-lg"
+          src={image}
+        />{" "}
+        <div className="pt-2 flex items-center justify-between text-2xl ">
+          <p className="">{name}</p>
         </div>
       </div>
     </div>

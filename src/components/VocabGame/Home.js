@@ -30,19 +30,21 @@ export default function HomeVocabGame() {
 
   return (
     <div>
-      <div>
-        <div className="row">
-          {rounds.map((item) => (
-            <RoundVocabGame
-              gameId={params.id}
-              key={item.id}
-              id={item.id}
-              name={item.name}
-              image={item.image}
-            />
-          ))}
+      <section className="bg-white py-8">
+        <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
+          <div className="grid grid-cols-3 gap-16">
+            {rounds.map((item) => (
+              <RoundVocabGame
+                gameId={params.id}
+                key={item.id}
+                id={item.id}
+                name={item.name}
+                image={item.image}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

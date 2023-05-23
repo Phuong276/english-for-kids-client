@@ -24,6 +24,9 @@ import UsersAdmin from "./Admin/Users";
 import GamesAdmin from "./Admin/Games";
 import UpdateUserAdmin from "./Admin/User/Update";
 import CreateUserAdmin from "./Admin/User/Create";
+import Headers from "./Header";
+import Footer from "./Footer";
+import About from "./About";
 
 axios.defaults.headers.common["Authorization"] =
   "Bearer " + window.localStorage.getItem("token");
@@ -38,7 +41,10 @@ const router = createBrowserRouter([
     element: (
       <CheckLogin>
         <NavBar></NavBar>
+        <Headers></Headers>
         <LandingPage></LandingPage>
+        <About></About>
+        <Footer></Footer>
       </CheckLogin>
     ),
   },
@@ -48,6 +54,7 @@ const router = createBrowserRouter([
       <CheckLogin>
         <NavBar></NavBar>
         <HomeVocabGame></HomeVocabGame>
+        <Footer></Footer>
       </CheckLogin>
     ),
   },
@@ -74,6 +81,7 @@ const router = createBrowserRouter([
       <CheckLogin>
         <NavBar></NavBar>
         <HomeHangmanGame></HomeHangmanGame>
+        <Footer></Footer>
       </CheckLogin>
     ),
   },
@@ -100,6 +108,7 @@ const router = createBrowserRouter([
       <CheckLogin>
         <NavBar></NavBar>
         <HomeListenGame></HomeListenGame>
+        <Footer></Footer>
       </CheckLogin>
     ),
   },
@@ -117,6 +126,7 @@ const router = createBrowserRouter([
       <CheckLogin>
         <NavBar></NavBar>
         <HomeScrambleGame></HomeScrambleGame>
+        <Footer></Footer>
       </CheckLogin>
     ),
   },
