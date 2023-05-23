@@ -1,5 +1,4 @@
 import NavBarAdmin from "./NavBar";
-import "../../styles/Admin/User.css";
 import { getAllData } from "../../helper/helper";
 import { useEffect, useState } from "react";
 import axios from "axios";

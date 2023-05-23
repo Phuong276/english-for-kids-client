@@ -1,8 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import "../../styles/VocabGame/Round.css";
-
 export default function RoundVocabGame(props) {
   const { gameId, id, image, name } = props;
 

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "../styles/LandingPage.css";
 import Games from "./Games";
 import { getAllData } from "../helper/helper";
 import { useDispatch } from "react-redux";

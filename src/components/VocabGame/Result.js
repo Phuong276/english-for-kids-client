@@ -1,6 +1,5 @@
 import React from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import "../../styles/VocabGame/Result.css";
 
 export default function ResultVocabGame() {
   const user = JSON.parse(window.localStorage.getItem("user"));

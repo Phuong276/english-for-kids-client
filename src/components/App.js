@@ -1,5 +1,3 @@
-import "../styles/App.css";
-
 import LandingPage from "./LandingPage";
 import QuizVocabGame from "./VocabGame/Quiz";
 import ResultVocabGame from "./VocabGame/Result";

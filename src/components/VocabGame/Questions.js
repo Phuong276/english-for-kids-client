@@ -1,5 +1,4 @@
 import React from "react";
-import "../../styles/VocabGame/Questions.css";
 
 export default function QuestionsVocabGame(props) {
   const { question, onChecked } = props;

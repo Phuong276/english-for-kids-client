@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { getAllData } from "../../helper/helper";
-import "../../styles/HangmanGame/Quiz.css";
 import { upsetPoint } from "../../until/point";
 import { generateString } from "../../until/randomText";
 import QuestionsHangmanGame from "./Questions";

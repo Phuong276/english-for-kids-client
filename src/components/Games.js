@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../styles/Games.css";
 
 const Games = (props) => {
   const { id, image, name } = props;
