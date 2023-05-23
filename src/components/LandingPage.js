@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import { useSelector } from "react-redux";
-// import { useFetchGames } from "../hooks/FetchGames";
 import "../styles/LandingPage.css";
 import Games from "./Games";
 import { getAllData } from "../helper/helper";
@@ -11,10 +9,6 @@ export default function LandingPage() {
   const [games, setGamesData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
-
-  // const [{ isLoading, serverError }] = useFetchGames();
-  // const states = useSelector((state) => state);
-  // console.log(states);
 
   const fetchAllGame = async () => {
     try {
@@ -34,9 +28,6 @@ export default function LandingPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // if (isLoading) return <h3 className="text-light">isLoading</h3>;
-  // if (serverError)
-  //   return <h3 className="text-light">{serverError || "Unknown Error"}</h3>;
   if (isLoading) return;
 
   return (
