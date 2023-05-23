@@ -31,8 +31,6 @@ export default function LandingPage() {
 
   return (
     <div>
-      <div className="LandingPageImage" />
-      <p className="welcome">Welcome to English For Kids</p>
       <div>
         <div className="row">
           {games.map((item) => (

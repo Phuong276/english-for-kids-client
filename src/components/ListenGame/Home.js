@@ -30,8 +30,6 @@ export default function HomeListenGame() {
 
   return (
     <div>
-      <div className="LandingPageImage" />
-      <p className="welcome">Welcome to English For Kids</p>
       <div>
         <div className="row">
           {rounds.map((item) => (

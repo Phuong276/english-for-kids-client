@@ -11,7 +11,7 @@ export default function HomeVocabGame() {
   const fecthAllRound = async () => {
     try {
       const { data } = await getAllData(
-        `${process.env.REACT_APP_SERVERHOST}/api/games/${params.id}`,
+        `${process.env.REACT_APP_SERVERHOST}/api/games/${params.id}`
       );
       setRoundsData(data);
       setIsLoading(false);
@@ -30,8 +30,6 @@ export default function HomeVocabGame() {
 
   return (
     <div>
-      <div className="LandingPageImage" />
-      <p className="welcome">Welcome to English For Kids</p>
       <div>
         <div className="row">
           {rounds.map((item) => (
