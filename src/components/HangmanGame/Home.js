@@ -29,22 +29,24 @@ export default function HomeHangmanGame() {
   if (isLoading) return;
 
   return (
-    <div className="container mx-auto">
-      <section className="bg-white py-8">
-        <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
-          <div className="grid grid-cols-4 gap-16">
-            {rounds.map((item) => (
-              <RoundHangmanGame
-                gameId={params.id}
-                key={item.id}
-                id={item.id}
-                name={item.name}
-                image={item.image}
-              />
-            ))}
+    <div className="bg-lime-100">
+      <div className="container mx-auto">
+        <section className="py-8 pl-20 pr-20">
+          <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
+            <div className="grid grid-cols-4 gap-16">
+              {rounds.map((item) => (
+                <RoundHangmanGame
+                  gameId={params.id}
+                  key={item.id}
+                  id={item.id}
+                  name={item.name}
+                  image={item.image}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   );
 }

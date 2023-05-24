@@ -1,5 +1,3 @@
-import "../styles/NavBar.css";
-
 export default function NavBar() {
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -7,13 +5,7 @@ export default function NavBar() {
   };
 
   return (
-    // <div className="topnav">
-    //   <a href="/">Home</a>
-    //   <a className="logout" href="/login" onClick={logout}>
-    //     Log out
-    //   </a>
-    // </div>
-    <div>
+    <div className="bg-lime-200">
       <nav id="header" className="w-full z-30 top-0 py-1">
         <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3">
           <label for="menu-toggle" className="cursor-pointer md:hidden block">
@@ -38,7 +30,7 @@ export default function NavBar() {
               <ul className="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0">
                 <li>
                   <a
-                    className="inline-block no-underline hover:text-black hover:underline py-2 px-4"
+                    className="inline-block no-underline hover:text-black hover:underline py-1 px-4 text-2xl"
                     href="/"
                   >
                     Home
@@ -65,8 +57,8 @@ export default function NavBar() {
               <svg
                 className="fill-current hover:text-black"
                 xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
+                width="30"
+                height="30"
                 viewBox="0 0 24 24"
               >
                 <circle fill="none" cx="12" cy="7" r="3" />

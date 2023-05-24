@@ -30,14 +30,14 @@ export default function LandingPage() {
   if (isLoading) return;
 
   return (
-    <div >
+    <div className="bg-lime-100">
       <div
         className="carousel relative container mx-auto"
         style={{
-          maxWidth: "1600px",
+          maxWidth: "80%",
         }}
       >
-        <section className="bg-white py-8">
+        <section className="py-8 bg-green-50 pl-20 pr-20">
           <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
             <nav id="store" className="w-full z-30 top-0 px-6 py-1">
               <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3">
@@ -50,7 +50,7 @@ export default function LandingPage() {
               </div>
             </nav>
           </div>
-          <div className="grid grid-cols-3 gap-16">
+          <div className="grid grid-cols-4 gap-16">
             {games.map((item) => (
               <Games
                 key={item.id}

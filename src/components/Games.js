@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 const Games = (props) => {
   const { id, image, name } = props;
-
   let linkTo = "";
   if (name === "Game Vocab") {
     linkTo = "/gamevocab/" + id;
@@ -20,11 +19,11 @@ const Games = (props) => {
       <Link to={linkTo} id={id}>
         <img
           alt={name}
-          className="hover:grow hover:shadow-lg rounded-lg hover:animate-pulse duration-200"
+          className="hover:grow hover:shadow-lg rounded-[30%] hover:animate-pulse duration-200 w-[300px]"
           src={image}
         />
-        <div className="pt-2 flex items-center justify-between text-2xl ">
-          <p className="">{name}</p>
+        <div className="pt-2 flex items-center justify-between text-2xl">
+          <p>{name}</p>
         </div>
       </Link>
     </div>

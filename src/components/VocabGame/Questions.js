@@ -9,7 +9,7 @@ export default function QuestionsVocabGame(props) {
     <>
       {question ? (
         <div
-          className="container mx-auto p-8"
+          className="container mx-auto p-8 rounded-[10%]"
           style={{
             maxWidth: "1500px",
             height: "53rem",
@@ -25,7 +25,7 @@ export default function QuestionsVocabGame(props) {
               src={question.questionImage}
               alt={question.id}
               width={600}
-              height={500}
+              height={600}
               className="mx-auto mt-10 mb-20 rounded-md"
             />
           </div>

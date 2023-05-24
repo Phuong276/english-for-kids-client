@@ -42,10 +42,10 @@ export default function QuestionsHangmanGame(props) {
 
   return (
     <div
-      className="container mx-auto"
+      className="container mx-auto rounded-[10%]"
       style={{
         maxWidth: "2000px",
-        height: "54rem",
+        height: "60rem",
         backgroundImage:
           "url('https://firebasestorage.googleapis.com/v0/b/english-for-kids-daa46.appspot.com/o/files%2FoagWjI.jpg?alt=media&token=8670ac79-2219-4827-a5f6-d86ea669c650')",
       }}
@@ -57,10 +57,12 @@ export default function QuestionsHangmanGame(props) {
           <img
             src={question.questionImage}
             alt={question.id}
-            className="mx-auto mt-10 mb-10 rounded-md"
+            width={600}
+            height={600}
+            className="mx-auto mt-10 mb-20 rounded-md"
           />
           <p className="text-red-600">{`${handleHeart(incorrectGuesses)}`}</p>
-          <p className="flex justify-center pt-2">
+          <p className="flex justify-center pb-10">
             {word
               .split("")
               .map((letter) =>

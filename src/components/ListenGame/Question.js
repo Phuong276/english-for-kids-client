@@ -13,7 +13,7 @@ export default function QuestionListenGame(props) {
         onClick={playAudio}
         src={question.questionImage}
         alt={question.id}
-        className="hover:grow hover:shadow-lg rounded-lg hover:animate-pulse duration-200"
+        className="hover:grow hover:shadow-lg rounded-[20%] hover:animate-pulse duration-200 w-[400px] h-[300px]"
       />
       <div className="pt-1">
         <button

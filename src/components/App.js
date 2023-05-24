@@ -196,9 +196,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/test",
-    element: (
-      <QuizTest></QuizTest>
-    ),
+    element: <QuizTest></QuizTest>,
   },
 ]);
 

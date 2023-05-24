@@ -17,7 +17,7 @@ export default function RoundHangmanGame(props) {
       <div onClick={handleNavigate}>
         <img
           alt={name}
-          className="hover:grow hover:shadow-lg rounded-lg hover:animate-pulse duration-200"
+          className="hover:grow hover:shadow-lg rounded-[30%] hover:animate-pulse duration-200 w-[300px] h-[300px]"
           src={image}
         />
         <div className="pt-2 flex items-center justify-between text-2xl ">

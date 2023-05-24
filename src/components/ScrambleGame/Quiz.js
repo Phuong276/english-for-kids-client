@@ -70,32 +70,34 @@ export default function QuizScrambleGame() {
 
   if (isLoading) return;
   return (
-    <div className="container mx-auto text-center">
-      <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl pt-5 text-center">
-        <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
-          SCRAMBLE GAME
-        </span>
-      </h1>
-      <section className="bg-white py-2">
-        <div className="container mx-auto flex items-center flex-wrap">
-          <QuestionsScreambleGame
-            parentCallback={callbackFunction}
-            answers={answers}
-            question={
-              questions[trace] ? questions[trace] : questions[trace - 1]
-            }
-            answerText={answerText}
-          />
-        </div>
-      </section>
+    <div className="bg-lime-100">
+      <div className="container mx-auto text-center">
+        <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl pt-5 text-center">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
+            SCRAMBLE GAME
+          </span>
+        </h1>
+        <section className="py-3">
+          <div className="container mx-auto flex items-center flex-wrap">
+            <QuestionsScreambleGame
+              parentCallback={callbackFunction}
+              answers={answers}
+              question={
+                questions[trace] ? questions[trace] : questions[trace - 1]
+              }
+              answerText={answerText}
+            />
+          </div>
+        </section>
 
-      <div>
-        <button
-          class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-5 px-12 rounded-full text-2xl"
-          onClick={moveNextQuestion}
-        >
-          Next Question
-        </button>
+        <div>
+          <button
+            class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-5 px-12 rounded-full text-2xl"
+            onClick={moveNextQuestion}
+          >
+            Next Question
+          </button>
+        </div>
       </div>
     </div>
   );

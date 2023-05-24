@@ -69,24 +69,26 @@ export default function QuizHangmanGame() {
 
   if (isLoading) return;
   return (
-    <div className="container mx-auto text-center">
-      <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl pt-5 text-center">
-        <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
-          HANGMAN GAME
-        </span>
-      </h1>
-      <section className="bg-white py-8">
-        <div className="flex items-center flex-wrap">
-          <QuestionsHangmanGame
-            parentCallback={callbackFunction}
-            answerText={answerText}
-            answers={answers}
-            question={
-              questions[trace] ? questions[trace] : questions[trace - 1]
-            }
-          />
-        </div>
-      </section>
+    <div className="bg-lime-100">
+      <div className="container mx-auto text-center">
+        <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl pt-5 text-center">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
+            HANGMAN GAME
+          </span>
+        </h1>
+        <section className="py-5">
+          <div className="flex items-center flex-wrap">
+            <QuestionsHangmanGame
+              parentCallback={callbackFunction}
+              answerText={answerText}
+              answers={answers}
+              question={
+                questions[trace] ? questions[trace] : questions[trace - 1]
+              }
+            />
+          </div>
+        </section>
+      </div>
     </div>
   );
 }

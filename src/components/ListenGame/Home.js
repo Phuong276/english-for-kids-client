@@ -30,21 +30,23 @@ export default function HomeListenGame() {
 
   return (
     <div>
-      <section className="bg-white py-8">
-        <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
-          <div className="grid grid-cols-4 gap-16">
-            {rounds.map((item) => (
-              <RoundListenGame
-                gameId={params.id}
-                key={item.id}
-                id={item.id}
-                name={item.name}
-                image={item.image}
-              />
-            ))}
+      <div className="bg-lime-100">
+        <section className="py-8">
+          <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
+            <div className="grid grid-cols-4 gap-16">
+              {rounds.map((item) => (
+                <RoundListenGame
+                  gameId={params.id}
+                  key={item.id}
+                  id={item.id}
+                  name={item.name}
+                  image={item.image}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   );
 }
