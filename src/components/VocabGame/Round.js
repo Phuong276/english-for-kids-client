@@ -18,9 +18,9 @@ export default function RoundVocabGame(props) {
       <div onClick={handleNavigate} className="image">
         <img
           alt={name}
-          className="hover:grow hover:shadow-lg rounded-lg"
+          className="hover:grow hover:shadow-lg rounded-lg hover:animate-pulse duration-200"
           src={image}
-        />{" "}
+        />
         <div className="pt-2 flex items-center justify-between text-2xl ">
           <p className="">{name}</p>
         </div>

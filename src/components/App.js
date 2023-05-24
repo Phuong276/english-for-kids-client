@@ -27,6 +27,7 @@ import CreateUserAdmin from "./Admin/User/Create";
 import Headers from "./Header";
 import Footer from "./Footer";
 import About from "./About";
+import QuizTest from "./QuizTest";
 
 axios.defaults.headers.common["Authorization"] =
   "Bearer " + window.localStorage.getItem("token");
@@ -70,7 +71,6 @@ const router = createBrowserRouter([
     path: "/gamevocab/:id/result",
     element: (
       <CheckLogin>
-        <NavBar></NavBar>
         <ResultVocabGame></ResultVocabGame>
       </CheckLogin>
     ),
@@ -192,6 +192,12 @@ const router = createBrowserRouter([
       <CheckLogin>
         <Upload></Upload>
       </CheckLogin>
+    ),
+  },
+  {
+    path: "/test",
+    element: (
+      <QuizTest></QuizTest>
     ),
   },
 ]);

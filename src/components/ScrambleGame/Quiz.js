@@ -20,7 +20,7 @@ export default function QuizScrambleGame() {
   const fecthAllQuestion = async () => {
     try {
       const { data } = await getAllData(
-        `${process.env.REACT_APP_SERVERHOST}/api/rounds/${roundId}`,
+        `${process.env.REACT_APP_SERVERHOST}/api/rounds/${roundId}`
       );
       setQuestionsData(data);
       setIsLoading(false);
@@ -71,13 +71,23 @@ export default function QuizScrambleGame() {
   return (
     <div className="container">
       <div>
-        <h1 className="title text-light">Scramble Game</h1>
-        <QuestionsScreambleGame
-          parentCallback={callbackFunction}
-          answers={answers}
-          question={questions[trace] ? questions[trace] : questions[trace - 1]}
-          answerText={answerText}
-        />
+        <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl pt-20 text-center">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
+            SCRAMBLE GAME
+          </span>
+        </h1>
+        <section className="bg-white py-8">
+          <div className="container mx-auto flex items-center flex-wrap pt-20 pb-12 ">
+            <QuestionsScreambleGame
+              parentCallback={callbackFunction}
+              answers={answers}
+              question={
+                questions[trace] ? questions[trace] : questions[trace - 1]
+              }
+              answerText={answerText}
+            />
+          </div>
+        </section>
       </div>
 
       <div className="grid">
