@@ -13,11 +13,15 @@ export default function RoundHangmanGame(props) {
     });
   };
   return (
-    <div className="column">
-      <div onClick={handleNavigate} className="image">
-        <img src={image} alt={name} />
-        <div className="middle">
-          <div className="text"> {name}</div>
+    <div>
+      <div onClick={handleNavigate}>
+        <img
+          alt={name}
+          className="hover:grow hover:shadow-lg rounded-lg hover:animate-pulse duration-200"
+          src={image}
+        />
+        <div className="pt-2 flex items-center justify-between text-2xl ">
+          <p>{name}</p>
         </div>
       </div>
     </div>

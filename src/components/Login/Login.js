@@ -1,5 +1,4 @@
 import { useRef, useState, useEffect } from "react";
-import "../../styles/Login/Login.css";
 import helper from "../../helper/helper";
 import { useDispatch } from "react-redux";
 import { setAuth } from "../../redux/auth_reducer";

@@ -1,4 +1,3 @@
-import "../../styles/Admin/Home.css";
 import NavBarAdmin from "./NavBar";
 export default function HomeAdmin() {
   return (

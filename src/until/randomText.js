@@ -23,3 +23,8 @@ export function generateString(length, text) {
   }
   return (result + unique(text.split("")).join("")).split("").sort().join("");
 }
+
+export function swapString(text) {
+  const arrayText = unique(text.split(""));
+  return arrayText.sort().join("");
+}

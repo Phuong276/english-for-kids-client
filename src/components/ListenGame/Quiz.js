@@ -13,7 +13,7 @@ export default function QuizListenGame() {
   const fecthAllQuestion = async () => {
     try {
       const { data } = await getAllData(
-        `${process.env.REACT_APP_SERVERHOST}/api/rounds/${roundId}`,
+        `${process.env.REACT_APP_SERVERHOST}/api/rounds/${roundId}`
       );
       setQuestionsData(data);
       setIsLoading(false);
@@ -31,19 +31,32 @@ export default function QuizListenGame() {
   const link = `/gamelisten/${params.id}`;
   const navigate = useNavigate();
   const Quit = () => {
-    navigate(link)
-  }
+    navigate(link);
+  };
 
   if (isLoading) return;
   return (
-    <div className="container">
-      <div>
-        <h1 className="title text-light">Hangman Game</h1>
-        {questions.map((item) => (
-          <QuestionListenGame question={item} />
-        ))}
-      </div>
-      <button onClick={Quit}>Quit</button>
+    <div className="container mx-auto text-center">
+      <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl pt-5 text-center">
+        <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
+          LISTEN GAME
+        </span>
+      </h1>
+      <section className="bg-white py-8">
+        <div className="container mx-auto flex items-center flex-wrap pt-4">
+          <div className="grid grid-cols-4 gap-16">
+            {questions.map((item) => (
+              <QuestionListenGame question={item} />
+            ))}
+          </div>
+        </div>
+      </section>
+      <button
+        className="bg-slate-600 hover:bg-slate-500 text-white font-bold py-4 px-12 rounded-full text-2xl"
+        onClick={Quit}
+      >
+        Quit
+      </button>
     </div>
   );
 }

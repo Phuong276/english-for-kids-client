@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import { getAllData } from "../../helper/helper";
-import "../../styles/HangmanGame/Quiz.css";
 import { upsetPoint } from "../../until/point";
 import { generateString } from "../../until/randomText";
 import QuestionsHangmanGame from "./Questions";
@@ -17,7 +17,7 @@ export default function QuizHangmanGame() {
   const fecthAllQuestion = async () => {
     try {
       const { data } = await getAllData(
-        `${process.env.REACT_APP_SERVERHOST}/api/rounds/${roundId}`,
+        `${process.env.REACT_APP_SERVERHOST}/api/rounds/${roundId}`
       );
       setQuestionsData(data);
       setIsLoading(false);
@@ -52,6 +52,7 @@ export default function QuizHangmanGame() {
 
   const user = JSON.parse(window.localStorage.getItem("user"));
   if (check && won) {
+    toast.success("Correct!");
     moveNextQuestion();
     upsetPoint(true, user.id, questions[trace].id);
     setPoint(point + 1);
@@ -68,16 +69,24 @@ export default function QuizHangmanGame() {
 
   if (isLoading) return;
   return (
-    <div className="container">
-      <div>
-        <h1 className="title text-light">Hangman Game</h1>
-        <QuestionsHangmanGame
-          parentCallback={callbackFunction}
-          answerText={answerText}
-          answers={answers}
-          question={questions[trace] ? questions[trace] : questions[trace - 1]}
-        />
-      </div>
+    <div className="container mx-auto text-center">
+      <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl pt-5 text-center">
+        <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
+          HANGMAN GAME
+        </span>
+      </h1>
+      <section className="bg-white py-8">
+        <div className="flex items-center flex-wrap">
+          <QuestionsHangmanGame
+            parentCallback={callbackFunction}
+            answerText={answerText}
+            answers={answers}
+            question={
+              questions[trace] ? questions[trace] : questions[trace - 1]
+            }
+          />
+        </div>
+      </section>
     </div>
   );
 }

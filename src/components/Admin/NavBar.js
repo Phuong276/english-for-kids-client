@@ -1,4 +1,3 @@
-import "../../styles/Admin/Home.css";
 export default function NavBarAdmin() {
   const logout = () => {
     localStorage.removeItem("token");

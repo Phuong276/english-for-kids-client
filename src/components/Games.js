@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../styles/Games.css";
 
 const Games = (props) => {
   const { id, image, name } = props;
@@ -17,11 +16,15 @@ const Games = (props) => {
   }
 
   return (
-    <div className="column">
-      <Link to={linkTo} id={id} className="image">
-        <img src={image} alt={name} />
-        <div className="middle">
-          <div className="text"> {name}</div>
+    <div>
+      <Link to={linkTo} id={id}>
+        <img
+          alt={name}
+          className="hover:grow hover:shadow-lg rounded-lg hover:animate-pulse duration-200"
+          src={image}
+        />
+        <div className="pt-2 flex items-center justify-between text-2xl ">
+          <p className="">{name}</p>
         </div>
       </Link>
     </div>
