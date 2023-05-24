@@ -35,7 +35,7 @@ export default function ResultVocabGame() {
         </div>
       </div>
       <div className="pt-10">
-        <button className="bg-slate-600 hover:bg-slate-500 text-white font-bold py-5 px-12 rounded-full text-2xl" onClick={backGame}>
+        <button className="bg-slate-600 hover:bg-slate-500 text-white font-bold py-4 px-12 rounded-full text-2xl" onClick={backGame}>
           Back
         </button>
       </div>

@@ -9,15 +9,24 @@ export default function QuestionListenGame(props) {
 
   return (
     <div>
-      <div>
-        <img
+      <img
+        onClick={playAudio}
+        src={question.questionImage}
+        alt={question.id}
+        className="hover:grow hover:shadow-lg rounded-lg hover:animate-pulse duration-200"
+      />
+      <div className="pt-1">
+        <button
+          className="pt-2 flex items-center justify-between text-1xl bg-slate-600 hover:bg-slate-500 rounded-full py-2 px-6"
+          style={{
+            backgroundImage:
+              "url('https://firebasestorage.googleapis.com/v0/b/english-for-kids-daa46.appspot.com/o/files%2Fxanhngon.jpg?alt=media&token=216ec3db-90af-4892-abd0-bdf6a5f0d414')",
+          }}
           onClick={playAudio}
-          src={question.questionImage}
-          alt={question.id}
-          className="questionImage"
-        />
+        >
+          Play audio
+        </button>
       </div>
-      <button onClick={playAudio}>PLAY AUDIO</button>
     </div>
   );
 }

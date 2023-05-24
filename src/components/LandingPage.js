@@ -51,7 +51,7 @@ export default function LandingPage() {
       <div
         className="carousel relative container mx-auto"
         style={{
-          maxWidth: "1600px",
+          maxWidth: "17 00px",
         }}
       >
         <section className="bg-white py-8">

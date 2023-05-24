@@ -57,7 +57,7 @@ export default function QuestionsHangmanGame(props) {
           <img
             src={question.questionImage}
             alt={question.id}
-            className="container mx-auto p-8"
+            className="container mx-auto p-8 rounded-[12%]"
           />
           <p className="text-red-600">{`${handleHeart(incorrectGuesses)}`}</p>
           <p className="flex justify-center pt-2">

@@ -37,12 +37,16 @@ export default function QuestionsVocabGame(props) {
           >
             {question?.answers.map((item, i) => (
               <div>
-                <li key={i} class="p-4" style={{
-            maxWidth: "550px",
-            height: "5rem",
-            backgroundImage:
-              "url('https://firebasestorage.googleapis.com/v0/b/english-for-kids-daa46.appspot.com/o/files%2Fxanhngon.jpg?alt=media&token=216ec3db-90af-4892-abd0-bdf6a5f0d414')",
-          }} >
+                <li
+                  key={i}
+                  class="p-4 rounded-full"
+                  style={{
+                    maxWidth: "550px",
+                    height: "5rem",
+                    backgroundImage:
+                      "url('https://firebasestorage.googleapis.com/v0/b/english-for-kids-daa46.appspot.com/o/files%2Fxanhngon.jpg?alt=media&token=216ec3db-90af-4892-abd0-bdf6a5f0d414')",
+                  }}
+                >
                   <div class="flex items-center h-5">
                     <input
                       type="radio"
@@ -52,7 +56,10 @@ export default function QuestionsVocabGame(props) {
                       onChange={() => onSelect(item.answerText)}
                       className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                     />
-                    <label className="text-5xl font-serif" htmlFor={`q${i}-options`}>
+                    <label
+                      className="text-5xl font-serif"
+                      htmlFor={`q${i}-options`}
+                    >
                       {item?.answerText}
                     </label>
                   </div>
