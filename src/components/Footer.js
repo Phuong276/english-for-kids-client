@@ -8,9 +8,10 @@ export default function Footer() {
               <div className="px-3 md:px-0">
                 <h3 className="font-bold text-gray-900">About</h3>
                 <p className="py-4">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Maecenas vel mi ut felis tempus commodo nec id erat.
-                  Suspendisse consectetur dapibus velit ut lacinia.
+                  This is an English website, where children have fun while
+                  learning with play!
+                  <br />
+                  Thank you for using my website. Maecenas vel mi ut felis
                 </p>
               </div>
             </div>
@@ -21,9 +22,9 @@ export default function Footer() {
                   <li>
                     <a
                       className="inline-block no-underline hover:text-black hover:underline py-1"
-                      href="/"
+                      href="https://www.facebook.com/profile.php?id=100041113303327"
                     >
-                      Add social links
+                      Vu Duc Phuong
                     </a>
                   </li>
                 </ul>

@@ -29,7 +29,7 @@ export default function HomeHangmanGame() {
   if (isLoading) return;
 
   return (
-    <div>
+    <div className="container mx-auto">
       <section className="bg-white py-8">
         <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
           <div className="grid grid-cols-4 gap-16">

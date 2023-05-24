@@ -75,8 +75,8 @@ export default function QuizHangmanGame() {
           HANGMAN GAME
         </span>
       </h1>
-      <div className="flex items-center flex-wrap justify-center">
-        <section className="bg-white">
+      <section className="bg-white py-8">
+        <div className="flex items-center flex-wrap">
           <QuestionsHangmanGame
             parentCallback={callbackFunction}
             answerText={answerText}
@@ -85,8 +85,8 @@ export default function QuizHangmanGame() {
               questions[trace] ? questions[trace] : questions[trace - 1]
             }
           />
-        </section>
-      </div>
+        </div>
+      </section>
     </div>
   );
 }

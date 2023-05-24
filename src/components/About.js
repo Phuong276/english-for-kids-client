@@ -12,45 +12,37 @@ export default function About() {
           </a>
 
           <p className="mt-8 mb-8">
-            This template is inspired by the stunning nordic minamalist design -
-            in particular:
+            This is an English website, where children have fun while learning
+            with play!
             <br />
-            <a
-              className="text-gray-800 underline hover:text-gray-900"
-              href="http://savoy.nordicmade.com/"
-            >
-              Savoy Theme
-            </a>{" "}
-            created by{" "}
-            <a
-              className="text-gray-800 underline hover:text-gray-900"
-              href="https://nordicmade.com/"
-            >
-              https://nordicmade.com/
-            </a>{" "}
-            and{" "}
-            <a
-              className="text-gray-800 underline hover:text-gray-900"
-              href="https://www.metricdesign.no/"
-            >
-              https://www.metricdesign.no/
+            You can donate to me through the link: {""}
+            <a className="text-gray-800 underline hover:text-gray-900" href="/">
+              https://www.donate.com
             </a>
           </p>
 
           <p className="mb-8">
-            Lorem ipsum dolor sit amet, consectetur <a href="/">random link</a>{" "}
-            adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Vel risus commodo viverra maecenas accumsan
-            lacus vel facilisis volutpat. Vitae aliquet nec ullamcorper sit.
-            Nullam eget felis eget nunc lobortis mattis aliquam. In est ante in
-            nibh mauris. Egestas congue quisque egestas diam in. Facilisi nullam
-            vehicula ipsum a arcu. Nec nam aliquam sem et tortor consequat. Eget
-            mi proin sed libero enim sed faucibus turpis in. Hac habitasse
-            platea dictumst quisque. In aliquam sem fringilla ut. Gravida rutrum
-            quisque non tellus orci ac auctor augue mauris. Accumsan lacus vel
-            facilisis volutpat est velit egestas dui id. At tempor commodo
-            ullamcorper a. Volutpat commodo sed egestas egestas fringilla. Vitae
-            congue eu consequat ac.
+            Why do Vietnamese want to learn English?
+            <br />
+            Learning English is important because it contributes to bringing
+            Vietnamese people into the world. Using English well also helps
+            learners get jobs easily and opportunities to change their status in
+            life. Currently, multinational economic groups use English as the
+            language of communication.
+            <br />
+            Benefits of learning English with native teachers:
+            <br />
+            * Have the opportunity to communicate regularly with native speakers
+            to listen and pronounce according to the native language. As a
+            result, learners will naturally form reflexes and use natural
+            language.
+            <br />
+            * Knowledge of the language and culture of native teachers will help
+            learners have a deep awareness of the English language.
+            <br />
+            * Create an environment for learners to bathe themselves in English
+            to practice skills effectively.
+            <br />* Bringing new, modern, and interesting learning methods
           </p>
         </div>
       </section>

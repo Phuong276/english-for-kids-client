@@ -12,11 +12,11 @@ export default function Headers() {
       >
         <div className="container mx-auto">
           <div className="flex flex-col w-full lg:w-1/2 justify-center items-start  px-6 tracking-wide absolute top-[250px]">
-            <h1 className="text-black text-4xl my-4">
-              Stripy Zig Zag Jigsaw Pillow and Duvet Set
+            <h1 className="text-black text-5xl my-4">
+              You can do it. We can help.
             </h1>
             <a
-              className="text-2xl inline-block no-underline border-b border-gray-600 leading-relaxed hover:text-black hover:border-black"
+              className="text-1xl inline-block no-underline border-b border-gray-600 leading-relaxed hover:text-black hover:border-black"
               href="https://www.facebook.com/profile.php?id=100041113303327"
             >
               Follow me

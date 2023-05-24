@@ -30,28 +30,11 @@ export default function LandingPage() {
   if (isLoading) return;
 
   return (
-    <div>
-      {/* <div>
-        <div
-          className="carousel relative container mx-auto"
-          style={{
-            maxWidth: "1600px",
-          }}
-        >
-          {games.map((item) => (
-            <Games
-              key={item.id}
-              id={item.id}
-              name={item.name}
-              image={item.image}
-            />
-          ))}
-        </div>
-      </div> */}
+    <div >
       <div
         className="carousel relative container mx-auto"
         style={{
-          maxWidth: "17 00px",
+          maxWidth: "1600px",
         }}
       >
         <section className="bg-white py-8">

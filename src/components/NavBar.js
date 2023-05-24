@@ -44,14 +44,6 @@ export default function NavBar() {
                     Home
                   </a>
                 </li>
-                <li>
-                  <a
-                    className="inline-block no-underline hover:text-black hover:underline py-2 px-4"
-                    href="/"
-                  >
-                    About
-                  </a>
-                </li>
               </ul>
             </nav>
           </div>
