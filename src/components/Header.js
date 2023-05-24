@@ -5,7 +5,7 @@ export default function Headers() {
         className="w-full mx-auto bg-nordic-gray-light flex pt-12 md:pt-0 md:items-center bg-cover bg-right relative"
         style={{
           maxWidth: "80%",
-          height: "50rem",
+          height: "40rem",
           backgroundImage:
             "url('https://firebasestorage.googleapis.com/v0/b/english-for-kids-daa46.appspot.com/o/files%2FoagWjI.jpg?alt=media&token=8670ac79-2219-4827-a5f6-d86ea669c650')",
         }}
