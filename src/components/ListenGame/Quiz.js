@@ -36,13 +36,8 @@ export default function QuizListenGame() {
 
   if (isLoading) return;
   return (
-    <div className="bg-lime-100">
+    <div className="bg-purple-100">
       <div className="container mx-auto text-center pt-10 py-10">
-        <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl pt-5 text-center">
-          <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
-            LISTEN GAME
-          </span>
-        </h1>
         <section className="py-10 pt-10">
           <div className="container mx-auto flex items-center flex-wrap pt-4">
             <div className="grid grid-cols-4 gap-16">
@@ -52,12 +47,22 @@ export default function QuizListenGame() {
             </div>
           </div>
         </section>
-        <button
-          className="bg-slate-600 hover:bg-slate-500 text-white font-bold py-4 px-12 rounded-full text-2xl"
-          onClick={Quit}
-        >
-          Quit
-        </button>
+        <div className="pb-10 grid grid-cols-4 pt-5">
+          <div></div>
+          <div>
+            <button
+              className="bg-purple-400 hover:bg-purple-500 text-white font-bold py-5 pt-6 px-12 rounded-full text-2xl border-4 border-purple-500"
+              onClick={Quit}
+            >
+              Quit
+            </button>
+          </div>
+          <div>
+            <button className="bg-purple-400 hover:bg-purple-500 text-white font-bold py-5 pt-6 px-12 rounded-full text-2xl border-4 border-purple-500">
+              Start
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

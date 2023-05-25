@@ -125,19 +125,24 @@ export default function QuizScrambleGame() {
           </div>
         </section>
 
-        <div className="pb-10">
-          <button
-            class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-5 px-12 rounded-full text-2xl"
-            onClick={handleBack}
-          >
-            Back
-          </button>
-          <button
-            class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-5 px-12 rounded-full text-2xl"
-            onClick={moveNextQuestion}
-          >
-            Next Question
-          </button>
+        <div className="pb-10 grid grid-cols-4 pt-5">
+          <div></div>
+          <div>
+            <button
+              class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-5 px-12 rounded-full text-2xl"
+              onClick={handleBack}
+            >
+              Back
+            </button>
+          </div>
+          <div>
+            <button
+              class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-5 px-12 rounded-full text-2xl"
+              onClick={moveNextQuestion}
+            >
+              Next Question
+            </button>
+          </div>
         </div>
       </div>
     </div>
