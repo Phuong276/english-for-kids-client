@@ -3,7 +3,7 @@ import React from "react";
 export default function QuestionsVocabGame(props) {
   const { question, onChecked } = props;
   const onSelect = (i) => {
-    onChecked(i);
+    onChecked(i, true);
   };
   return (
     <>
@@ -12,7 +12,7 @@ export default function QuestionsVocabGame(props) {
           className="container mx-auto p-8 rounded-[10%]"
           style={{
             maxWidth: "1500px",
-            height: "53rem",
+            height: "60rem",
             backgroundImage:
               "url('https://firebasestorage.googleapis.com/v0/b/english-for-kids-daa46.appspot.com/o/files%2FoagWjI.jpg?alt=media&token=8670ac79-2219-4827-a5f6-d86ea669c650')",
           }}
@@ -26,7 +26,7 @@ export default function QuestionsVocabGame(props) {
               alt={question.id}
               width={600}
               height={600}
-              className="mx-auto mt-10 mb-20 rounded-md"
+              className="mx-auto mt-5 mb-5 rounded-md"
             />
           </div>
 
@@ -37,33 +37,20 @@ export default function QuestionsVocabGame(props) {
           >
             {question?.answers.map((item, i) => (
               <div>
-                <li
+                <button
                   key={i}
-                  class="p-4 rounded-full"
+                  class="rounded-full text-5xl font-serif pl-10"
                   style={{
                     maxWidth: "550px",
-                    height: "5rem",
+                    width: "100rem",
+                    height: "7rem",
                     backgroundImage:
                       "url('https://firebasestorage.googleapis.com/v0/b/english-for-kids-daa46.appspot.com/o/files%2Fxanhngon.jpg?alt=media&token=216ec3db-90af-4892-abd0-bdf6a5f0d414')",
                   }}
+                  onClick={() => onSelect(item.answerText)}
                 >
-                  <div class="flex items-center h-5">
-                    <input
-                      type="radio"
-                      value={false}
-                      name="options"
-                      id={`q${i}-options`}
-                      onChange={() => onSelect(item.answerText)}
-                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label
-                      className="text-5xl font-serif"
-                      htmlFor={`q${i}-options`}
-                    >
-                      {item?.answerText}
-                    </label>
-                  </div>
-                </li>
+                  {item?.answerText}
+                </button>
               </div>
             ))}
           </ul>

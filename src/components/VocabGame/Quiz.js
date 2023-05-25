@@ -25,6 +25,7 @@ export default function QuizVocabGame() {
   const [titelModal, setTitelModal] = useState("Incorrect");
   const [messModal, setMessModal] = useState("Let's try");
   const [colorModal, setColorModal] = useState(false);
+  const [move, setMove] = useState(false);
 
   useEffect(() => {
     if (showModal) {
@@ -48,8 +49,9 @@ export default function QuizVocabGame() {
     }
   };
 
-  const onChecked = (checked) => {
+  const onChecked = (checked, move) => {
     setChecked(checked);
+    setMove(move);
   };
 
   const totalQuestions = questions.length;
@@ -58,6 +60,7 @@ export default function QuizVocabGame() {
 
   const moveNextQuestion = async () => {
     if (trace < questions.length) {
+      console.log(checked);
       if (checked === questions[trace].answerText) {
         setShowModal(true);
         setTitelModal("Correct");
@@ -79,6 +82,11 @@ export default function QuizVocabGame() {
       setTrace(trace + 1);
     }
   };
+
+  if (move) {
+    moveNextQuestion();
+    setMove(false);
+  }
 
   if (questions.length <= trace) {
     navigate(link, { state: { totalQuestions, totalPoints: point } });
@@ -116,14 +124,6 @@ export default function QuizVocabGame() {
               onChecked={onChecked}
               question={questions[trace]}
             />
-          </div>
-          <div>
-            <button
-              class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-5 px-12 rounded-full text-2xl"
-              onClick={moveNextQuestion}
-            >
-              Next Question
-            </button>
           </div>
         </section>
       </div>
