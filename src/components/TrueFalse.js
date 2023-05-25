@@ -9,10 +9,10 @@ export default function TrueFalse(props) {
         <div className="relative w-auto my-6 mx-auto max-w-3xl">
           <div
             className={`border-0 rounded-lg shadow-lg relative flex flex-col w-full ${
-              colorModal ? "bg-green-200" : "bg-red-200"
+              colorModal ? "bg-green-200" : "bg-red-300"
             } outline-none focus:outline-none`}
           >
-            <div className="flex items-start justify-between p-6 border-b border-solid border-slate-200 rounded-t">
+            <div className="flex items-start justify-between p-6 border-b border-solid border-slate-600 rounded-t">
               <h3 className="text-3xl font-semibold">{titelModal}</h3>
               <button
                 className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"

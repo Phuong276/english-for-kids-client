@@ -100,7 +100,7 @@ export default function QuizVocabGame() {
   if (isLoading) return;
 
   return (
-    <div className="bg-lime-100">
+    <div className="bg-orange-100">
       {showModal ? (
         <>
           <TrueFalse
@@ -111,14 +111,8 @@ export default function QuizVocabGame() {
           />
         </>
       ) : null}
-
       <div className="container mx-auto text-center">
-        <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl pt-5 text-center">
-          <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
-            VOCABULARY GAME
-          </span>
-        </h1>
-        <section className="bg-lime-100 py-8">
+        <section className="bg-orange-100 py-10">
           <div className="flex items-center flex-wrap">
             <QuestionsVocabGame
               onChecked={onChecked}
