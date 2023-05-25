@@ -98,7 +98,6 @@ const router = createBrowserRouter([
     path: "/gamehangman/:id/result",
     element: (
       <CheckLogin>
-        <NavBar></NavBar>
         <ResultHangmanGame></ResultHangmanGame>
       </CheckLogin>
     ),
