@@ -3,6 +3,7 @@ import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { getAllData } from "../../helper/helper";
 import { upsetPoint } from "../../until/point";
 import { generateString } from "../../until/randomText";
+import { correctSound, incorrectSound, playAudio } from "../../until/sound";
 import TrueFalse from "../TrueFalse";
 import QuestionsHangmanGame from "./Questions";
 
@@ -76,10 +77,14 @@ export default function QuizHangmanGame() {
     setTitelModal("Correct");
     setMessModal("Congratulation! You answered the question correctly.");
     setColorModal(true);
+    playAudio(correctSound);
   }
   const answerText = questions[trace] ? questions[trace].answerText : "quit";
 
   if ((check && !won) || answerText === "quit") {
+    if (check && !won) {
+      playAudio(incorrectSound);
+    }
     navigate(link, { state: { totalQuestions, totalPoints: point } });
   }
 
@@ -88,7 +93,7 @@ export default function QuizHangmanGame() {
   if (isLoading) return;
   return (
     <div className="bg-lime-100">
-     {showModal ? (
+      {showModal ? (
         <>
           <TrueFalse
             titelModal={titelModal}

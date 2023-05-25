@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { getAllData } from "../../helper/helper";
 import { upsetPoint } from "../../until/point";
+import { correctSound, incorrectSound, playAudio } from "../../until/sound";
 import TrueFalse from "../TrueFalse";
 import QuestionsScreambleGame from "./Question";
 
@@ -79,6 +80,8 @@ export default function QuizScrambleGame() {
       setTitelModal("Correct");
       setMessModal("Congratulation! You answered the question correctly.");
       setColorModal(true);
+      playAudio(correctSound);
+
     } else {
       upsetPoint(false, user.id, questions[trace].id);
       setShowModal(true);
@@ -87,6 +90,8 @@ export default function QuizScrambleGame() {
         `You answered the question wrong. The answer is: ${questions[trace].answerText}.`
       );
       setColorModal(false);
+      playAudio(incorrectSound);
+
     }
     moveNextQuestion();
   }

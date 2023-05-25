@@ -4,6 +4,7 @@ import { getAllData } from "../../helper/helper";
 import QuestionsVocabGame from "./Questions";
 import { upsetPoint } from "../../until/point";
 import TrueFalse from "../TrueFalse";
+import { correctSound, incorrectSound, playAudio } from "../../until/sound";
 
 export default function QuizVocabGame() {
   const [searchParams] = useSearchParams();
@@ -64,6 +65,7 @@ export default function QuizVocabGame() {
         setColorModal(true);
         setPoint(point + 1);
         upsetPoint(true, user.id, questions[trace].id);
+        playAudio(correctSound);
       } else {
         setShowModal(true);
         setTitelModal("Incorrect");
@@ -72,6 +74,7 @@ export default function QuizVocabGame() {
         );
         setColorModal(false);
         upsetPoint(false, user.id, questions[trace].id);
+        playAudio(incorrectSound);
       }
       setTrace(trace + 1);
     }
