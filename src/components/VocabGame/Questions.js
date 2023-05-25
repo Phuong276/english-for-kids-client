@@ -39,7 +39,7 @@ export default function QuestionsVocabGame(props) {
               <div>
                 <button
                   key={i}
-                  class="rounded-full text-5xl font-serif pl-10"
+                  class="rounded-full text-5xl font-serif pr-[45%]"
                   style={{
                     maxWidth: "550px",
                     width: "100rem",
@@ -49,7 +49,13 @@ export default function QuestionsVocabGame(props) {
                   }}
                   onClick={() => onSelect(item.answerText)}
                 >
-                  {item?.answerText}
+                  {i === 0
+                    ? `A. ${item?.answerText}`
+                    : i === 1
+                    ? `B. ${item?.answerText}`
+                    : i === 2
+                    ? `C. ${item?.answerText}`
+                    : `D. ${item?.answerText}`}
                 </button>
               </div>
             ))}

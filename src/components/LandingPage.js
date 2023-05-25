@@ -28,7 +28,6 @@ export default function LandingPage() {
   }, []);
 
   if (isLoading) return;
-
   return (
     <div className="bg-lime-100">
       <div
