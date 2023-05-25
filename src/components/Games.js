@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Games = (props) => {
   const { id, image, name } = props;
@@ -15,7 +16,12 @@ const Games = (props) => {
   }
 
   return (
-    <div>
+    <motion.div
+      whileHover={{ scale: 1.2 }}
+      whileTap={{ scale: 1.1 }}
+      drag="x"
+      dragConstraints={{ left: -100, right: 100 }}
+    >
       <Link to={linkTo} id={id}>
         <img
           alt={name}
@@ -26,7 +32,7 @@ const Games = (props) => {
           <p>{name}</p>
         </div>
       </Link>
-    </div>
+    </motion.div>
   );
 };
 

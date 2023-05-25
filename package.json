@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
     "firebase": "^9.22.0",
+    "framer-motion": "^10.12.16",
     "hump": "^0.0.4",
     "query": "^0.2.0",
     "query-string": "^8.1.0",
