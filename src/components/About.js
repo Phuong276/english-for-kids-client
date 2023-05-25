@@ -11,13 +11,13 @@ export default function About() {
         <section className="bg-lime-100-200 py-8 text-2xl">
           <div className="container py-8 px-6 mx-auto">
             <a
-              className="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl mb-8"
+              className="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl mb-8 font-mono"
               href="/"
             >
               About
             </a>
             <br />
-            <p className="mt-4 mb-4">
+            <p className="mt-4 mb-4 font-serif">
               This is an English website, where children have fun while learning
               with play!
               <br />
@@ -30,7 +30,7 @@ export default function About() {
               </a>
             </p>
             <br />
-            <p className="mb-8">
+            <p className="mb-8 font-serif">
               Why do Vietnamese want to learn English?
               <br />
               Learning English is important because it contributes to bringing

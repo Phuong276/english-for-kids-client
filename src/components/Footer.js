@@ -2,7 +2,7 @@ export default function Footer() {
   return (
     <div className="bg-lime-200">
       <footer className="container mx-auto py-8 border-t border-gray-400">
-        <div className="container flex px-3 py-8 ">
+        <div className="container flex px-3 py-8 font-serif">
           <div className="w-full mx-auto flex flex-wrap">
             <div className="flex w-full lg:w-1/2 ">
               <div className="px-3 md:px-0">
@@ -11,7 +11,7 @@ export default function Footer() {
                   This is an English website, where children have fun while
                   learning with play!
                   <br />
-                  Thank you for using my website. Maecenas vel mi ut felis
+                  Thank you for using my website.
                 </p>
               </div>
             </div>

@@ -30,10 +30,26 @@ export default function NavBar() {
               <ul className="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0">
                 <li>
                   <a
-                    className="inline-block no-underline hover:text-black hover:underline py-1 px-4 text-2xl"
+                    className="inline-block no-underline hover:text-black hover:underline py-1 px-4"
                     href="/"
                   >
-                    Home
+                    <svg
+                      class="h-14 w-14 back-red-500"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      {" "}
+                      <path stroke="none" d="M0 0h24v24H0z" />{" "}
+                      <polyline points="5 12 3 12 12 3 21 12 19 12" />{" "}
+                      <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />{" "}
+                      <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+                    </svg>
                   </a>
                 </li>
               </ul>
@@ -42,7 +58,7 @@ export default function NavBar() {
 
           <div className="order-1 md:order-2">
             <a
-              className="flex items-center tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl "
+              className="flex items-center tracking-wide no-underline hover:no-underline text-gray-800 text-3xl font-mono "
               href="/"
             >
               ENGLISGH FOR KIDS
@@ -55,7 +71,7 @@ export default function NavBar() {
           >
             <a className="inline-block no-underline hover:text-black" href="/">
               <svg
-                className="fill-current hover:text-black"
+                className="fill-current hover:text-black h-14 w-14"
                 xmlns="http://www.w3.org/2000/svg"
                 width="30"
                 height="30"
@@ -72,7 +88,7 @@ export default function NavBar() {
               onClick={handleLogout}
             >
               <svg
-                class="h-8 w-8 text-red-400"
+                class="h-14 w-14 text-red-400"
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
