@@ -41,15 +41,7 @@ export default function QuestionsHangmanGame(props) {
   };
 
   return (
-    <div
-      className="container mx-auto rounded-[10%]"
-      style={{
-        maxWidth: "2000px",
-        height: "60rem",
-        backgroundImage:
-          "url('https://firebasestorage.googleapis.com/v0/b/english-for-kids-daa46.appspot.com/o/files%2FoagWjI.jpg?alt=media&token=8670ac79-2219-4827-a5f6-d86ea669c650')",
-      }}
-    >
+    <div className="container mx-auto rounded-[10%]">
       {word === "quit" ? (
         <div>No Question</div>
       ) : (
@@ -57,41 +49,43 @@ export default function QuestionsHangmanGame(props) {
           <img
             src={question.questionImage}
             alt={question.id}
-            width={600}
+            width={700}
             height={600}
-            className="mx-auto mt-10 mb-20 rounded-md"
+            className="mx-auto mt-10 rounded-[20%]"
           />
-          <p className="text-red-600">{`${handleHeart(incorrectGuesses)}`}</p>
+          <div className="py-10">
+            <p className="text-pink-600 pb">{`${handleHeart(
+              incorrectGuesses
+            )}`}</p>
+          </div>
           <p className="flex justify-center pb-10">
             {word
               .split("")
               .map((letter) =>
                 guesses.includes(letter) ? (
-                  <div className="w-20 text-center h-20 rounded-[20px] border border-red-200 hover:opacity-60">
+                  <div className="w-[120px] text-center h-[120px] rounded-[20px] border-4 border-pink-200 bg-pink-300 hover:opacity-60">
                     {letter}{" "}
                   </div>
                 ) : (
-                  <div className="w-20 text-center h-20 rounded-[20px] border border-red-200 hover:opacity-60">
+                  <div className="w-[120px] text-center h-[120px] rounded-[20px] border-4 border-pink-200 bg-pink-300 hover:opacity-60">
                     _
                   </div>
                 )
               )}
           </p>
+          <div className="pb-[100px]">
           <p className="pt-5">
-            {answers.split("").map((letter) => (
-              <button
-                style={{
-                  backgroundImage:
-                    "url('https://firebasestorage.googleapis.com/v0/b/english-for-kids-daa46.appspot.com/o/files%2Fxanhngon.jpg?alt=media&token=216ec3db-90af-4892-abd0-bdf6a5f0d414')",
-                }}
-                className="w-20 text-center h-20 rounded-[20px] border border-red-200 hover:opacity-60 "
-                ket={letter}
-                onClick={() => handleGuess(letter)}
-              >
-                {letter}
-              </button>
-            ))}
+              {answers.split("").map((letter) => (
+                <button
+                  className="w-[120px] text-center h-[120px] rounded-[20px] border-4 border-pink-200 bg-pink-300 hover:opacity-60 font-mono"
+                  ket={letter}
+                  onClick={() => handleGuess(letter)}
+                >
+                  {letter}
+                </button>
+              ))}
           </p>
+          </div>
         </div>
       )}
     </div>

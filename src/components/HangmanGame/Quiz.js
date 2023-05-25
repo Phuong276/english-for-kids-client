@@ -92,7 +92,7 @@ export default function QuizHangmanGame() {
 
   if (isLoading) return;
   return (
-    <div className="bg-lime-100">
+    <div className="bg-pink-100">
       {showModal ? (
         <>
           <TrueFalse
@@ -105,11 +105,6 @@ export default function QuizHangmanGame() {
       ) : null}
 
       <div className="container mx-auto text-center">
-        <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl pt-5 text-center">
-          <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
-            HANGMAN GAME
-          </span>
-        </h1>
         <section className="py-5">
           <div className="flex items-center flex-wrap">
             <QuestionsHangmanGame
