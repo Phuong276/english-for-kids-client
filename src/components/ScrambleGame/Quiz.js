@@ -81,7 +81,6 @@ export default function QuizScrambleGame() {
       setMessModal("Congratulation! You answered the question correctly.");
       setColorModal(true);
       playAudio(correctSound);
-
     } else {
       upsetPoint(false, user.id, questions[trace].id);
       setShowModal(true);
@@ -91,14 +90,17 @@ export default function QuizScrambleGame() {
       );
       setColorModal(false);
       playAudio(incorrectSound);
-
     }
     moveNextQuestion();
   }
 
+  const handleBack = () => {
+    setAnswers(answers.substring(0, answers.length - 1));
+  };
+
   if (isLoading) return;
   return (
-    <div className="bg-lime-100">
+    <div className="bg-cyan-100">
       {showModal ? (
         <>
           <TrueFalse
@@ -110,11 +112,6 @@ export default function QuizScrambleGame() {
         </>
       ) : null}
       <div className="container mx-auto text-center">
-        <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl pt-5 text-center">
-          <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
-            SCRAMBLE GAME
-          </span>
-        </h1>
         <section className="py-3">
           <div className="container mx-auto flex items-center flex-wrap">
             <QuestionsScreambleGame
@@ -128,9 +125,15 @@ export default function QuizScrambleGame() {
           </div>
         </section>
 
-        <div>
+        <div className="pb-10">
           <button
-            class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-5 px-12 rounded-full text-2xl"
+            class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-5 px-12 rounded-full text-2xl"
+            onClick={handleBack}
+          >
+            Back
+          </button>
+          <button
+            class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-5 px-12 rounded-full text-2xl"
             onClick={moveNextQuestion}
           >
             Next Question

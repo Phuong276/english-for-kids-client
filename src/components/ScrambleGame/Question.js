@@ -17,15 +17,7 @@ export default function QuestionsScreambleGame(props) {
   };
 
   return (
-    <div
-      className="container mx-auto rounded-[10%]"
-      style={{
-        maxWidth: "2000px",
-        height: "56rem",
-        backgroundImage:
-          "url('https://firebasestorage.googleapis.com/v0/b/english-for-kids-daa46.appspot.com/o/files%2FoagWjI.jpg?alt=media&token=8670ac79-2219-4827-a5f6-d86ea669c650')",
-      }}
-    >
+    <div className="container mx-auto">
       {question ? (
         <div>
           {word === "quit" ? (
@@ -35,40 +27,38 @@ export default function QuestionsScreambleGame(props) {
               <img
                 src={question.questionImage}
                 alt={question.id}
-                width={600}
-                height={600}
-                className="mx-auto mt-10 mb-20 rounded-md"
+                width={700}
+                height={700}
+                className="mx-auto mt-10 mb-20 rounded-[20%]"
               />
               <p className="flex justify-center pb-20">
                 {handleShowAnswers(answers, word)
                   .split("")
                   .map((letter) =>
                     letter ? (
-                      <div className="w-20 text-center h-20 rounded-[20px] border border-red-200 hover:opacity-60">
+                      <div className="w-[120px] text-center h-[120px] rounded-[20px] border-4 border-cyan-200 bg-cyan-300 hover:opacity-60 font-mono">
                         {letter}
                       </div>
                     ) : (
-                      <div className="w-20 text-center h-20 rounded-[20px] border border-red-200 hover:opacity-60">
+                      <div className="w-[120px] text-center h-[120px] rounded-[20px] border-4 border-cyan-200 bg-cyan-300 hover:opacity-60 font-mono">
                         _
                       </div>
                     )
                   )}
               </p>
-              <p>
-                {wordShow.split("").map((letter) => (
-                  <button
-                    style={{
-                      backgroundImage:
-                        "url('https://firebasestorage.googleapis.com/v0/b/english-for-kids-daa46.appspot.com/o/files%2Fxanhngon.jpg?alt=media&token=216ec3db-90af-4892-abd0-bdf6a5f0d414')",
-                    }}
-                    className="w-20 text-center h-20 rounded-[20px] border border-red-200 hover:opacity-60 "
-                    ket={letter}
-                    onClick={() => handleGuess(letter)}
-                  >
-                    {letter}
-                  </button>
-                ))}
-              </p>
+              <div className="pb-10">
+                <p>
+                  {wordShow.split("").map((letter) => (
+                    <button
+                      className="w-[120px] text-center h-[120px] rounded-[20px] border-4 border-cyan-200 bg-cyan-300 hover:opacity-60 font-mono"
+                      ket={letter}
+                      onClick={() => handleGuess(letter)}
+                    >
+                      {letter}
+                    </button>
+                  ))}
+                </p>
+              </div>
             </div>
           )}
         </div>
