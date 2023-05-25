@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { toast } from "react-toastify";
 import { getAllData } from "../../helper/helper";
 import { upsetPoint } from "../../until/point";
+import TrueFalse from "../TrueFalse";
 import QuestionsScreambleGame from "./Question";
 
 export default function QuizScrambleGame() {
@@ -13,6 +13,11 @@ export default function QuizScrambleGame() {
   const [isLoading, setIsLoading] = useState(true);
   const [trace, setTrace] = useState(0);
   const answerText = questions[trace] ? questions[trace].answerText : "quit";
+
+  const [showModal, setShowModal] = useState(false);
+  const [titelModal, setTitelModal] = useState("Incorrect");
+  const [messModal, setMessModal] = useState("Let's try");
+  const [colorModal, setColorModal] = useState(false);
 
   const totalQuestions = questions.length;
   const [point, setPoint] = useState(0);
@@ -29,10 +34,20 @@ export default function QuizScrambleGame() {
       console.log(error);
     }
   };
+
   useEffect(() => {
     fecthAllQuestion();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (showModal) {
+      const timer = setTimeout(() => {
+        setShowModal(false);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [showModal]);
 
   const moveNextQuestion = async () => {
     if (trace < questions.length) {
@@ -59,11 +74,19 @@ export default function QuizScrambleGame() {
   if (answerText.length === answers.length) {
     if (answerText === answers) {
       setPoint(point + 1);
-      toast.success("Correct!");
       upsetPoint(true, user.id, questions[trace].id);
+      setShowModal(true);
+      setTitelModal("Correct");
+      setMessModal("Congratulation! You answered the question correctly.");
+      setColorModal(true);
     } else {
-      toast.error("Wrong! The answer is: " + answerText);
       upsetPoint(false, user.id, questions[trace].id);
+      setShowModal(true);
+      setTitelModal("Incorrect");
+      setMessModal(
+        `You answered the question wrong. The answer is: ${questions[trace].answerText}.`
+      );
+      setColorModal(false);
     }
     moveNextQuestion();
   }
@@ -71,6 +94,16 @@ export default function QuizScrambleGame() {
   if (isLoading) return;
   return (
     <div className="bg-lime-100">
+      {showModal ? (
+        <>
+          <TrueFalse
+            titelModal={titelModal}
+            colorModal={colorModal}
+            messModal={messModal}
+            setShowModal={setShowModal}
+          />
+        </>
+      ) : null}
       <div className="container mx-auto text-center">
         <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl pt-5 text-center">
           <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">

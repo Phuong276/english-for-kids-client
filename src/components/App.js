@@ -28,6 +28,7 @@ import Headers from "./Header";
 import Footer from "./Footer";
 import About from "./About";
 import QuizTest from "./QuizTest";
+// import LoginFaild from "./Login/LoginFail";
 
 axios.defaults.headers.common["Authorization"] =
   "Bearer " + window.localStorage.getItem("token");

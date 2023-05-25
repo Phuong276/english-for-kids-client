@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { getAllData } from "../../helper/helper";
 import QuestionsVocabGame from "./Questions";
-import { toast } from "react-toastify";
 import { upsetPoint } from "../../until/point";
+import TrueFalse from "../TrueFalse";
 
 export default function QuizVocabGame() {
   const [searchParams] = useSearchParams();
@@ -20,6 +20,19 @@ export default function QuizVocabGame() {
   const [isLoading, setIsLoading] = useState(true);
   const [trace, setTrace] = useState(0);
   const [point, setPoint] = useState(0);
+  const [showModal, setShowModal] = useState(false);
+  const [titelModal, setTitelModal] = useState("Incorrect");
+  const [messModal, setMessModal] = useState("Let's try");
+  const [colorModal, setColorModal] = useState(false);
+
+  useEffect(() => {
+    if (showModal) {
+      const timer = setTimeout(() => {
+        setShowModal(false);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [showModal]);
 
   const fecthAllQuestion = async () => {
     try {
@@ -45,11 +58,19 @@ export default function QuizVocabGame() {
   const moveNextQuestion = async () => {
     if (trace < questions.length) {
       if (checked === questions[trace].answerText) {
+        setShowModal(true);
+        setTitelModal("Correct");
+        setMessModal("Congratulation! You answered the question correctly.");
+        setColorModal(true);
         setPoint(point + 1);
-        toast.success("Correct!");
         upsetPoint(true, user.id, questions[trace].id);
       } else {
-        toast.error("Wrong! The answer is: " + questions[trace].answerText);
+        setShowModal(true);
+        setTitelModal("Incorrect");
+        setMessModal(
+          `You answered the question wrong. The answer is: ${questions[trace].answerText}.`
+        );
+        setColorModal(false);
         upsetPoint(false, user.id, questions[trace].id);
       }
       setTrace(trace + 1);
@@ -69,6 +90,17 @@ export default function QuizVocabGame() {
 
   return (
     <div className="bg-lime-100">
+      {showModal ? (
+        <>
+          <TrueFalse
+            titelModal={titelModal}
+            colorModal={colorModal}
+            messModal={messModal}
+            setShowModal={setShowModal}
+          />
+        </>
+      ) : null}
+
       <div className="container mx-auto text-center">
         <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl pt-5 text-center">
           <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
