@@ -12,7 +12,11 @@ export default function LandingPage() {
   const fetchAllGame = async () => {
     try {
       const { data } = await getAllData(
-        `${process.env.REACT_APP_SERVERHOST}/api/games`
+        `${process.env.REACT_APP_SERVERHOST}/api/games`,
+        {
+          pageIndex: 1,
+          pageSize: 100,
+        }
       );
       setGamesData(data);
       dispatch(setGames({ games: data }));

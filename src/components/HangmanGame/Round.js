@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 export default function RoundHangmanGame(props) {
@@ -13,7 +14,11 @@ export default function RoundHangmanGame(props) {
     });
   };
   return (
-    <div>
+    <motion.div
+    whileHover={{ scale: 1.2 }}
+    whileTap={{ scale: 1.1 }}
+    drag="x"
+    dragConstraints={{ left: -100, right: 100 }}>
       <div onClick={handleNavigate}>
         <img
           alt={name}
@@ -24,6 +29,6 @@ export default function RoundHangmanGame(props) {
           <p>{name}</p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

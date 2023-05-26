@@ -1,22 +1,23 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getAllData } from "../../helper/helper";
 import NavBarAdmin from "./NavBar";
 
-export default function GamesAdmin() {
-  const [games, setGamesData] = useState([]);
+export default function RoundsAdmin() {
+  const params = useParams();
+  const gameId = params.id;
+  const [rounds, setRoundsData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
-  const fecthAllGame = async () => {
+  const fecthAllRound = async () => {
     try {
       const { data } = await getAllData(
-        `${process.env.REACT_APP_SERVERHOST}/api/games`,
+        `${process.env.REACT_APP_SERVERHOST}/api/games/rounds/${gameId}`,
         {
           pageIndex: 1,
           pageSize: 100,
         }
       );
-      setGamesData(data);
+      setRoundsData(data);
       setIsLoading(false);
     } catch (error) {
       setIsLoading(true);
@@ -24,15 +25,16 @@ export default function GamesAdmin() {
     }
   };
 
-  const navigate = useNavigate();
+  console.log(rounds);
 
-  const handleEdit = (id) => {
-    const link = `/admin/games/update/${id}`;
+  const navigate = useNavigate();
+  const handleGetQuestion = (roundId) => {
+    const link = `/admin/round/${roundId}`;
     navigate(link);
   };
 
   useEffect(() => {
-    fecthAllGame();
+    fecthAllRound();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -56,30 +58,58 @@ export default function GamesAdmin() {
                     Image
                   </th>
                   <th scope="col" class="px-6 py-3"></th>
+                  <th scope="col" class="px-6 py-3"></th>
+                  <th scope="col" class="px-6 py-3"></th>
                 </tr>
               </thead>
-              {games.map((game) => (
+              {rounds.map((round) => (
                 <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-2xs font-mono">
-                  <td className="px-6 py-4">{game.id}</td>
+                  <td className="px-6 py-4">{round.id}</td>
                   <td px-6 py-4>
-                    {game.name}
+                    {round.name}
                   </td>
                   <td px-6 py-4>
-                    <img src={game.image} alt="game" width="150" height="150" />
+                    <img
+                      src={round.image}
+                      alt="round"
+                      width="150"
+                      height="150"
+                    />
                   </td>
                   <td>
                     <input
                       class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                      id="user.id"
+                      id={round.id}
                       type="button"
-                      name="edit"
+                      name={round.id}
+                      value="View"
+                      onClick={() => handleGetQuestion(round.id)}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      id={round.id}
+                      type="button"
+                      name={round.id}
                       value="Edit"
-                      onClick={() => handleEdit(game.id)}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      id={round.id}
+                      type="button"
+                      name={round.id}
+                      value="Delete"
                     />
                   </td>
                 </tr>
               ))}
             </table>
+            <button className="pt-5 pl-[90%] text-blue-600 dark:text-blue-500 hover:underline font-serif text-2xs">
+              Add Round
+            </button>
           </div>
         </div>
       </div>

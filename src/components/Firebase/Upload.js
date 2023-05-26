@@ -2,7 +2,7 @@ import { useState } from "react";
 import { storage } from "../../firebase";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 
-function Upload() {
+function Upload(props) {
   const [imgUrl, setImgUrl] = useState(null);
   const [progresspercent, setProgresspercent] = useState(0);
 
@@ -29,6 +29,7 @@ function Upload() {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setImgUrl(downloadURL);
+          props.callbackSetImageUrl(downloadURL);
         });
       }
     );
@@ -38,7 +39,12 @@ function Upload() {
     <div className="App">
       <form onSubmit={handleSubmit} className="form">
         <input type="file" />
-        <button type="submit">Upload</button>
+        <button
+          className="font-medium text-blue-600 dark:text-blue-500 hover:underline pt-5"
+          type="submit"
+        >
+          Upload
+        </button>
       </form>
       {!imgUrl && (
         <div className="outerbar">
@@ -47,7 +53,6 @@ function Upload() {
           </div>
         </div>
       )}
-      {imgUrl && <img src={imgUrl} alt="uploaded file" height={200} />}
     </div>
   );
 }

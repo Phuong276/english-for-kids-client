@@ -3,10 +3,10 @@ export default function HomeAdmin() {
   return (
     <div>
       <NavBarAdmin></NavBarAdmin>
-
-      <div class="content">
-        <h2>CSS Template</h2>
-        <p>A full-height, fixed sidenav and content.</p>
+      <div class="p-4 sm:ml-64">
+        <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+          Home
+        </div>
       </div>
     </div>
   );

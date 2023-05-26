@@ -3,6 +3,7 @@ import { getAllData } from "../../helper/helper";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function UsersAdmin() {
   const [users, setUsersData] = useState([]);
@@ -37,6 +38,7 @@ export default function UsersAdmin() {
         console.log(res);
         console.log(res.data);
       });
+    toast.success("Delete Success");
   };
   const navigate = useNavigate();
 
@@ -54,42 +56,65 @@ export default function UsersAdmin() {
   return (
     <div>
       <NavBarAdmin></NavBarAdmin>
-      <div class="content">
-        <table id="customers">
-          <tr>
-            <th>ID</th>
-            <th>Username</th>
-            <th>Name</th>
-            <th>Password</th>
-            <th>Action</th>
-          </tr>
-
-          {users.map((user) => (
-            <tr>
-              <td>{user.id}</td>
-              <td>{user.username}</td>
-              <td>{user.name}</td>
-              <td>{user.password}</td>
-              <td>
-                <input
-                  id="user.id"
-                  type="button"
-                  name="edit"
-                  value="Edit"
-                  onClick={() => updateData(user.id)}
-                />
-                <input
-                  id={user.id}
-                  type="button"
-                  name={user.id}
-                  value="Delete"
-                  onClick={() => deleteData(user.id)}
-                />
-              </td>
-            </tr>
-          ))}
-        </table>
-        <button onClick={() => createData()}>Add User</button>
+      <div class="p-4 sm:ml-64">
+        <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+          <div className=" relative overflow-x-auto">
+            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+              <thead class="text-xl font-serif text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                  <th scope="col" class="px-6 py-3">
+                    ID
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    Username
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    Name
+                  </th>
+                  <th scope="col" class="px-6 py-3"></th>
+                  <th scope="col" class="px-6 py-3"></th>
+                </tr>
+              </thead>
+              {users.map((user) => (
+                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-2xs font-mono">
+                  <td className="px-6 py-4">{user.id}</td>
+                  <td px-6 py-4>
+                    {user.username}
+                  </td>
+                  <td px-6 py-4>
+                    {user.name}
+                  </td>
+                  <td>
+                    <input
+                      class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      id={user.id}
+                      type="button"
+                      name={user.id}
+                      value="Edit"
+                      onClick={() => updateData(user.id)}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      id={user.id}
+                      type="button"
+                      name={user.id}
+                      value="Delete"
+                      onClick={() => deleteData(user.id)}
+                    />
+                  </td>
+                </tr>
+              ))}
+            </table>
+            <button
+              className="pt-5 pl-[90%] text-blue-600 dark:text-blue-500 hover:underline font-serif text-2xs"
+              onClick={() => createData()}
+            >
+              Add User
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
