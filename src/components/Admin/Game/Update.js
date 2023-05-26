@@ -21,7 +21,7 @@ export default function UpdateGameAdmin() {
   const fecthDetailGame = async () => {
     try {
       const { data } = await getAllData(
-        `${process.env.REACT_APP_SERVERHOST}/api/games/${params.id}`
+        `${process.env.REACT_APP_SERVERHOST}/api/games/rounds/${params.id}`
       );
       setGameData(data);
       setIsLoading(false);
@@ -31,7 +31,7 @@ export default function UpdateGameAdmin() {
     }
   };
 
-  const handleUpdateUser = async (e) => {
+  const handleUpdateGame = async (e) => {
     e.preventDefault();
     const UPDATE_USER_URL = "/api/games/" + game.id;
     try {
@@ -113,9 +113,9 @@ export default function UpdateGameAdmin() {
                 <button
                   type="submit"
                   class="font-medium text-blue-600 dark:text-blue-500 hover:underline pt-5"
-                  onClick={(e) => handleUpdateUser(e)}
+                  onClick={(e) => handleUpdateGame(e)}
                 >
-                  Update user
+                  Update game
                 </button>
               </form>
               <div className="pt-10">

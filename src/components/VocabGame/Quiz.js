@@ -39,7 +39,7 @@ export default function QuizVocabGame() {
   const fecthAllQuestion = async () => {
     try {
       const { data } = await getAllData(
-        `${process.env.REACT_APP_SERVERHOST}/api/rounds/${roundId}`
+        `${process.env.REACT_APP_SERVERHOST}/api/rounds/questions/${roundId}`
       );
       setQuestionsData(data);
       setIsLoading(false);

@@ -11,7 +11,7 @@ export default function HomeListenGame() {
   const fecthAllRound = async () => {
     try {
       const { data } = await getAllData(
-        `${process.env.REACT_APP_SERVERHOST}/api/games/${params.id}`
+        `${process.env.REACT_APP_SERVERHOST}/api/games/rounds/${params.id}`
       );
       setRoundsData(data);
       setIsLoading(false);
