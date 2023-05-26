@@ -21,7 +21,7 @@ export default function UpdateGameAdmin() {
   const fecthDetailGame = async () => {
     try {
       const { data } = await getAllData(
-        `${process.env.REACT_APP_SERVERHOST}/api/games/rounds/${params.id}`
+        `${process.env.REACT_APP_SERVERHOST}/api/games/${params.id}`
       );
       setGameData(data);
       setIsLoading(false);
