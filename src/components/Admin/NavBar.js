@@ -100,7 +100,7 @@ export default function NavBarAdmin() {
                   <div>
                     <a
                       class="px-5 py-1 hover:bg-gray-400"
-                      href={`/admin/games/${game.id}`}
+                      href={`/admin/rounds/${game.id}`}
                     >
                       {game.name}
                     </a>

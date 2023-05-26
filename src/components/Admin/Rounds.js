@@ -29,7 +29,12 @@ export default function RoundsAdmin() {
 
   const navigate = useNavigate();
   const handleGetQuestion = (roundId) => {
-    const link = `/admin/round/${roundId}`;
+    const link = `/admin/questions/${roundId}`;
+    navigate(link);
+  };
+
+  const handleUpdateRound = (roundId) => {
+    const link = `/admin/rounds/update/${roundId}`;
     navigate(link);
   };
 
@@ -93,6 +98,7 @@ export default function RoundsAdmin() {
                       type="button"
                       name={round.id}
                       value="Edit"
+                      onClick={() => handleUpdateRound(round.id)}
                     />
                   </td>
                   <td>

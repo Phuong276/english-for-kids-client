@@ -31,6 +31,7 @@ import QuizTest from "./QuizTest";
 import RoundsAdmin from "./Admin/Rounds";
 import QuestionsAdmin from "./Admin/Questions";
 import UpdateGameAdmin from "./Admin/Game/Update";
+import UpdateRoundAdmin from "./Admin/Round/Update";
 // import LoginFaild from "./Login/LoginFail";
 
 axios.defaults.headers.common["Authorization"] =
@@ -198,7 +199,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/admin/games/:id",
+    path: "/admin/rounds/:id",
     element: (
       <CheckLogin>
         <RoundsAdmin></RoundsAdmin>
@@ -206,7 +207,15 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/admin/round/:id",
+    path: "/admin/rounds/update/:id",
+    element: (
+      <CheckLogin>
+        <UpdateRoundAdmin></UpdateRoundAdmin>
+      </CheckLogin>
+    ),
+  },
+  {
+    path: "/admin/questions/:id",
     element: (
       <CheckLogin>
         <QuestionsAdmin></QuestionsAdmin>
