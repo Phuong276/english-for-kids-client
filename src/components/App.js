@@ -3,7 +3,7 @@ import QuizVocabGame from "./VocabGame/Quiz";
 import ResultVocabGame from "./VocabGame/Result";
 import HomeVocabGame from "./VocabGame/Home";
 import Login from "./Login/Login";
-import { CheckLogin } from "../helper/helper";
+import { CheckAdmin, CheckLogin } from "../helper/helper";
 import HomeHangmanGame from "./HangmanGame/Home";
 import QuizHangmanGame from "./HangmanGame/Quiz";
 import ResultHangmanGame from "./HangmanGame/Result";
@@ -27,12 +27,10 @@ import CreateUserAdmin from "./Admin/User/Create";
 import Headers from "./Header";
 import Footer from "./Footer";
 import About from "./About";
-import QuizTest from "./QuizTest";
 import RoundsAdmin from "./Admin/Rounds";
 import QuestionsAdmin from "./Admin/Questions";
 import UpdateGameAdmin from "./Admin/Game/Update";
 import UpdateRoundAdmin from "./Admin/Round/Update";
-// import LoginFaild from "./Login/LoginFail";
 
 axios.defaults.headers.common["Authorization"] =
   "Bearer " + window.localStorage.getItem("token");
@@ -154,7 +152,9 @@ const router = createBrowserRouter([
     path: "/admin",
     element: (
       <CheckLogin>
-        <HomeAdmin></HomeAdmin>
+        <CheckAdmin>
+          <HomeAdmin></HomeAdmin>
+        </CheckAdmin>
       </CheckLogin>
     ),
   },
@@ -162,7 +162,9 @@ const router = createBrowserRouter([
     path: "/admin/users",
     element: (
       <CheckLogin>
-        <UsersAdmin></UsersAdmin>
+        <CheckAdmin>
+          <UsersAdmin></UsersAdmin>
+        </CheckAdmin>
       </CheckLogin>
     ),
   },
@@ -170,7 +172,9 @@ const router = createBrowserRouter([
     path: "/admin/users/:id",
     element: (
       <CheckLogin>
-        <UpdateUserAdmin></UpdateUserAdmin>
+        <CheckAdmin>
+          <UpdateUserAdmin></UpdateUserAdmin>
+        </CheckAdmin>
       </CheckLogin>
     ),
   },
@@ -178,7 +182,9 @@ const router = createBrowserRouter([
     path: "/admin/users/add",
     element: (
       <CheckLogin>
-        <CreateUserAdmin></CreateUserAdmin>
+        <CheckAdmin>
+          <CreateUserAdmin></CreateUserAdmin>
+        </CheckAdmin>
       </CheckLogin>
     ),
   },
@@ -186,7 +192,9 @@ const router = createBrowserRouter([
     path: "/admin/games",
     element: (
       <CheckLogin>
-        <GamesAdmin></GamesAdmin>
+        <CheckAdmin>
+          <GamesAdmin></GamesAdmin>
+        </CheckAdmin>
       </CheckLogin>
     ),
   },
@@ -194,7 +202,9 @@ const router = createBrowserRouter([
     path: "/admin/games/update/:id",
     element: (
       <CheckLogin>
-        <UpdateGameAdmin></UpdateGameAdmin>
+        <CheckAdmin>
+          <UpdateGameAdmin></UpdateGameAdmin>
+        </CheckAdmin>
       </CheckLogin>
     ),
   },
@@ -202,7 +212,9 @@ const router = createBrowserRouter([
     path: "/admin/rounds/:id",
     element: (
       <CheckLogin>
-        <RoundsAdmin></RoundsAdmin>
+        <CheckAdmin>
+          <RoundsAdmin></RoundsAdmin>
+        </CheckAdmin>
       </CheckLogin>
     ),
   },
@@ -210,7 +222,9 @@ const router = createBrowserRouter([
     path: "/admin/rounds/update/:id",
     element: (
       <CheckLogin>
-        <UpdateRoundAdmin></UpdateRoundAdmin>
+        <CheckAdmin>
+          <UpdateRoundAdmin></UpdateRoundAdmin>
+        </CheckAdmin>
       </CheckLogin>
     ),
   },
@@ -218,7 +232,9 @@ const router = createBrowserRouter([
     path: "/admin/questions/:id",
     element: (
       <CheckLogin>
-        <QuestionsAdmin></QuestionsAdmin>
+        <CheckAdmin>
+          <QuestionsAdmin></QuestionsAdmin>
+        </CheckAdmin>
       </CheckLogin>
     ),
   },
@@ -229,10 +245,6 @@ const router = createBrowserRouter([
         <Upload></Upload>
       </CheckLogin>
     ),
-  },
-  {
-    path: "/test",
-    element: <QuizTest></QuizTest>,
   },
 ]);
 

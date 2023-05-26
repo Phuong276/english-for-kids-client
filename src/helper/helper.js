@@ -27,3 +27,12 @@ export function CheckLogin({ children }) {
   const token = window.localStorage.getItem("token");
   return token ? children : <Navigate to={"/login"} replace={true} />;
 }
+
+export function CheckAdmin({ children }) {
+  const user = JSON.parse(localStorage.getItem("user"));
+  return user.role === "ADMIN" ? (
+    children
+  ) : (
+    <Navigate to={"/login"} replace={true} />
+  );
+}
