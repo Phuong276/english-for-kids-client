@@ -60,7 +60,6 @@ export default function QuizVocabGame() {
 
   const moveNextQuestion = async () => {
     if (trace < questions.length) {
-      console.log(checked);
       if (checked === questions[trace].answerText) {
         setShowModal(true);
         setTitelModal("Correct");
