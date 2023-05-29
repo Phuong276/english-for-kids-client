@@ -4,16 +4,27 @@ export default function QuestionsScreambleGame(props) {
   const { question, answerText, answers } = props;
   const word = answerText;
   const wordShow = swapString(word);
-  const handleGuess = (guess) => {
-    props.parentCallback(guess);
-  };
+  const listitems = wordShow.split("");
 
   const handleShowAnswers = (answers, answerText) => {
     let text = answers;
     for (let i = 0; i < answerText.length - answers.length; i++) {
-      text += "_";
+      text += " ";
     }
     return text;
+  };
+
+  const handleDragStart = (event) => {
+    event.dataTransfer.setData("id", event.currentTarget.id);
+  };
+  const handleDragOver = (event) => {
+    event.preventDefault();
+  };
+  const handleDrop = (event) => {
+    event.preventDefault();
+    const id = event.dataTransfer.getData("id");
+    props.parentCallback(listitems[id]);
+    // console.log(list);
   };
 
   return (
@@ -23,7 +34,11 @@ export default function QuestionsScreambleGame(props) {
           {word === "quit" ? (
             <div>No Question</div>
           ) : (
-            <div className="text-6xl font-serif">
+            <div
+              className="text-6xl font-serif"
+              onDragOver={handleDragOver}
+              onDrop={handleDrop}
+            >
               <img
                 src={question.questionImage}
                 alt={question.id}
@@ -31,33 +46,29 @@ export default function QuestionsScreambleGame(props) {
                 height={700}
                 className="mx-auto mt-10 mb-20 rounded-[20%]"
               />
-              <p className="flex justify-center pb-20">
+              <ul className="flex justify-center pb-20">
                 {handleShowAnswers(answers, word)
                   .split("")
-                  .map((letter) =>
-                    letter ? (
-                      <div className="w-[120px] text-center h-[120px] rounded-[20px] border-4 border-cyan-200 bg-cyan-300 hover:opacity-60 font-mono">
-                        {letter}
-                      </div>
-                    ) : (
-                      <div className="w-[120px] text-center h-[120px] rounded-[20px] border-4 border-cyan-200 bg-cyan-300 hover:opacity-60 font-mono">
-                        _
-                      </div>
-                    )
-                  )}
-              </p>
+                  .map((letter) => (
+                    <li className="w-[120px] text-center h-[120px] rounded-[20px] border-4 border-cyan-200 bg-cyan-300 hover:opacity-60 font-mono">
+                      {letter}
+                    </li>
+                  ))}
+              </ul>
               <div className="pb-10">
-                <p>
-                  {wordShow.split("").map((letter) => (
-                    <button
+                <ul className="inline-flex">
+                  {wordShow.split("").map((letter, index) => (
+                    <li
                       className="w-[120px] text-center h-[120px] rounded-[20px] border-4 border-cyan-200 bg-cyan-300 hover:opacity-60 font-mono"
-                      ket={letter}
-                      onClick={() => handleGuess(letter)}
+                      key={index}
+                      id={index}
+                      draggable={true}
+                      onDragStart={handleDragStart}
                     >
                       {letter}
-                    </button>
+                    </li>
                   ))}
-                </p>
+                </ul>
               </div>
             </div>
           )}

@@ -31,6 +31,7 @@ import RoundsAdmin from "./Admin/Rounds";
 import QuestionsAdmin from "./Admin/Questions";
 import UpdateGameAdmin from "./Admin/Game/Update";
 import UpdateRoundAdmin from "./Admin/Round/Update";
+import DragDrop from "./DragDrop";
 
 axios.defaults.headers.common["Authorization"] =
   "Bearer " + window.localStorage.getItem("token");
@@ -245,6 +246,10 @@ const router = createBrowserRouter([
         <Upload></Upload>
       </CheckLogin>
     ),
+  },
+  {
+    path: "/dragdrop",
+    element: <DragDrop></DragDrop>,
   },
 ]);
 
