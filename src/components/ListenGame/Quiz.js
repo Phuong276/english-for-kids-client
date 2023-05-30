@@ -62,8 +62,9 @@ export default function QuizListenGame() {
 
   questions.map((item) => listAudio.push(item.questionAudio));
 
-  listAudio.sort(function() {
-    return 0.5 - Math.random();});
+  listAudio.sort(() => {
+    return 0.5 - Math.random();
+  });
 
   if (questions.length <= trace) {
     navigate(link);
