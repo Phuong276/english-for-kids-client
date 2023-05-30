@@ -93,6 +93,10 @@ export default function QuizScrambleGame() {
     }
     moveNextQuestion();
   }
+  const linkQuit = `/gamescramble/${params.id}`;
+  const handleQuitGame = () => {
+    navigate(linkQuit);
+  };
 
   const handleBack = () => {
     setAnswers(answers.substring(0, answers.length - 1));
@@ -111,6 +115,25 @@ export default function QuizScrambleGame() {
           />
         </>
       ) : null}
+      <button
+        className="border-[5px] border-cyan-500 bg-cyan-200 rounded-3xl hover:bg-cyan-300 w-[5%] pl-6 flex"
+        onClick={handleQuitGame}
+      >
+        <svg
+          class="h-8 w-8 text-cyan-500"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          stroke-width="4"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" />{" "}
+          <path d="M9 11l-4 4l4 4m-4 -4h11a4 4 0 0 0 0 -8h-1" />
+        </svg>
+      </button>
       <div className="container mx-auto text-center">
         <section className="py-3">
           <div className="container mx-auto flex items-center flex-wrap">

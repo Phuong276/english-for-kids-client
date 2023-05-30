@@ -112,6 +112,25 @@ export default function QuizListenGame() {
           />
         </>
       ) : null}
+      <button
+        className="border-[5px] border-purple-500 bg-purple-200 rounded-3xl hover:bg-purple-300 w-[5%] pl-6 flex"
+        onClick={Quit}
+      >
+        <svg
+          class="h-8 w-8 text-purple-500"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          stroke-width="4"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" />{" "}
+          <path d="M9 11l-4 4l4 4m-4 -4h11a4 4 0 0 0 0 -8h-1" />
+        </svg>
+      </button>
       <div className="container mx-auto text-center pt-10 py-10">
         <section className="py-10 pt-10">
           <div className="container mx-auto flex items-center flex-wrap pt-4">
@@ -136,14 +155,6 @@ export default function QuizListenGame() {
         </section>
         <div className="pb-10 grid grid-cols-4 pt-5">
           <div></div>
-          <div>
-            <button
-              className="bg-purple-400 hover:bg-purple-500 text-white font-bold py-5 pt-6 px-12 rounded-full text-2xl border-4 border-purple-500"
-              onClick={Quit}
-            >
-              Quit
-            </button>
-          </div>
           <div>
             {startGame ? (
               <button

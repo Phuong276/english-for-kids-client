@@ -91,13 +91,17 @@ export default function QuizVocabGame() {
     navigate(link, { state: { totalQuestions, totalPoints: point } });
   }
 
+  const linkQuit = `/gamevocab/${params.id}`;
+  const handleQuitGame = () => {
+    navigate(linkQuit);
+  };
+
   useEffect(() => {
     fecthAllQuestion();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (isLoading) return;
-
   return (
     <div className="bg-orange-100">
       {showModal ? (
@@ -110,6 +114,26 @@ export default function QuizVocabGame() {
           />
         </>
       ) : null}
+      <button
+        className="border-[5px] border-gray-500 bg-orange-200 rounded-3xl hover:bg-orange-300 w-[5%] pl-6 flex"
+        onClick={handleQuitGame}
+      >
+        <svg
+          class="h-8 w-8 text-gray-500"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          stroke-width="4"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" />{" "}
+          <path d="M9 11l-4 4l4 4m-4 -4h11a4 4 0 0 0 0 -8h-1" />
+        </svg>
+      </button>
+
       <div className="container mx-auto text-center">
         <section className="bg-orange-100 py-10">
           <div className="flex items-center flex-wrap">
