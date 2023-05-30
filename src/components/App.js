@@ -32,6 +32,9 @@ import QuestionsAdmin from "./Admin/Questions";
 import UpdateGameAdmin from "./Admin/Game/Update";
 import UpdateRoundAdmin from "./Admin/Round/Update";
 import DragDrop from "./DragDrop";
+import HomeGrammarGame from "./GrammarGame/Home";
+import QuizGrammarGame from "./GrammarGame/Quiz";
+import ResultGrammarGame from "./GrammarGame/Result";
 
 axios.defaults.headers.common["Authorization"] =
   "Bearer " + window.localStorage.getItem("token");
@@ -146,6 +149,32 @@ const router = createBrowserRouter([
     element: (
       <CheckLogin>
         <ResultScrambleGame></ResultScrambleGame>
+      </CheckLogin>
+    ),
+  },
+  {
+    path: "/gamesgrammar/:id",
+    element: (
+      <CheckLogin>
+        <NavBar></NavBar>
+        <HomeGrammarGame></HomeGrammarGame>
+        <Footer></Footer>
+      </CheckLogin>
+    ),
+  },
+  {
+    path: "/gamesgrammar/:id/quiz",
+    element: (
+      <CheckLogin>
+        <QuizGrammarGame></QuizGrammarGame>
+      </CheckLogin>
+    ),
+  },
+  {
+    path: "/gamesgrammar/:id/result",
+    element: (
+      <CheckLogin>
+        <ResultGrammarGame></ResultGrammarGame>
       </CheckLogin>
     ),
   },

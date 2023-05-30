@@ -13,6 +13,8 @@ const Games = (props) => {
     linkTo = "/gamelisten/" + id;
   } else if (name === "Game Scramble") {
     linkTo = "/gamescramble/" + id;
+  } else if (name === "Game Grammar") {
+    linkTo = "/gamesgrammar/" + id;
   }
 
   return (
