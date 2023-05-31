@@ -71,9 +71,14 @@ export default function QuizGrammarGame() {
     playAudio(correctSound);
   }
 
+  const linkQuit = `/gamesgrammar/${params.id}`;
+  const handleQuitGame = () => {
+    navigate(linkQuit);
+  };
+
   if (isLoading) return;
   return (
-    <div>
+    <div className="bg-green-100 min-h-[1100px]">
       {showModal ? (
         <>
           <TrueFalse
@@ -84,11 +89,38 @@ export default function QuizGrammarGame() {
           />
         </>
       ) : null}
-      <QuestionsGrammarGame
-        question={questions[trace] ? questions[trace] : questions[trace - 1]}
-        callbackSetAnswerText={handleSetAnswerText}
-        trace={trace}
-      />
+      <button
+        className="border-[5px] border-green-500 bg-green-200 rounded-3xl hover:bg-green-300 w-[5%] pl-6 flex"
+        onClick={handleQuitGame}
+      >
+        <svg
+          class="h-8 w-8 text-green-500"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          stroke-width="4"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" />{" "}
+          <path d="M9 11l-4 4l4 4m-4 -4h11a4 4 0 0 0 0 -8h-1" />
+        </svg>
+      </button>
+      <div className="container mx-auto text-center">
+        <section className="py-5">
+          <div className="flex items-center flex-wrap">
+            <QuestionsGrammarGame
+              question={
+                questions[trace] ? questions[trace] : questions[trace - 1]
+              }
+              callbackSetAnswerText={handleSetAnswerText}
+              trace={trace}
+            />
+          </div>
+        </section>
+      </div>
     </div>
   );
 }
