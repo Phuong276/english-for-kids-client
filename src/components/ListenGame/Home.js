@@ -30,7 +30,7 @@ export default function HomeListenGame() {
 
   return (
     <div>
-      <div className="bg-lime-100">
+      <div className="bg-lime-100 min-h-[850px]">
         <section className="py-8">
           <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
             <div className="grid grid-cols-4 gap-16">
