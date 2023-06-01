@@ -5,15 +5,15 @@ import { motion } from "framer-motion";
 const Games = (props) => {
   const { id, image, name } = props;
   let linkTo = "";
-  if (name === "Game Vocab") {
+  if (name === "Quiz") {
     linkTo = "/gamevocab/" + id;
-  } else if (name === "Game Hangman") {
+  } else if (name === "Hangman") {
     linkTo = "/gamehangman/" + id;
-  } else if (name === "Game Listen") {
+  } else if (name === "Listen") {
     linkTo = "/gamelisten/" + id;
-  } else if (name === "Game Scramble") {
+  } else if (name === "Scramble") {
     linkTo = "/gamescramble/" + id;
-  } else if (name === "Game Grammar") {
+  } else if (name === "Grammar") {
     linkTo = "/gamesgrammar/" + id;
   }
 
@@ -27,7 +27,7 @@ const Games = (props) => {
       <Link to={linkTo} id={id}>
         <img
           alt={name}
-          className="hover:grow hover:shadow-lg rounded-[30%] hover:animate-pulse duration-200 w-[300px] border-8 border-lime-200"
+          className="hover:grow hover:shadow-lg rounded-[30%] hover:animate-pulse duration-200 w-[300px] h-[300px] border-8 border-lime-200"
           src={image}
         />
         <div className="pt-2 flex items-center justify-between text-3xl font-mono pl-[15%]">

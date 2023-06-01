@@ -20,7 +20,7 @@ export default function QuestionsVocabGame(props) {
               alt={question.id}
               width={700}
               height={600}
-              className="mx-auto mt-10 mb-20 rounded-[20%]"
+              className="mx-auto mt-10 mb-20 rounded-[20%] w-[400px] h-[400px]"
             />
           </div>
 
@@ -30,11 +30,13 @@ export default function QuestionsVocabGame(props) {
             key={question?.id}
           >
             {question?.answers.map((item, i) => (
-              <div className="border-[5px] border-gray-500 bg-orange-200 rounded-3xl hover:bg-orange-300 w-[90%]">
+              <div
+                className="border-[5px] border-gray-500 bg-orange-200 rounded-3xl hover:bg-orange-300"
+                onClick={() => onSelect(item.answerText)}
+              >
                 <button
                   key={i}
-                  className="rounded-full text-5xl font-serif pr-[60%] pt-5 pb-5"
-                  onClick={() => onSelect(item.answerText)}
+                  className="rounded-full text-5xl font-serif pt-5 pb-5"
                 >
                   {i === 0
                     ? `A.  ${item?.answerText}`

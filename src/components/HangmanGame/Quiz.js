@@ -93,7 +93,7 @@ export default function QuizHangmanGame() {
     navigate(linkQuit);
   };
 
-  const answers = generateString(5, answerText);
+  const answers = generateString(3, answerText);
 
   if (isLoading) return;
   return (

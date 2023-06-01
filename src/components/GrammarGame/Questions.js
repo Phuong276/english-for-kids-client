@@ -75,7 +75,7 @@ export default function QuestionsGrammarGame(props) {
             onDragOver={handleDragOver}
             onDrop={handleDrop2}
           >
-            <ul className="list-none p-0 m-0 bg-green-200 border border-green-300 min-h-40">
+            <ul className="list-none p-0 m-0 bg-green-200 border border-green-300 min-h-40 text-2xl">
               {list.map((item) => (
                 <li
                   key={item.id}
@@ -91,7 +91,7 @@ export default function QuestionsGrammarGame(props) {
           </div>
           <div
             className={`p-4 mt-4 bg-white rounded-lg shadow-lg border-dashed border-2 min-h-60 ${
-              isDragging ? "border-black" : "border-indigo-300"
+              isDragging ? "border-black" : "border-indigo-300 text-2xl"
             } `}
             onDragOver={handleDragOver}
             onDrop={handleDrop}

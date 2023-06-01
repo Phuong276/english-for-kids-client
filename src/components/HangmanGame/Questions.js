@@ -51,7 +51,7 @@ export default function QuestionsHangmanGame(props) {
             alt={question.id}
             width={700}
             height={600}
-            className="mx-auto mt-10 rounded-[20%]"
+            className="mx-auto mt-10 rounded-[20%] w-[400px] h-[400px]"
           />
           <div className="py-10">
             <p className="text-pink-600 pb">{`${handleHeart(
