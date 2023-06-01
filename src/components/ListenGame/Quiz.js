@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { getAllData } from "../../helper/helper";
 import { correctSound, playAudio } from "../../until/sound";
-import QuestionListenGame from "./Question";
+import QuestionListenGame from "./Questions";
 import TrueFalse from "../TrueFalse";
 import { upsetPoint } from "../../until/point";
 
@@ -87,6 +87,14 @@ export default function QuizListenGame() {
 
   const user = JSON.parse(window.localStorage.getItem("user"));
 
+  const linkResult = `/gamelisten/${params.id}/result`;
+  const totalQuestions = questions.length;
+  const [point, setPoint] = useState(0);
+  if (questions.length <= trace) {
+    navigate(linkResult, {
+      state: { totalQuestions: totalQuestions, totalPoints: point },
+    });
+  }
   if (audioNow === audioChose) {
     setAudioChose("chose");
     setTrace(trace + 1);
@@ -97,6 +105,7 @@ export default function QuizListenGame() {
     setColorModal(true);
     playAudio(correctSound);
     upsetPoint(true, user.id, traceQuestion);
+    setPoint(point + 1);
   }
 
   if (isLoading) return;

@@ -13,7 +13,7 @@ const Games = (props) => {
     linkTo = "/gamelisten/" + id;
   } else if (name === "Scramble") {
     linkTo = "/gamescramble/" + id;
-  } else if (name === "Grammar") {
+  } else if (name === "Word Matching") {
     linkTo = "/gamesgrammar/" + id;
   }
 
@@ -30,8 +30,8 @@ const Games = (props) => {
           className="hover:grow hover:shadow-lg rounded-[30%] hover:animate-pulse duration-200 w-[300px] h-[300px] border-8 border-lime-200"
           src={image}
         />
-        <div className="pt-2 flex items-center justify-between text-3xl font-mono pl-[15%]">
-          <p>{name}</p>
+        <div className="pt-2 flex items-center justify-center w-[300px] text-3xl font-mono text-center">
+          {name}
         </div>
       </Link>
     </motion.div>

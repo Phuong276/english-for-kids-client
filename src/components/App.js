@@ -35,6 +35,7 @@ import DragDrop from "./DragDrop";
 import HomeGrammarGame from "./GrammarGame/Home";
 import QuizGrammarGame from "./GrammarGame/Quiz";
 import ResultGrammarGame from "./GrammarGame/Result";
+import ResultListenGame from "./ListenGame/Result";
 
 axios.defaults.headers.common["Authorization"] =
   "Bearer " + window.localStorage.getItem("token");
@@ -123,6 +124,14 @@ const router = createBrowserRouter([
     element: (
       <CheckLogin>
         <QuizListenGame></QuizListenGame>
+      </CheckLogin>
+    ),
+  },
+  {
+    path: "/gamelisten/:id/result",
+    element: (
+      <CheckLogin>
+        <ResultListenGame></ResultListenGame>
       </CheckLogin>
     ),
   },
