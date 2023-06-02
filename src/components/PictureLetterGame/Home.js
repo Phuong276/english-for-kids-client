@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getAllData } from "../../helper/helper";
-import RoundPicturePickerGame from "./Round";
+import RoundPictureLetterGame from "./Round";
 
-export default function HomePicturePickerGame() {
+export default function HomePictureLetterGame() {
   const params = useParams();
   const [rounds, setRoundsData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -26,6 +26,8 @@ export default function HomePicturePickerGame() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  console.log(rounds);
+
   if (isLoading) return;
   return (
     <div>
@@ -35,7 +37,7 @@ export default function HomePicturePickerGame() {
             <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
               <div className="grid grid-cols-4 gap-16">
                 {rounds.map((item) => (
-                  <RoundPicturePickerGame
+                  <RoundPictureLetterGame
                     gameId={params.id}
                     key={item.id}
                     id={item.id}

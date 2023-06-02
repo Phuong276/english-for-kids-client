@@ -39,6 +39,9 @@ import ResultListenGame from "./ListenGame/Result";
 import HomePicturePickerGame from "./PicturePickerGame/Home";
 import QuizPicturePickerGame from "./PicturePickerGame/Quiz";
 import ResultPicturePickerGame from "./PicturePickerGame/ResultPicturePicker";
+import HomePictureLetterGame from "./PictureLetterGame/Home";
+import QuizPictureLetterGame from "./PictureLetterGame/Quiz";
+import ResultPictureLetterGame from "./PictureLetterGame/Result";
 
 axios.defaults.headers.common["Authorization"] =
   "Bearer " + window.localStorage.getItem("token");
@@ -161,6 +164,32 @@ const router = createBrowserRouter([
     element: (
       <CheckLogin>
         <ResultPicturePickerGame></ResultPicturePickerGame>
+      </CheckLogin>
+    ),
+  },
+  {
+    path: "/gamepictureletter/:id",
+    element: (
+      <CheckLogin>
+        <NavBar></NavBar>
+        <HomePictureLetterGame></HomePictureLetterGame>
+        <Footer></Footer>
+      </CheckLogin>
+    ),
+  },
+  {
+    path: "/gamepictureletter/:id/quiz",
+    element: (
+      <CheckLogin>
+        <QuizPictureLetterGame></QuizPictureLetterGame>
+      </CheckLogin>
+    ),
+  },
+  {
+    path: "/gamepictureletter/:id/result",
+    element: (
+      <CheckLogin>
+        <ResultPictureLetterGame></ResultPictureLetterGame>
       </CheckLogin>
     ),
   },

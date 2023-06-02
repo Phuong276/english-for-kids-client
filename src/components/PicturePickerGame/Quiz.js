@@ -54,9 +54,8 @@ export default function QuizPicturePickerGame() {
   useEffect(() => {
     const timer = setTimeout(() => {
       handleNext();
-    }, 2000);
+    }, 3000);
     return () => clearTimeout(timer);
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [trace]);
 
