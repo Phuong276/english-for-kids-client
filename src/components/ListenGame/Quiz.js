@@ -23,6 +23,7 @@ export default function QuizListenGame() {
   const [titelModal, setTitelModal] = useState("Incorrect");
   const [messModal, setMessModal] = useState("Let's try");
   const [colorModal, setColorModal] = useState(false);
+  const [listAudio, setListAudio] = useState([]);
 
   const [countdown, setCountdown] = useState(300);
   const timerId = useRef();
@@ -69,13 +70,14 @@ export default function QuizListenGame() {
     navigate(link);
   };
 
-  let listAudio = [];
-
-  questions.map((item) => listAudio.push(item.questionAudio));
-
-  listAudio.sort(() => {
-    return 0.5 - Math.random();
-  });
+  useEffect(() => {
+    questions.map((item) => listAudio.push(item.questionAudio));
+    listAudio.sort(() => {
+      return 0.5 - Math.random();
+    });
+    setListAudio(listAudio);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [questions]);
 
   const handleStartGame = () => {
     setStartGame(!startGame);
