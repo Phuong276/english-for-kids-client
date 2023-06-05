@@ -39,7 +39,7 @@ export default function UsersAdmin() {
 
   useEffect(() => {
     fecthAllUser();
-  }, [deleteData]);
+  }, []);
 
   const navigate = useNavigate();
 

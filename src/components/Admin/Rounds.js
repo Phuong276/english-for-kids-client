@@ -51,7 +51,7 @@ export default function RoundsAdmin() {
   useEffect(() => {
     fecthAllRound();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [handleDeleteRound]);
+  }, []);
 
   const handleCreateData = () => {
     const link = "/admin/rounds/add";
