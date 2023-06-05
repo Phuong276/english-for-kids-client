@@ -24,7 +24,6 @@ export default function QuestionsScreambleGame(props) {
     event.preventDefault();
     const id = event.dataTransfer.getData("id");
     props.parentCallback(listitems[id]);
-    // console.log(list);
   };
 
   return (

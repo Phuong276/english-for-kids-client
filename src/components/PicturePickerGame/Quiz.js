@@ -164,7 +164,7 @@ export default function QuizPicturePickerGame() {
                       ? questions[0].questionImage
                       : ""
                   }
-                  className="absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 rounded-[5%] h-[400px] w-[400px]"
+                  className="absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 rounded-[5%] h-[300px] w-[300px]"
                   alt={
                     questions[trace + 1]
                       ? questions[trace + 1].id
@@ -177,9 +177,9 @@ export default function QuizPicturePickerGame() {
             </div>
           </div>
         </div>
-        <div className="h-[400px] w-[400px] pl-5 pr-5">
+        <div className="h-[400px] w-[400px] pl-10 pr-5">
           <div className="relative w-full" data-carousel="slide">
-            <div className="relative h-56 overflow-hidden rounded-[5%] md:h-96">
+            <div className="relative h-56 overflow-hidden rounded-[5%] md:h-96 border-8 border-red-500">
               <div className=" duration-700 ease-in-out" data-carousel-item>
                 <img
                   src={questions[trace] ? questions[trace].questionImage : ""}
@@ -190,7 +190,7 @@ export default function QuizPicturePickerGame() {
             </div>
           </div>
         </div>
-        <div className="h-[400px] w-[400px] pl-5">
+        <div className="h-[400px] w-[400px] pl-10 ">
           <div className="relative w-full" data-carousel="slide">
             <div className="relative h-56 overflow-hidden rounded-[5%] md:h-96">
               <div className=" duration-700 ease-in-out" data-carousel-item>
@@ -202,7 +202,7 @@ export default function QuizPicturePickerGame() {
                       ? questions[totalQuestion - 1].questionImage
                       : ""
                   }
-                  className="absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 rounded-[5%] h-[400px] w-[400px]"
+                  className="absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 rounded-[5%] h-[300px] w-[300px]"
                   alt={
                     questions[trace - 1]
                       ? questions[trace - 1].id

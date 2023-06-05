@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { getAllData } from "../../helper/helper";
-import { correctSound, playAudio } from "../../until/sound";
+import { correctSound, incorrectSound, playAudio } from "../../until/sound";
 import { formatTime } from "../../until/time";
 import TrueFalse from "../TrueFalse";
 
@@ -89,6 +89,7 @@ export default function QuizPictureLetterGame() {
         setTitelModal("Incorrect");
         setMessModal(`You answered the question wrong.`);
         setColorModal(false);
+        playAudio(incorrectSound);
         arrayText[choseFirst].status = 0;
         arrayImage[choseSecond].status = 0;
       }
@@ -139,7 +140,7 @@ export default function QuizPictureLetterGame() {
 
   if (isLoading) return;
   return (
-    <div className="p-10 bg-amber-200 min-h-[1100px]">
+    <div className="p-4 bg-amber-200 min-h-[1100px]">
       {showModal ? (
         <>
           <TrueFalse
@@ -174,48 +175,44 @@ export default function QuizPictureLetterGame() {
           Time: {formatTime(countdown)}
         </div>
       </div>
+
       <div className="flex justify-center">
-        <div className=" bg-amber-300 rounded-3xl w-[1200px] flex justify-center">
-          <div className="text-6xl font-thin pt-6 pb-6 text-center font-serif">
-            <b>Let's pick picture corresponds to text</b>
-          </div>
+        <div className="grid grid-cols-4 gap-10 p-5 w-[1000px]">
+          {arrayText.map((item, index) =>
+            item.status === 0 ? (
+              <div
+                className="bg-amber-400 rounded-md h-[200px] w-[200px] flex items-center justify-center cursor-pointer text-5xl font-serif"
+                onClick={() => handleClickTextItem(index)}
+              >
+                {item.text}
+              </div>
+            ) : item.status === 1 ? (
+              <div className="bg-cyan-400 rounded-md h-[200px] w-[200px] flex items-center justify-center border-8 border-green-400">
+                {item.text}
+              </div>
+            ) : (
+              <div></div>
+            )
+          )}
+          {arrayImage.map((item, index) =>
+            item.status === 0 ? (
+              <img
+                src={item.text}
+                alt={item.id}
+                className="h-[200px] w-[200px] rounded-md flex items-center justify-center cursor-pointer"
+                onClick={() => handleClickImageItem(index)}
+              />
+            ) : item.status === 1 ? (
+              <img
+                src={item.text}
+                alt={item.id}
+                className="h-[200px] w-[200px] rounded-md flex items-center justify-center border-8 border-green-400"
+              />
+            ) : (
+              <div></div>
+            )
+          )}
         </div>
-      </div>
-      <div className="grid grid-cols-4 gap-10 p-10">
-        {arrayText.map((item, index) =>
-          item.status === 0 ? (
-            <div
-              className="bg-cyan-400 rounded-md h-[350px] w-[350px] flex items-center justify-center cursor-pointer text-5xl font-serif"
-              onClick={() => handleClickTextItem(index)}
-            >
-              {item.text}
-            </div>
-          ) : item.status === 1 ? (
-            <div className="bg-cyan-400 rounded-md h-[350px] w-[350px] flex items-center justify-center border-8 border-green-400">
-              {item.text}
-            </div>
-          ) : (
-            <div></div>
-          )
-        )}
-        {arrayImage.map((item, index) =>
-          item.status === 0 ? (
-            <img
-              src={item.text}
-              alt={item.id}
-              className="h-[350px] w-[350px] rounded-md flex items-center justify-center cursor-pointer"
-              onClick={() => handleClickImageItem(index)}
-            />
-          ) : item.status === 1 ? (
-            <img
-              src={item.text}
-              alt={item.id}
-              className="h-[350px] w-[350px] rounded-md flex items-center justify-center border-8 border-green-400"
-            />
-          ) : (
-            <div></div>
-          )
-        )}
       </div>
     </div>
   );
