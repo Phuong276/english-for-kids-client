@@ -1,13 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { getAllData } from "../../helper/helper";
 import QuestionsVocabGame from "./Questions";
 import { upsetPoint } from "../../until/point";
 import TrueFalse from "../TrueFalse";
-import { correctSound, incorrectSound, playAudio } from "../../until/sound";
+import {
+  correctSound,
+  incorrectSound,
+  playAudio,
+} from "../../until/sound";
+import { formatTime } from "../../until/time";
 
 export default function QuizVocabGame() {
   const [searchParams] = useSearchParams();
+
+  const [countdown, setCountdown] = useState(300);
+  const timerId = useRef();
+
+  useEffect(() => {
+    timerId.current = setInterval(() => {
+      setCountdown((prev) => prev - 1);
+    }, 1000);
+    return () => clearInterval(timerId.current);
+  }, []);
 
   const params = useParams();
   const link = `/gamevocab/${params.id}/result`;
@@ -87,7 +102,7 @@ export default function QuizVocabGame() {
     setMove(false);
   }
 
-  if (questions.length <= trace) {
+  if (questions.length <= trace || countdown <= 0) {
     navigate(link, { state: { totalQuestions, totalPoints: point } });
   }
 
@@ -114,26 +129,30 @@ export default function QuizVocabGame() {
           />
         </>
       ) : null}
-      <button
-        className="border-[5px] border-gray-500 bg-orange-200 rounded-3xl hover:bg-orange-300 w-[5%] pl-6 flex"
-        onClick={handleQuitGame}
-      >
-        <svg
-          class="h-8 w-8 text-gray-500"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          stroke-width="4"
-          stroke="currentColor"
-          fill="none"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+      <div className="flex">
+        <button
+          className="border-[5px] border-gray-500 bg-orange-200 rounded-3xl hover:bg-orange-300 w-[5%] pl-6 flex"
+          onClick={handleQuitGame}
         >
-          <path stroke="none" d="M0 0h24v24H0z" />{" "}
-          <path d="M9 11l-4 4l4 4m-4 -4h11a4 4 0 0 0 0 -8h-1" />
-        </svg>
-      </button>
-
+          <svg
+            class="h-8 w-8 text-gray-500"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="4"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" />{" "}
+            <path d="M9 11l-4 4l4 4m-4 -4h11a4 4 0 0 0 0 -8h-1" />
+          </svg>
+        </button>
+        <div className="pl-[80%] pt-3 text-2xl font-bold">
+          Time: {formatTime(countdown)}
+        </div>
+      </div>
       <div className="container mx-auto text-center">
         <section className="bg-orange-100 py-10">
           <div className="flex items-center flex-wrap">

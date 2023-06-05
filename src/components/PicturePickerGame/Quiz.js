@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { getAllData } from "../../helper/helper";
 import { upsetPoint } from "../../until/point";
 import { correctSound, playAudio } from "../../until/sound";
+import { formatTime } from "../../until/time";
 import TrueFalse from "../TrueFalse";
 import QuestionsPicturePickerGame from "./Questions";
 
@@ -20,6 +21,16 @@ export default function QuizPicturePickerGame() {
   const [messModal, setMessModal] = useState("Let's try");
   const [colorModal, setColorModal] = useState(false);
   const [totalQuestion, setTotalQuestion] = useState(0);
+
+  const [countdown, setCountdown] = useState(300);
+  const timerId = useRef();
+
+  useEffect(() => {
+    timerId.current = setInterval(() => {
+      setCountdown((prev) => prev - 1);
+    }, 1000);
+    return () => clearInterval(timerId.current);
+  }, []);
 
   useEffect(() => {
     if (showModal) {
@@ -94,7 +105,7 @@ export default function QuizPicturePickerGame() {
   const link = `/gamepicturepicker/${params.id}/result`;
 
   const navigate = useNavigate();
-  if (questions.length === 0) {
+  if (questions.length === 0 || countdown <= 0) {
     navigate(link, { state: { totalPoints: point } });
   }
 
@@ -116,25 +127,30 @@ export default function QuizPicturePickerGame() {
           />
         </>
       ) : null}
-      <button
-        className="border-[5px] border-cyan-500 bg-cyan-200 rounded-3xl hover:bg-cyan-300 w-[5%] pl-6 flex"
-        onClick={handleQuitGame}
-      >
-        <svg
-          class="h-8 w-8 text-cyan-500"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          stroke-width="4"
-          stroke="currentColor"
-          fill="none"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+      <div className="flex">
+        <button
+          className="border-[5px] border-cyan-500 bg-cyan-200 rounded-3xl hover:bg-cyan-300 w-[5%] pl-6 flex"
+          onClick={handleQuitGame}
         >
-          <path stroke="none" d="M0 0h24v24H0z" />{" "}
-          <path d="M9 11l-4 4l4 4m-4 -4h11a4 4 0 0 0 0 -8h-1" />
-        </svg>
-      </button>
+          <svg
+            class="h-8 w-8 text-cyan-500"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="4"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" />{" "}
+            <path d="M9 11l-4 4l4 4m-4 -4h11a4 4 0 0 0 0 -8h-1" />
+          </svg>
+        </button>
+        <div className="pl-[80%] pt-3 text-2xl font-bold">
+          Time: {formatTime(countdown)}
+        </div>
+      </div>
       <div className="flex items-center justify-center mt-3">
         <div className="h-[400px] w-[400px] pr-5">
           <div className="relative w-full" data-carousel="slide">

@@ -26,8 +26,6 @@ export default function HomePictureLetterGame() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(rounds);
-
   if (isLoading) return;
   return (
     <div>

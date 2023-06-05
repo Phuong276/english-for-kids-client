@@ -8,7 +8,7 @@ export default function QuestionsVocabGame(props) {
   return (
     <>
       {question ? (
-        <div className="w-[100%] h-[100%]">
+        <div className="w-[100%] h-[100%] min-h-[1100px]">
           <div className="text-center">
             <div className="border-[7px] border-gray-600 bg-orange-300 rounded-3xl">
               <div className="text-6xl font-thin pt-6 pb-6">
@@ -23,7 +23,6 @@ export default function QuestionsVocabGame(props) {
               className="mx-auto mt-10 mb-20 rounded-[20%] w-[400px] h-[400px]"
             />
           </div>
-
           <ul
             class="grid  grid-rows-2 
                      grid-flow-col gap-20 auto-cols-fr"

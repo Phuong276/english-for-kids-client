@@ -13,3 +13,6 @@ export const vocabularyGameSound =
 
 export const playGame =
   "https://firebasestorage.googleapis.com/v0/b/english-for-kids-daa46.appspot.com/o/files%2Fplay%20game.mp3?alt=media&token=e30d5d63-ebe5-4f0f-b0f2-617027b95944";
+
+export const baby =
+  "https://firebasestorage.googleapis.com/v0/b/english-for-kids-daa46.appspot.com/o/files%2FPinkfong%20-%20Baby%20Shark%20Dance%20(minus).mp3?alt=media&token=8acdb5f7-5d0e-4e61-b39f-2512176b51fb&_gl=1*175xltk*_ga*ODgzMDU0MjMxLjE2ODQ1OTA5NjY.*_ga_CW55HF8NVT*MTY4NTg4NTE3MC4yNS4xLjE2ODU4ODU1NTguMC4wLjA.";
