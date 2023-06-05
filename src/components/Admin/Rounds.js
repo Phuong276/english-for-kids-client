@@ -1,5 +1,7 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import { getAllData } from "../../helper/helper";
 import NavBarAdmin from "./NavBar";
 
@@ -25,8 +27,6 @@ export default function RoundsAdmin() {
     }
   };
 
-  console.log(rounds);
-
   const navigate = useNavigate();
   const handleGetQuestion = (roundId) => {
     const link = `/admin/questions/${roundId}`;
@@ -38,10 +38,25 @@ export default function RoundsAdmin() {
     navigate(link);
   };
 
+  const handleDeleteRound = (id) => {
+    axios
+      .delete(`${process.env.REACT_APP_SERVERHOST}/api/rounds/${id}`)
+      .then((res) => {
+        console.log(res);
+        console.log(res.data);
+      });
+    toast.success("Delete Success");
+  };
+
   useEffect(() => {
     fecthAllRound();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [handleDeleteRound]);
+
+  const handleCreateData = () => {
+    const link = "/admin/rounds/add";
+    navigate(link, { state: { gameId: gameId } });
+  };
 
   if (isLoading) return;
   return (
@@ -108,12 +123,16 @@ export default function RoundsAdmin() {
                       type="button"
                       name={round.id}
                       value="Delete"
+                      onClick={() => handleDeleteRound(round.id)}
                     />
                   </td>
                 </tr>
               ))}
             </table>
-            <button className="pt-5 pl-[90%] text-blue-600 dark:text-blue-500 hover:underline font-serif text-2xs">
+            <button
+              className="pt-5 pl-[90%] text-blue-600 dark:text-blue-500 hover:underline font-serif text-2xs"
+              onClick={() => handleCreateData()}
+            >
               Add Round
             </button>
           </div>

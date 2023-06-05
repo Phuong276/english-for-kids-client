@@ -29,8 +29,6 @@ export default function QuestionsAdmin() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(questions);
-
   if (isLoading) return;
   return (
     <div>

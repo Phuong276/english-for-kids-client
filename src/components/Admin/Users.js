@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import NavBarAdmin from "./NavBar";
 import { getAllData } from "../../helper/helper";
 import { useEffect, useState } from "react";
@@ -26,11 +27,6 @@ export default function UsersAdmin() {
     }
   };
 
-  useEffect(() => {
-    fecthAllUser();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const deleteData = (id) => {
     axios
       .delete(`${process.env.REACT_APP_SERVERHOST}/api/users/${id}`)
@@ -40,6 +36,11 @@ export default function UsersAdmin() {
       });
     toast.success("Delete Success");
   };
+
+  useEffect(() => {
+    fecthAllUser();
+  }, [deleteData]);
+
   const navigate = useNavigate();
 
   const updateData = (id) => {
