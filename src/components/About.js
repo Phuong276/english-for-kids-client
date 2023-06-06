@@ -24,7 +24,7 @@ export default function About() {
               You can donate to me through the link: {""}
               <a
                 className="text-gray-800 underline hover:text-gray-900"
-                href="/"
+                href="https://www.sandbox.paypal.com/donate/?hosted_button_id=KNLW4BQAGUNXW"
               >
                 https://www.donate.com
               </a>

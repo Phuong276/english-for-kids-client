@@ -178,15 +178,17 @@ export default function QuizPictureLetterGame() {
           Time: {formatTime(countdown)}
         </div>
         <div className="py-10 pt-3 text-4xl pl-4">
-        <p className="text-pink-600 pb">{`${handleHeart(incorrectGuesses)}`}</p>
-      </div>
+          <p className="text-pink-600 pb">{`${handleHeart(
+            incorrectGuesses
+          )}`}</p>
+        </div>
       </div>
       <div className="flex justify-center">
         <div className="grid grid-cols-4 gap-10 p-5 w-[1000px]">
           {arrayText.map((item, index) =>
             item.status === 0 ? (
               <div
-                className="bg-amber-400 rounded-md h-[200px] w-[200px] flex items-center justify-center cursor-pointer text-5xl font-serif"
+                className="bg-amber-400 rounded-md h-[200px] w-[200px] flex items-center justify-center cursor-pointer text-5xl font-serif "
                 onClick={() => handleClickTextItem(index)}
               >
                 {item.text}
