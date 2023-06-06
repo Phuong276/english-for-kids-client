@@ -96,7 +96,7 @@ export default function QuizListenGame() {
 
   const user = JSON.parse(window.localStorage.getItem("user"));
 
-  const linkResult = `/gamelisten/${params.id}/result`;
+  const linkResult = `/result`;
   const totalQuestions = questions.length;
   const [point, setPoint] = useState(0);
   if (questions.length <= trace || countdown <= 0) {
@@ -163,14 +163,13 @@ export default function QuizListenGame() {
                   <QuestionListenGame
                     question={item}
                     callbackSetAudioChose={handleSetAudioChose}
-                    status={false}
                   />
                 ))}
               </div>
             ) : (
               <div className="grid grid-cols-4 gap-16">
                 {questions.map((item) => (
-                  <QuestionListenGame question={item} status={true} />
+                  <QuestionListenGame question={item} />
                 ))}
               </div>
             )}

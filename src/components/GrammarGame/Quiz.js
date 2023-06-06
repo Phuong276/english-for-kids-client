@@ -63,7 +63,7 @@ export default function QuizGrammarGame() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const link = `/gamesgrammar/${params.id}/result`;
+  const link = `/result`;
   const totalQuestions = questions.length;
   const [point, setPoint] = useState(0);
   if (questions.length <= trace || countdown <= 0) {

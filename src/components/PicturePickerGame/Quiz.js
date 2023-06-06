@@ -21,6 +21,7 @@ export default function QuizPicturePickerGame() {
   const [messModal, setMessModal] = useState("Let's try");
   const [colorModal, setColorModal] = useState(false);
   const [totalQuestion, setTotalQuestion] = useState(0);
+  const [total, setTotal] = useState(0);
 
   const [countdown, setCountdown] = useState(300);
   const timerId = useRef();
@@ -52,6 +53,7 @@ export default function QuizPicturePickerGame() {
       setIsLoading(false);
       setTrace(trace + 1);
       setTotalQuestion(data.length);
+      setTotal(data.length);
     } catch (error) {
       setIsLoading(true);
       console.log(error);
@@ -102,11 +104,15 @@ export default function QuizPicturePickerGame() {
   }
 
   const params = useParams();
-  const link = `/gamepicturepicker/${params.id}/result`;
+  const link = `/result`;
+
+  console.log(total);
 
   const navigate = useNavigate();
   if (questions.length === 0 || countdown <= 0) {
-    navigate(link, { state: { totalPoints: point } });
+    navigate(link, {
+      state: { totalPoints: point, totalQuestions: total },
+    });
   }
 
   const linkQuit = `/gamepicturepicker/${params.id}`;

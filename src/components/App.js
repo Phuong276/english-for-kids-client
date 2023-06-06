@@ -1,12 +1,10 @@
 import LandingPage from "./LandingPage";
 import QuizVocabGame from "./VocabGame/Quiz";
-import ResultVocabGame from "./VocabGame/Result";
 import HomeVocabGame from "./VocabGame/Home";
 import Login from "./Login/Login";
 import { CheckAdmin, CheckLogin } from "../helper/helper";
 import HomeHangmanGame from "./HangmanGame/Home";
 import QuizHangmanGame from "./HangmanGame/Quiz";
-import ResultHangmanGame from "./HangmanGame/Result";
 import QuizListenGame from "./ListenGame/Quiz";
 import Upload from "./Firebase/Upload";
 
@@ -18,7 +16,6 @@ import NavBar from "./NavBar";
 import HomeListenGame from "./ListenGame/Home";
 import HomeScrambleGame from "./ScrambleGame/Home";
 import QuizScrambleGame from "./ScrambleGame/Quiz";
-import ResultScrambleGame from "./ScrambleGame/Result";
 import HomeAdmin from "./Admin/Home";
 import UsersAdmin from "./Admin/Users";
 import GamesAdmin from "./Admin/Games";
@@ -34,15 +31,12 @@ import UpdateRoundAdmin from "./Admin/Round/Update";
 import DragDrop from "./DragDrop";
 import HomeGrammarGame from "./GrammarGame/Home";
 import QuizGrammarGame from "./GrammarGame/Quiz";
-import ResultGrammarGame from "./GrammarGame/Result";
-import ResultListenGame from "./ListenGame/Result";
 import HomePicturePickerGame from "./PicturePickerGame/Home";
 import QuizPicturePickerGame from "./PicturePickerGame/Quiz";
-import ResultPicturePickerGame from "./PicturePickerGame/ResultPicturePicker";
 import HomePictureLetterGame from "./PictureLetterGame/Home";
 import QuizPictureLetterGame from "./PictureLetterGame/Quiz";
-import ResultPictureLetterGame from "./PictureLetterGame/Result";
 import CreateRoundAdmin from "./Admin/Round/Create";
+import Result from "./Result";
 
 axios.defaults.headers.common["Authorization"] =
   "Bearer " + window.localStorage.getItem("token");
@@ -65,6 +59,14 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: "/result",
+    element: (
+      <CheckLogin>
+        <Result></Result>
+      </CheckLogin>
+    ),
+  },
+  {
     path: "/gamevocab/:id",
     element: (
       <CheckLogin>
@@ -79,14 +81,6 @@ const router = createBrowserRouter([
     element: (
       <CheckLogin>
         <QuizVocabGame></QuizVocabGame>
-      </CheckLogin>
-    ),
-  },
-  {
-    path: "/gamevocab/:id/result",
-    element: (
-      <CheckLogin>
-        <ResultVocabGame></ResultVocabGame>
       </CheckLogin>
     ),
   },
@@ -109,14 +103,6 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/gamehangman/:id/result",
-    element: (
-      <CheckLogin>
-        <ResultHangmanGame></ResultHangmanGame>
-      </CheckLogin>
-    ),
-  },
-  {
     path: "/gamelisten/:id",
     element: (
       <CheckLogin>
@@ -131,14 +117,6 @@ const router = createBrowserRouter([
     element: (
       <CheckLogin>
         <QuizListenGame></QuizListenGame>
-      </CheckLogin>
-    ),
-  },
-  {
-    path: "/gamelisten/:id/result",
-    element: (
-      <CheckLogin>
-        <ResultListenGame></ResultListenGame>
       </CheckLogin>
     ),
   },
@@ -161,14 +139,6 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/gamepicturepicker/:id/result",
-    element: (
-      <CheckLogin>
-        <ResultPicturePickerGame></ResultPicturePickerGame>
-      </CheckLogin>
-    ),
-  },
-  {
     path: "/gamepictureletter/:id",
     element: (
       <CheckLogin>
@@ -183,14 +153,6 @@ const router = createBrowserRouter([
     element: (
       <CheckLogin>
         <QuizPictureLetterGame></QuizPictureLetterGame>
-      </CheckLogin>
-    ),
-  },
-  {
-    path: "/gamepictureletter/:id/result",
-    element: (
-      <CheckLogin>
-        <ResultPictureLetterGame></ResultPictureLetterGame>
       </CheckLogin>
     ),
   },
@@ -213,14 +175,6 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/gamescramble/:id/result",
-    element: (
-      <CheckLogin>
-        <ResultScrambleGame></ResultScrambleGame>
-      </CheckLogin>
-    ),
-  },
-  {
     path: "/gamesgrammar/:id",
     element: (
       <CheckLogin>
@@ -235,14 +189,6 @@ const router = createBrowserRouter([
     element: (
       <CheckLogin>
         <QuizGrammarGame></QuizGrammarGame>
-      </CheckLogin>
-    ),
-  },
-  {
-    path: "/gamesgrammar/:id/result",
-    element: (
-      <CheckLogin>
-        <ResultGrammarGame></ResultGrammarGame>
       </CheckLogin>
     ),
   },

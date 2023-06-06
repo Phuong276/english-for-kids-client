@@ -25,7 +25,7 @@ export default function QuizVocabGame() {
   }, []);
 
   const params = useParams();
-  const link = `/gamevocab/${params.id}/result`;
+  const link = `/result`;
 
   const roundId = searchParams.get("roundId");
 

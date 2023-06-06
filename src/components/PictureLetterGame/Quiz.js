@@ -131,7 +131,7 @@ export default function QuizPictureLetterGame() {
     navigate(linkQuit);
   };
 
-  const link = `/gamepictureletter/${params.id}/result`;
+  const link = `/result`;
   if (questions.length <= trace || countdown <= 0) {
     navigate(link, {
       state: { totalQuestions: questions.length, totalPoints: trace },

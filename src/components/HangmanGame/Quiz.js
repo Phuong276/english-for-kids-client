@@ -57,7 +57,7 @@ export default function QuizHangmanGame() {
   };
 
   const params = useParams();
-  const link = `/gamehangman/${params.id}/result`;
+  const link = `/result`;
 
   const navigate = useNavigate();
   const moveNextQuestion = async () => {

@@ -69,7 +69,7 @@ export default function QuizScrambleGame() {
   };
 
   const params = useParams();
-  const link = `/gamescramble/${params.id}/result`;
+  const link = `/result`;
   const navigate = useNavigate();
 
   if (questions.length <= trace || countdown <= 0) {
