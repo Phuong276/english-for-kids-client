@@ -37,6 +37,8 @@ import HomePictureLetterGame from "./PictureLetterGame/Home";
 import QuizPictureLetterGame from "./PictureLetterGame/Quiz";
 import CreateRoundAdmin from "./Admin/Round/Create";
 import Result from "./Result";
+import UpdateQuestionAdmin from "./Admin/Question/Update";
+import CreateQuestionAdmin from "./Admin/Question/Create";
 
 axios.defaults.headers.common["Authorization"] =
   "Bearer " + window.localStorage.getItem("token");
@@ -268,6 +270,26 @@ const router = createBrowserRouter([
       <CheckLogin>
         <CheckAdmin>
           <UpdateRoundAdmin></UpdateRoundAdmin>
+        </CheckAdmin>
+      </CheckLogin>
+    ),
+  },
+  {
+    path: "/admin/questions/update/:id",
+    element: (
+      <CheckLogin>
+        <CheckAdmin>
+          <UpdateQuestionAdmin></UpdateQuestionAdmin>
+        </CheckAdmin>
+      </CheckLogin>
+    ),
+  },
+  {
+    path: "/admin/questions/add",
+    element: (
+      <CheckLogin>
+        <CheckAdmin>
+          <CreateQuestionAdmin></CreateQuestionAdmin>
         </CheckAdmin>
       </CheckLogin>
     ),

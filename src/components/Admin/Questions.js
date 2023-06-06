@@ -1,5 +1,7 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import { getAllData } from "../../helper/helper";
 import { playAudio } from "../../until/sound";
 import NavBarAdmin from "./NavBar";
@@ -28,6 +30,27 @@ export default function QuestionsAdmin() {
     fecthAllQuestion();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleDelete = (id) => {
+    axios
+      .delete(`${process.env.REACT_APP_SERVERHOST}/api/questions/${id}`)
+      .then((res) => {
+        console.log(res);
+        console.log(res.data);
+      });
+    toast.success("Delete Success");
+  };
+
+  const navigate = useNavigate();
+  const handleUpdateRound = (questionId) => {
+    const link = `/admin/questions/update/${questionId}`;
+    navigate(link);
+  };
+
+  const handleCreateData = () => {
+    const link = "/admin/questions/add";
+    navigate(link, { state: { roundId: roundId } });
+  };
 
   if (isLoading) return;
   return (
@@ -101,6 +124,7 @@ export default function QuestionsAdmin() {
                       type="button"
                       name={question.id}
                       value="Edit"
+                      onClick={() => handleUpdateRound(question.id)}
                     />
                   </td>
                   <td>
@@ -110,12 +134,16 @@ export default function QuestionsAdmin() {
                       type="button"
                       name={question.id}
                       value="Delete"
+                      onClick={() => handleDelete(question.id)}
                     />
                   </td>
                 </tr>
               ))}
             </table>
-            <button className="pt-5 pl-[90%] text-blue-600 dark:text-blue-500 hover:underline font-serif text-2xs">
+            <button
+              className="pt-5 pl-[90%] text-blue-600 dark:text-blue-500 hover:underline font-serif text-2xs"
+              onClick={() => handleCreateData()}
+            >
               Add Question
             </button>
           </div>
