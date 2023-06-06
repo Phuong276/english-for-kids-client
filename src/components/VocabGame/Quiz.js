@@ -90,7 +90,6 @@ export default function QuizVocabGame() {
           `You answered the question wrong. The answer is: ${questions[trace].answerText}.`
         );
         setColorModal(false);
-        upsetPoint(false, user.id, questions[trace].id);
         playAudio(incorrectSound);
       }
       setTrace(trace + 1);

@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { getAllData } from "../../helper/helper";
-import { correctSound, playAudio } from "../../until/sound";
+import { correctSound, incorrectSound, playAudio } from "../../until/sound";
 import QuestionListenGame from "./Questions";
 import TrueFalse from "../TrueFalse";
-import { upsetPoint } from "../../until/point";
+import { handleHeart, upsetPoint } from "../../until/point";
 import { formatTime } from "../../until/time";
 
 export default function QuizListenGame() {
@@ -14,6 +14,7 @@ export default function QuizListenGame() {
   const [audioNow, setAudioNow] = useState("now");
   const [audioChose, setAudioChose] = useState("chose");
   const [traceQuestion, setTraceQuestion] = useState(0);
+  const [incorrectGuesses, setIncorrectGuesses] = useState(5);
 
   const [questions, setQuestionsData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -99,7 +100,7 @@ export default function QuizListenGame() {
   const linkResult = `/result`;
   const totalQuestions = questions.length;
   const [point, setPoint] = useState(0);
-  if (questions.length <= trace || countdown <= 0) {
+  if (questions.length <= trace || countdown <= 0 || incorrectGuesses <= 0) {
     navigate(linkResult, {
       state: { totalQuestions: totalQuestions, totalPoints: point },
     });
@@ -115,6 +116,10 @@ export default function QuizListenGame() {
     playAudio(correctSound);
     upsetPoint(true, user.id, traceQuestion);
     setPoint(point + 1);
+  } else if (audioChose !== "chose") {
+    playAudio(incorrectSound);
+    setAudioChose("chose");
+    setIncorrectGuesses(incorrectGuesses - 1);
   }
 
   if (isLoading) return;
@@ -132,7 +137,7 @@ export default function QuizListenGame() {
       ) : null}
       <div className="flex">
         <button
-          className="border-[5px] border-purple-500 bg-purple-200 rounded-3xl hover:bg-purple-300 w-[5%] pl-6 flex"
+          className="border-[5px] border-purple-500 bg-purple-200 rounded-3xl hover:bg-purple-300 w-[5%] pl-6 flex h-[50px]"
           onClick={Quit}
         >
           <svg
@@ -150,8 +155,13 @@ export default function QuizListenGame() {
             <path d="M9 11l-4 4l4 4m-4 -4h11a4 4 0 0 0 0 -8h-1" />
           </svg>
         </button>
-        <div className="pl-[80%] pt-3 text-2xl font-bold">
+        <div className="pl-[75%] pt-3 text-3xl font-bold">
           Time: {formatTime(countdown)}
+        </div>
+        <div className="py-10 pt-3 text-4xl pl-4">
+          <p className="text-pink-600 pb">{`${handleHeart(
+            incorrectGuesses
+          )}`}</p>
         </div>
       </div>
       <div className="container mx-auto text-center pt-10 py-10">
@@ -175,7 +185,7 @@ export default function QuizListenGame() {
             )}
           </div>
         </section>
-        <div className="pb-10 grid grid-cols-4 pt-5">
+        <div className="pb-10 grid grid-cols-3 pt-5">
           <div></div>
           <div>
             {startGame ? (

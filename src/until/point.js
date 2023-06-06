@@ -21,3 +21,9 @@ export const upsetPoint = async (status, userId, questionId) => {
     console.log(error);
   }
 };
+
+export const handleHeart = (incorrectGuesses) => {
+  let hearts = "";
+  for (let i = 0; i < incorrectGuesses; i++) hearts += "❤";
+  return hearts;
+};

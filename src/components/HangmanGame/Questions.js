@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { handleHeart } from "../../until/point";
 
 export default function QuestionsHangmanGame(props) {
   const { answerText, answers, question } = props;
@@ -32,12 +33,6 @@ export default function QuestionsHangmanGame(props) {
     } else {
       setIncorrectGuesses(incorrectGuesses - 1);
     }
-  };
-
-  const handleHeart = (incorrectGuesses) => {
-    let hearts = "";
-    for (let i = 0; i < incorrectGuesses; i++) hearts += "❤";
-    return hearts;
   };
 
   return (

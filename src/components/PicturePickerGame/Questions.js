@@ -31,7 +31,7 @@ export default function QuestionsPicturePickerGame(props) {
               alt="default"
               onClick={handleGetAnswer}
             />
-            <div className="flex w-full lg:w-1/2 justify-center items-start tracking-wide absolute top-[770px] font-sans">
+            <div className="flex w-full lg:w-1/2 justify-center items-start tracking-wide absolute top-[820px] font-sans">
               <h1 className="text-black text-6xl my-4">
                 {question.answerText}
               </h1>

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { getAllData } from "../../helper/helper";
+import { handleHeart } from "../../until/point";
 import { correctSound, incorrectSound, playAudio } from "../../until/sound";
 import { formatTime } from "../../until/time";
 import TrueFalse from "../TrueFalse";
@@ -13,6 +14,7 @@ export default function QuizPictureLetterGame() {
   const [isLoading, setIsLoading] = useState(true);
   const [questions, setQuestionsData] = useState([]);
   const [trace, setTrace] = useState(0);
+  const [incorrectGuesses, setIncorrectGuesses] = useState(5);
 
   const [showModal, setShowModal] = useState(false);
   const [titelModal, setTitelModal] = useState("Incorrect");
@@ -85,6 +87,7 @@ export default function QuizPictureLetterGame() {
         setColorModal(true);
         playAudio(correctSound);
       } else {
+        setIncorrectGuesses(incorrectGuesses - 1);
         setShowModal(true);
         setTitelModal("Incorrect");
         setMessModal(`You answered the question wrong.`);
@@ -132,7 +135,7 @@ export default function QuizPictureLetterGame() {
   };
 
   const link = `/result`;
-  if (questions.length <= trace || countdown <= 0) {
+  if (questions.length <= trace || countdown <= 0 || incorrectGuesses <= 0) {
     navigate(link, {
       state: { totalQuestions: questions.length, totalPoints: trace },
     });
@@ -153,7 +156,7 @@ export default function QuizPictureLetterGame() {
       ) : null}
       <div className="flex">
         <button
-          className="border-[5px] border-gray-500 bg-orange-200 rounded-3xl hover:bg-orange-300 w-[5%] pl-6 flex"
+          className="border-[5px] border-gray-500 bg-orange-200 rounded-3xl hover:bg-orange-300 w-[5%] pl-6 flex h-[50px]"
           onClick={handleQuitGame}
         >
           <svg
@@ -171,11 +174,13 @@ export default function QuizPictureLetterGame() {
             <path d="M9 11l-4 4l4 4m-4 -4h11a4 4 0 0 0 0 -8h-1" />
           </svg>
         </button>
-        <div className="pl-[80%] pt-3 text-2xl font-bold">
+        <div className="pl-[75%] pt-3 text-3xl font-bold">
           Time: {formatTime(countdown)}
         </div>
+        <div className="py-10 pt-3 text-4xl pl-4">
+        <p className="text-pink-600 pb">{`${handleHeart(incorrectGuesses)}`}</p>
       </div>
-
+      </div>
       <div className="flex justify-center">
         <div className="grid grid-cols-4 gap-10 p-5 w-[1000px]">
           {arrayText.map((item, index) =>

@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { getAllData } from "../../helper/helper";
-import { upsetPoint } from "../../until/point";
-import { correctSound, playAudio } from "../../until/sound";
+import { handleHeart, upsetPoint } from "../../until/point";
+import { correctSound, incorrectSound, playAudio } from "../../until/sound";
 import { formatTime } from "../../until/time";
 import TrueFalse from "../TrueFalse";
 import QuestionsPicturePickerGame from "./Questions";
@@ -22,6 +22,7 @@ export default function QuizPicturePickerGame() {
   const [colorModal, setColorModal] = useState(false);
   const [totalQuestion, setTotalQuestion] = useState(0);
   const [total, setTotal] = useState(0);
+  const [incorrectGuesses, setIncorrectGuesses] = useState(5);
 
   const [countdown, setCountdown] = useState(300);
   const timerId = useRef();
@@ -99,6 +100,9 @@ export default function QuizPicturePickerGame() {
       upsetPoint(true, user.id, questions[trace].id);
       setPoint(point + 1);
       setTotalQuestion(totalQuestion - 1);
+    } else {
+      setIncorrectGuesses(incorrectGuesses - 1);
+      playAudio(incorrectSound);
     }
     setClickStatus(false);
   }
@@ -109,7 +113,7 @@ export default function QuizPicturePickerGame() {
   console.log(total);
 
   const navigate = useNavigate();
-  if (questions.length === 0 || countdown <= 0) {
+  if (questions.length === 0 || countdown <= 0 || incorrectGuesses <= 0) {
     navigate(link, {
       state: { totalPoints: point, totalQuestions: total },
     });
@@ -135,7 +139,7 @@ export default function QuizPicturePickerGame() {
       ) : null}
       <div className="flex">
         <button
-          className="border-[5px] border-cyan-500 bg-cyan-200 rounded-3xl hover:bg-cyan-300 w-[5%] pl-6 flex"
+          className="border-[5px] border-cyan-500 bg-cyan-200 rounded-3xl hover:bg-cyan-300 w-[5%] pl-6 flex h-[50px]"
           onClick={handleQuitGame}
         >
           <svg
@@ -153,8 +157,13 @@ export default function QuizPicturePickerGame() {
             <path d="M9 11l-4 4l4 4m-4 -4h11a4 4 0 0 0 0 -8h-1" />
           </svg>
         </button>
-        <div className="pl-[80%] pt-3 text-2xl font-bold">
+        <div className="pl-[75%] pt-3 text-3xl font-bold">
           Time: {formatTime(countdown)}
+        </div>
+        <div className="py-10 pt-3 text-4xl pl-4">
+          <p className="text-pink-600 pb">{`${handleHeart(
+            incorrectGuesses
+          )}`}</p>
         </div>
       </div>
       <div className="flex items-center justify-center mt-3">
