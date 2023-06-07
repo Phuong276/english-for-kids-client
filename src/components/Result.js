@@ -9,10 +9,14 @@ export default function Result() {
 
   return (
     <div className="bg-gray-300 w-[100%] h-[1100px]">
-      <div class="pyro">
-        <div class="before"></div>
-        <div class="after"></div>
-      </div>
+      {totalPoints / totalQuestions >= 0.5 ? (
+        <div class="pyro">
+          <div class="before"></div>
+          <div class="after"></div>
+        </div>
+      ) : (
+        <div></div>
+      )}
       <div class="flex flex-col justify-center items-center h-[100vh]">
         <div class="!z-5 max-w-[378px] max-h-[368px] relative flex h-full w-full flex-col rounded-[20px] bg-white bg-clip-border p-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:shadow-none border-4 border-gray-500">
           <div class="mb-auto flex flex-col items-center justify-center">

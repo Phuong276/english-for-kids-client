@@ -83,7 +83,7 @@ export default function QuizPictureLetterGame() {
         setShowModal(true);
         setTrace(trace + 1);
         setTitelModal("Correct");
-        setMessModal("Congratulation! You answered the question correctly.");
+        setMessModal("You answered the question correctly.");
         setColorModal(true);
         playAudio(correctSound);
       } else {

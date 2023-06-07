@@ -89,7 +89,7 @@ export default function QuizScrambleGame() {
       upsetPoint(true, user.id, questions[trace].id);
       setShowModal(true);
       setTitelModal("Correct");
-      setMessModal("Congratulation! You answered the question correctly.");
+      setMessModal("You answered the question correctly.");
       setColorModal(true);
       playAudio(correctSound);
     } else {
@@ -97,7 +97,7 @@ export default function QuizScrambleGame() {
       setShowModal(true);
       setTitelModal("Incorrect");
       setMessModal(
-        `You answered the question wrong. The answer is: ${questions[trace].answerText}.`
+        `You answered the question wrong.`
       );
       setColorModal(false);
       playAudio(incorrectSound);

@@ -4,11 +4,7 @@ import { getAllData } from "../../helper/helper";
 import QuestionsVocabGame from "./Questions";
 import { upsetPoint } from "../../until/point";
 import TrueFalse from "../TrueFalse";
-import {
-  correctSound,
-  incorrectSound,
-  playAudio,
-} from "../../until/sound";
+import { correctSound, incorrectSound, playAudio } from "../../until/sound";
 import { formatTime } from "../../until/time";
 
 export default function QuizVocabGame() {
@@ -78,7 +74,7 @@ export default function QuizVocabGame() {
       if (checked === questions[trace].answerText) {
         setShowModal(true);
         setTitelModal("Correct");
-        setMessModal("Congratulation! You answered the question correctly.");
+        setMessModal("You answered the question correctly.");
         setColorModal(true);
         setPoint(point + 1);
         upsetPoint(true, user.id, questions[trace].id);
@@ -86,9 +82,7 @@ export default function QuizVocabGame() {
       } else {
         setShowModal(true);
         setTitelModal("Incorrect");
-        setMessModal(
-          `You answered the question wrong. The answer is: ${questions[trace].answerText}.`
-        );
+        setMessModal(`You answered the question wrong.`);
         setColorModal(false);
         playAudio(incorrectSound);
       }

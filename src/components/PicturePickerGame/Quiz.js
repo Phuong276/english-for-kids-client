@@ -93,7 +93,7 @@ export default function QuizPicturePickerGame() {
       );
       setShowModal(true);
       setTitelModal("Correct");
-      setMessModal("Congratulation! You answered the question correctly.");
+      setMessModal("You answered the question correctly.");
       setColorModal(true);
       playAudio(correctSound);
       setQuestionsData(newQuestions);
