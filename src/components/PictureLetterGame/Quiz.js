@@ -112,7 +112,7 @@ export default function QuizPictureLetterGame() {
     if (showModal) {
       const timer = setTimeout(() => {
         setShowModal(false);
-      }, 1500);
+      }, 1000);
       return () => clearTimeout(timer);
     }
   }, [showModal]);
@@ -184,21 +184,27 @@ export default function QuizPictureLetterGame() {
         </div>
       </div>
       <div className="flex justify-center">
-        <div className="grid grid-cols-4 gap-10 p-5 w-[1000px]">
+        <div
+          className="grid grid-cols-4 w-[805px] border-4 border-amber-400"
+          style={{
+            backgroundImage:
+              "url('https://firebasestorage.googleapis.com/v0/b/english-for-kids-daa46.appspot.com/o/files%2Fcut%20(2).jpg?alt=media&token=4bc40950-a44e-4c70-9bc8-cf1b1b20d474&_gl=1*jd6n2l*_ga*ODgzMDU0MjMxLjE2ODQ1OTA5NjY.*_ga_CW55HF8NVT*MTY4NjEyNDM4My4zNy4xLjE2ODYxMjU5NTcuMC4wLjA.')",
+          }}
+        >
           {arrayText.map((item, index) =>
             item.status === 0 ? (
               <div
-                className="bg-amber-400 rounded-md h-[200px] w-[200px] flex items-center justify-center cursor-pointer text-5xl font-serif "
+                className="bg-amber-400 h-[200px] w-[200px] flex items-center justify-center cursor-pointer text-4xl font-serif border-2 border-amber-500"
                 onClick={() => handleClickTextItem(index)}
               >
                 {item.text}
               </div>
             ) : item.status === 1 ? (
-              <div className="bg-cyan-400 rounded-md h-[200px] w-[200px] flex items-center justify-center border-8 border-green-400">
+              <div className="bg-cyan-400 h-[200px] w-[200px] flex items-center justify-center border-8 border-green-400 text-4xl font-serif">
                 {item.text}
               </div>
             ) : (
-              <div></div>
+              <div className="h-[200px] w-[200px]"></div>
             )
           )}
           {arrayImage.map((item, index) =>
@@ -206,17 +212,17 @@ export default function QuizPictureLetterGame() {
               <img
                 src={item.text}
                 alt={item.id}
-                className="h-[200px] w-[200px] rounded-md flex items-center justify-center cursor-pointer"
+                className="h-[200px] w-[200px]flex items-center justify-center cursor-pointer border-2 border-amber-500"
                 onClick={() => handleClickImageItem(index)}
               />
             ) : item.status === 1 ? (
               <img
                 src={item.text}
                 alt={item.id}
-                className="h-[200px] w-[200px] rounded-md flex items-center justify-center border-8 border-green-400"
+                className="h-[200px] w-[200px] flex items-center justify-center border-8 border-green-400"
               />
             ) : (
-              <div></div>
+              <div className="h-[200px] w-[200px]"></div>
             )
           )}
         </div>

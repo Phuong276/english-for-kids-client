@@ -34,7 +34,7 @@ export default function QuizGrammarGame() {
     if (showModal) {
       const timer = setTimeout(() => {
         setShowModal(false);
-      }, 1500);
+      }, 1000);
       return () => clearTimeout(timer);
     }
   }, [showModal]);

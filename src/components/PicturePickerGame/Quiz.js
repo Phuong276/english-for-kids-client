@@ -38,7 +38,7 @@ export default function QuizPicturePickerGame() {
     if (showModal) {
       const timer = setTimeout(() => {
         setShowModal(false);
-      }, 1500);
+      }, 1000);
       return () => clearTimeout(timer);
     }
   }, [showModal]);

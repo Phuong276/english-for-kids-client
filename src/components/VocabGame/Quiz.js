@@ -46,7 +46,7 @@ export default function QuizVocabGame() {
     if (showModal) {
       const timer = setTimeout(() => {
         setShowModal(false);
-      }, 1500);
+      }, 1000);
       return () => clearTimeout(timer);
     }
   }, [showModal]);
