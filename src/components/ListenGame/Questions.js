@@ -10,7 +10,7 @@ export default function QuestionListenGame(props) {
   };
 
   return (
-    <div className="pt-5">
+    <div>
       <img
         onClick={playAudio}
         src={question.questionImage}

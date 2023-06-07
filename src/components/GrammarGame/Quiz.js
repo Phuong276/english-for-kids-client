@@ -125,7 +125,7 @@ export default function QuizGrammarGame() {
         </div>
       </div>
       <div className="container mx-auto text-center">
-        <section className="py-5">
+        <section>
           <div className="flex items-center flex-wrap">
             <QuestionsGrammarGame
               question={

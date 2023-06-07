@@ -56,7 +56,7 @@ export default function QuestionsGrammarGame(props) {
     <div>
       {question ? (
         <div className="border-[7px] border-green-600 bg-green-300 rounded-3xl">
-          <div className="text-6xl font-thin pt-6 pb-6">
+          <div className="text-5xl font-thin pt-3">
             <b>
               {arrayTextView.join(" ") === ""
                 ? question?.questionText

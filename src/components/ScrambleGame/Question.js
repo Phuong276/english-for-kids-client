@@ -43,9 +43,9 @@ export default function QuestionsScreambleGame(props) {
                 alt={question.id}
                 width={700}
                 height={700}
-                className="mx-auto mt-10 mb-20 rounded-[20%] h-[400px] w-[400px]"
+                className="mx-auto mt-5 mb-10 rounded-[20%] h-[400px] w-[400px]"
               />
-              <ul className="flex justify-center pb-20">
+              <ul className="flex justify-center pb-10">
                 {handleShowAnswers(answers, word)
                   .split("")
                   .map((letter) => (
@@ -54,7 +54,7 @@ export default function QuestionsScreambleGame(props) {
                     </li>
                   ))}
               </ul>
-              <div className="pb-10">
+              <div>
                 <ul className="inline-flex">
                   {wordShow.split("").map((letter, index) => (
                     <li

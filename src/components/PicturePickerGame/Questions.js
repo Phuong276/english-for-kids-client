@@ -9,7 +9,7 @@ export default function QuestionsPicturePickerGame(props) {
     <div>
       {question ? (
         <div>
-          <div className="text-center items-center justify-center flex pt-5 animate-ping">
+          <div className="text-center items-center justify-center flex animate-ping">
             <svg
               class="h-8 w-8 text-red-900"
               fill="none"
@@ -31,7 +31,7 @@ export default function QuestionsPicturePickerGame(props) {
               alt="default"
               onClick={handleGetAnswer}
             />
-            <div className="flex w-full lg:w-1/2 justify-center items-start tracking-wide absolute top-[820px] font-sans">
+            <div className="flex w-full lg:w-1/2 justify-center items-start tracking-wide absolute top-[800px] font-sans">
               <h1 className="text-black text-6xl my-4">
                 {question.answerText}
               </h1>

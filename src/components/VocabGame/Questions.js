@@ -20,7 +20,7 @@ export default function QuestionsVocabGame(props) {
               alt={question.id}
               width={700}
               height={600}
-              className="mx-auto mt-10 mb-20 rounded-[20%] w-[400px] h-[400px]"
+              className="mx-auto mt-5 mb-10 rounded-[20%] w-[400px] h-[400px]"
             />
           </div>
           <ul
