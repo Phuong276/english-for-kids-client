@@ -28,7 +28,6 @@ import RoundsAdmin from "./Admin/Rounds";
 import QuestionsAdmin from "./Admin/Questions";
 import UpdateGameAdmin from "./Admin/Game/Update";
 import UpdateRoundAdmin from "./Admin/Round/Update";
-import DragDrop from "./DragDrop";
 import HomeGrammarGame from "./GrammarGame/Home";
 import QuizGrammarGame from "./GrammarGame/Quiz";
 import HomePicturePickerGame from "./PicturePickerGame/Home";
@@ -321,10 +320,6 @@ const router = createBrowserRouter([
         <Upload></Upload>
       </CheckLogin>
     ),
-  },
-  {
-    path: "/dragdrop",
-    element: <DragDrop></DragDrop>,
   },
 ]);
 
