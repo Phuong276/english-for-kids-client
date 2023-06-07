@@ -96,6 +96,9 @@ export default function CreateRoundAdmin() {
                     />
                   </div>
                 </div>
+                <div className="pt-10">
+                  <Upload callbackSetImageUrl={handleSetImageUrl}></Upload>
+                </div>
                 <button
                   type="submit"
                   class="font-medium text-blue-600 dark:text-blue-500 hover:underline pt-5"
@@ -104,9 +107,6 @@ export default function CreateRoundAdmin() {
                   Add round
                 </button>
               </form>
-              <div className="pt-10">
-                <Upload callbackSetImageUrl={handleSetImageUrl}></Upload>
-              </div>
             </div>
           </section>
         </div>

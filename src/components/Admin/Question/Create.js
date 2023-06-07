@@ -119,8 +119,11 @@ export default function CreateQuestionAdmin() {
                     >
                       Image
                     </label>
-                    <img src={imageUrl} alt="game" width="200" height="200" />
+                    <img src={imageUrl} alt="" width="200" height="200" />
                   </div>
+                </div>
+                <div className="pt-10">
+                  <Upload callbackSetImageUrl={handleSetImageUrl}></Upload>
                 </div>
                 <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                   <div class="sm:col-span-2">
@@ -144,6 +147,9 @@ export default function CreateQuestionAdmin() {
                     )}
                   </div>
                 </div>
+                <div className="pt-10">
+                  <Upload callbackSetImageUrl={handleSetAudioUrl}></Upload>
+                </div>
                 <button
                   type="submit"
                   class="font-medium text-blue-600 dark:text-blue-500 hover:underline pt-5"
@@ -152,14 +158,6 @@ export default function CreateQuestionAdmin() {
                   Add Question
                 </button>
               </form>
-              <div className="pt-10">
-                Upload Image
-                <Upload callbackSetImageUrl={handleSetImageUrl}></Upload>
-              </div>
-              <div className="pt-10">
-                Upload Audio
-                <Upload callbackSetImageUrl={handleSetAudioUrl}></Upload>
-              </div>
             </div>
           </section>
         </div>

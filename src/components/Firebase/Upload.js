@@ -8,7 +8,7 @@ function Upload(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const file = e.target[0]?.files[0];
+    const file = e.target.files[0];
 
     if (!file) return;
 
@@ -37,14 +37,8 @@ function Upload(props) {
 
   return (
     <div className="App">
-      <form onSubmit={handleSubmit} className="form">
+      <form onChange={handleSubmit} className="form">
         <input type="file" />
-        <button
-          className="font-medium text-blue-600 dark:text-blue-500 hover:underline pt-5"
-          type="submit"
-        >
-          Upload
-        </button>
       </form>
       {!imgUrl && (
         <div className="outerbar">
