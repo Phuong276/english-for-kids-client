@@ -158,7 +158,7 @@ export default function QuizListenGame() {
         <div className="pl-[75%] pt-3 text-3xl font-bold">
           Time: {formatTime(countdown)}
         </div>
-        <div className="text-4xl pl-4">
+        <div className="text-4xl pl-4 pt-2">
           <p className="text-pink-600 pb">{`${handleHeart(
             incorrectGuesses
           )}`}</p>

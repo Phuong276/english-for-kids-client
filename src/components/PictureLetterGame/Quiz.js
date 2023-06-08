@@ -177,7 +177,7 @@ export default function QuizPictureLetterGame() {
         <div className="pl-[75%] pt-3 text-3xl font-bold">
           Time: {formatTime(countdown)}
         </div>
-        <div className="py-10 pt-3 text-4xl pl-4">
+        <div className="py-10 pt-2 text-4xl pl-4">
           <p className="text-pink-600 pb">{`${handleHeart(
             incorrectGuesses
           )}`}</p>
