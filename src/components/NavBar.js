@@ -103,7 +103,7 @@ export default function NavBar() {
             className="order-2 md:order-3 flex items-center"
             id="nav-content"
           >
-            <a className="inline-block no-underline hover:text-black" href="/">
+            <a className="inline-block no-underline hover:text-black" href="/my">
               <svg
                 className="fill-current hover:text-black h-14 w-14"
                 xmlns="http://www.w3.org/2000/svg"

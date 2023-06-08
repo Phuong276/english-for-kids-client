@@ -9,8 +9,8 @@ export default function UpdateUserAdmin() {
   const [user, setUserData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  const [password, setPassword] = useState(undefined);
+  const [name, setName] = useState(undefined);
 
   const fecthDetailUser = async () => {
     try {
@@ -44,8 +44,8 @@ export default function UpdateUserAdmin() {
       await helper.put(
         UPDATE_USER_URL,
         JSON.stringify({
-          password,
-          name,
+          password: password ? password : user.password,
+          name: name ? name : user.name,
           username: user.username,
         }),
         {

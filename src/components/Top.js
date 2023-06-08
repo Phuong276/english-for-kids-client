@@ -5,7 +5,7 @@ export default function Top() {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const fecthAllGame = async () => {
+  const fecthData = async () => {
     try {
       const { data } = await getAllData(
         `${process.env.REACT_APP_SERVERHOST}/api/points/users`,
@@ -23,11 +23,9 @@ export default function Top() {
   };
 
   useEffect(() => {
-    fecthAllGame();
+    fecthData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  console.log(data);
 
   if (isLoading) return;
   return (
