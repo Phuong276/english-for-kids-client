@@ -31,30 +31,34 @@ export default function My() {
   };
 
   const handleUpdateUser = async (e) => {
-    e.preventDefault();
-    const UPDATE_USER_URL = "/api/users/" + user.id;
-    try {
-      await helper.put(
-        UPDATE_USER_URL,
-        JSON.stringify({
-          password: password ? password : user.password,
-          name: name ? name : user.name,
-        }),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + window.localStorage.getItem("token"),
-          },
-        }
-      );
-      toast.success("Update Success");
-    } catch (error) {
-      console.log(error);
-      toast.error(
-        error.response.data.error
-          ? error.response.data.error
-          : error.response.data
-      );
+    if (!password) {
+      toast.error("Password not null!");
+    } else {
+      e.preventDefault();
+      const UPDATE_USER_URL = "/api/users/" + user.id;
+      try {
+        await helper.put(
+          UPDATE_USER_URL,
+          JSON.stringify({
+            password: password,
+            name: name ? name : user.name,
+          }),
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + window.localStorage.getItem("token"),
+            },
+          }
+        );
+        toast.success("Update Success");
+      } catch (error) {
+        console.log(error);
+        toast.error(
+          error.response.data.error
+            ? error.response.data.error
+            : error.response.data
+        );
+      }
     }
   };
   useEffect(() => {
@@ -69,7 +73,7 @@ export default function My() {
         <div className="relative w-full">
           <div className="rounded-[5%] md:h-96">
             <div className=" duration-700 ease-in-out" data-carousel-item>
-              <div class="wrapper bg-gray-400 antialiased text-gray-900 rounded-[5%]">
+              <div class="wrapper bg-amber-300 antialiased text-gray-900 rounded-[5%]">
                 <div>
                   <div className="h-[400px] p-5">
                     <p>Username: </p>
@@ -92,14 +96,14 @@ export default function My() {
                       required=""
                       onChange={(e) => changeName(e.target.value)}
                     />
-                    <p>Password: </p>
+                    <p className="text-red-600">Password *: </p>
                     <input
                       type="password"
                       name="name"
                       id="name"
                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                       placeholder="******"
-                      required=""
+                      required="{true}"
                       onChange={(e) => changePassword(e.target.value)}
                     />
                     <p>Date Join</p>
@@ -121,7 +125,7 @@ export default function My() {
                     </button>
                   </div>
                   <div class="relative px-4 -mt-16">
-                    <div class="bg-gray-300 p-6 rounded-lg shadow-lg">
+                    <div class="bg-amber-200 p-6 rounded-lg shadow-lg">
                       <div class="flex items-baseline">
                         <span class="bg-teal-200 text-teal-800 text-xs px-2 inline-block rounded-full  uppercase font-semibold tracking-wide">
                           RANK

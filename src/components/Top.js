@@ -37,7 +37,7 @@ export default function Top() {
               <div class="wrapper bg-gray-400 antialiased text-gray-900">
                 <div>
                   <img
-                    src="https://firebasestorage.googleapis.com/v0/b/english-for-kids-daa46.appspot.com/o/files%2FTOP2.png?alt=media&token=61f91591-635c-4300-a88c-2b1be2f9d319&_gl=1*1kwf7lm*_ga*ODgzMDU0MjMxLjE2ODQ1OTA5NjY.*_ga_CW55HF8NVT*MTY4NjE5OTEyMC4zOS4xLjE2ODYxOTk5MjAuMC4wLjA."
+                    src="https://firebasestorage.googleapis.com/v0/b/english-for-kids-daa46.appspot.com/o/files%2Frank2.png?alt=media&token=3fcfbefc-501e-42f8-8295-027947130ec2&_gl=1*1uejsct*_ga*ODgzMDU0MjMxLjE2ODQ1OTA5NjY.*_ga_CW55HF8NVT*MTY4NjIxMzgyMi40MC4xLjE2ODYyMTQ1MjkuMC4wLjA."
                     alt=" random imgee"
                     class="w-full object-cover object-center rounded-lg shadow-md"
                   />
@@ -55,7 +55,7 @@ export default function Top() {
                         {data.pointusers[1] ? data.pointusers[1].username : ""}
                       </h4>
                       <div class="mt-4">
-                        <span class="text-teal-600 text-md font-semibold">
+                        <span class="text-teal-600 text-md font-semibold text-3xl">
                           {data.pointusers[1] ? data.pointusers[1].point : ""}
                         </span>
                       </div>
@@ -74,7 +74,7 @@ export default function Top() {
               <div class="wrapper bg-gray-400 antialiased text-gray-900">
                 <div>
                   <img
-                    src="https://firebasestorage.googleapis.com/v0/b/english-for-kids-daa46.appspot.com/o/files%2FTOP1.png?alt=media&token=fa0e77fd-c764-4098-a018-03d69a2f447b&_gl=1*14jaxd9*_ga*ODgzMDU0MjMxLjE2ODQ1OTA5NjY.*_ga_CW55HF8NVT*MTY4NjE5OTEyMC4zOS4xLjE2ODYxOTk5MDQuMC4wLjA."
+                    src="https://firebasestorage.googleapis.com/v0/b/english-for-kids-daa46.appspot.com/o/files%2Frank1.png?alt=media&token=a022fbf1-b26a-4d8d-a008-19188d694b78&_gl=1*e2jcpi*_ga*ODgzMDU0MjMxLjE2ODQ1OTA5NjY.*_ga_CW55HF8NVT*MTY4NjIxMzgyMi40MC4xLjE2ODYyMTQ0NjcuMC4wLjA."
                     alt=" random imgee"
                     class="w-full object-cover object-center rounded-lg shadow-md"
                   />
@@ -92,7 +92,7 @@ export default function Top() {
                         {data.pointusers[0] ? data.pointusers[0].username : ""}
                       </h4>
                       <div class="mt-4">
-                        <span class="text-teal-600 text-md font-semibold">
+                        <span class="text-teal-600 text-md font-semibold text-3xl">
                           {data.pointusers[0] ? data.pointusers[0].point : ""}
                         </span>
                       </div>
@@ -111,12 +111,12 @@ export default function Top() {
               <div class="wrapper bg-gray-400 antialiased text-gray-900">
                 <div>
                   <img
-                    src="https://firebasestorage.googleapis.com/v0/b/english-for-kids-daa46.appspot.com/o/files%2FTOP3.png?alt=media&token=381e5b92-29a2-428c-8bf3-78594dfc124f&_gl=1*b6jl0c*_ga*ODgzMDU0MjMxLjE2ODQ1OTA5NjY.*_ga_CW55HF8NVT*MTY4NjE5OTEyMC4zOS4xLjE2ODYxOTk5MzcuMC4wLjA."
+                    src="https://firebasestorage.googleapis.com/v0/b/english-for-kids-daa46.appspot.com/o/files%2Frank3.png?alt=media&token=785e5cae-ce67-4c44-b6f0-c5b44b90801f&_gl=1*1dqp70k*_ga*ODgzMDU0MjMxLjE2ODQ1OTA5NjY.*_ga_CW55HF8NVT*MTY4NjIxMzgyMi40MC4xLjE2ODYyMTQ1NTEuMC4wLjA."
                     alt=" random imgee"
                     class="w-full object-cover object-center rounded-lg shadow-md"
                   />
                   <div class="relative px-4 -mt-16  ">
-                    <div class="bg-orange-400 p-6 rounded-lg shadow-lg">
+                    <div class="bg-orange-300 p-6 rounded-lg shadow-lg">
                       <div class="flex items-baseline">
                         <span class="bg-teal-200 text-teal-800 text-xs px-2 inline-block rounded-full  uppercase font-semibold tracking-wide">
                           RANK
@@ -131,7 +131,7 @@ export default function Top() {
                           : "NO NAME"}
                       </h4>
                       <div class="mt-4">
-                        <span class="text-teal-600 text-md font-semibold">
+                        <span class="text-teal-600 text-md font-semibold text-3xl">
                           {data.pointusers[2] ? data.pointusers[2].point : 0}
                         </span>
                       </div>
