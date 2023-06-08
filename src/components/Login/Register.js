@@ -120,6 +120,15 @@ export default function Register() {
                 >
                   Sign up
                 </button>
+                <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                  Have an account yet?{" "}
+                  <a
+                    href="/login"
+                    class="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                  >
+                    Sign in
+                  </a>
+                </p>
               </form>
             </div>
           </div>
