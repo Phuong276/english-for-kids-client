@@ -40,6 +40,7 @@ import UpdateQuestionAdmin from "./Admin/Question/Update";
 import CreateQuestionAdmin from "./Admin/Question/Create";
 import Top from "./Top";
 import My from "./My";
+import Register from "./Login/Register";
 
 axios.defaults.headers.common["Authorization"] =
   "Bearer " + window.localStorage.getItem("token");
@@ -342,6 +343,10 @@ const router = createBrowserRouter([
         <Footer></Footer>
       </CheckLogin>
     ),
+  },
+  {
+    path: "/register",
+    element: <Register></Register>,
   },
 ]);
 
