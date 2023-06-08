@@ -38,6 +38,7 @@ import CreateRoundAdmin from "./Admin/Round/Create";
 import Result from "./Result";
 import UpdateQuestionAdmin from "./Admin/Question/Update";
 import CreateQuestionAdmin from "./Admin/Question/Create";
+import Top from "./Top";
 
 axios.defaults.headers.common["Authorization"] =
   "Bearer " + window.localStorage.getItem("token");
@@ -318,6 +319,16 @@ const router = createBrowserRouter([
     element: (
       <CheckLogin>
         <Upload></Upload>
+      </CheckLogin>
+    ),
+  },
+  {
+    path: "/top",
+    element: (
+      <CheckLogin>
+        <NavBar></NavBar>
+        <Top></Top>
+        <Footer></Footer>
       </CheckLogin>
     ),
   },

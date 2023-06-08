@@ -54,6 +54,40 @@ export default function NavBar() {
                 </li>
               </ul>
             </nav>
+            <nav>
+              <ul className="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0">
+                <li>
+                  <a
+                    className="inline-block no-underline hover:text-black hover:underline py-1 px-4"
+                    href="/top"
+                  >
+                    <svg
+                      class="h-14 w-14 text-black"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      {" "}
+                      <path stroke="none" d="M0 0h24v24H0z" />{" "}
+                      <circle cx="12" cy="9" r="6" />{" "}
+                      <polyline
+                        points="9 14.2 9 21 12 19 15 21 15 14.2"
+                        transform="rotate(-30 12 9)"
+                      />{" "}
+                      <polyline
+                        points="9 14.2 9 21 12 19 15 21 15 14.2"
+                        transform="rotate(30 12 9)"
+                      />
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+            </nav>
           </div>
 
           <div className="order-1 md:order-2">
