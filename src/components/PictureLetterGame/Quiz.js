@@ -22,6 +22,10 @@ export default function QuizPictureLetterGame() {
   const [notMeName, setNotMeName] = useState(undefined);
   const [mePoint, setMePoint] = useState(undefined);
   const [notMePoint, setNotMePoint] = useState(undefined);
+  const [notMeId, setNotMeId] = useState(undefined);
+  const [notMeBlock, setNotMeBlock] = useState(undefined);
+  const [meBlock, setMeBlock] = useState(undefined);
+  const [block, setBlock] = useState(undefined);
 
   function writeImageData(id, idChild, text, status) {
     set(ref(db, "rooms/" + roomId + "/images/" + id), {
@@ -38,10 +42,12 @@ export default function QuizPictureLetterGame() {
     });
   }
   const user = JSON.parse(localStorage.getItem("user"));
-  function writeUserData(point) {
-    set(ref(db, "rooms/" + roomId + "/users/" + user.id), {
-      username: user.username,
+  function writeUserData(point, block, id, username) {
+    set(ref(db, "rooms/" + roomId + "/users/" + id), {
+      id: id,
+      username: username,
       points: point,
+      block: block,
     });
   }
 
@@ -94,7 +100,24 @@ export default function QuizPictureLetterGame() {
         } else {
           writeTextData(index, question.id, question.questionText, 0);
           writeImageData(index, question.id, question.questionImage, 0);
-          writeUserData(points);
+          get(child(ref(db), `rooms/${roomId}/users`))
+            .then((snapshot) => {
+              if (snapshot.exists()) {
+                const usersCheck = snapshot.val();
+                if (Object.keys(usersCheck).length > 0) {
+                  writeUserData(points, false, user.id, user.username);
+                  setBlock(false);
+                }
+              } else {
+                writeUserData(points, true, user.id, user.username);
+                setBlock(true);
+                console.log("No data");
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+
           index = index + 1;
         }
         return question;
@@ -156,6 +179,7 @@ export default function QuizPictureLetterGame() {
     me.map((item) => {
       setMeName(item.username);
       setMePoint(item.points);
+      setMeBlock(item.block);
       return item;
     });
     const notMe = Object.values(users).filter((item) => {
@@ -164,6 +188,8 @@ export default function QuizPictureLetterGame() {
     notMe.map((item) => {
       setNotMeName(item.username);
       setNotMePoint(item.points);
+      setNotMeBlock(item.block);
+      setNotMeId(item.id);
       return item;
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -213,7 +239,9 @@ export default function QuizPictureLetterGame() {
             2
           );
           setPoints(points + 1);
-          writeUserData(points + 1);
+          writeUserData(points + 1, !meBlock, user.id, user.username);
+          writeUserData(notMePoint, !notMeBlock, notMeId, notMeName);
+          setBlock(!block);
         }
         setShowModal(true);
         setTrace(trace + 1);
@@ -244,6 +272,8 @@ export default function QuizPictureLetterGame() {
             arrayImage[choseSecond].text,
             0
           );
+          writeUserData(mePoint, !meBlock, user.id, user.username);
+          writeUserData(notMePoint, !notMeBlock, notMeId, notMeName);
         }
       }
     } else if (choseFirst && choseSecond === undefined) {
@@ -263,6 +293,8 @@ export default function QuizPictureLetterGame() {
           arrayText[choseFirst].text,
           0
         );
+        writeUserData(mePoint, !meBlock, user.id, user.username);
+        writeUserData(notMePoint, !notMeBlock, notMeId, notMeName);
       }
     } else if (choseSecond && choseFirst === undefined) {
       if (mode) {
@@ -281,6 +313,8 @@ export default function QuizPictureLetterGame() {
           arrayImage[choseSecond].text,
           0
         );
+        writeUserData(mePoint, !meBlock, user.id, user.username);
+        writeUserData(notMePoint, !notMeBlock, notMeId, notMeName);
       }
     }
     setChoseFirst(undefined);
@@ -314,7 +348,7 @@ export default function QuizPictureLetterGame() {
   };
 
   if (
-    questions.length <= trace ||
+    (questions.length <= trace && start !== 0) ||
     countdown <= 0 ||
     incorrectGuesses <= 0 ||
     (arrayImage.filter((item) => item.status === 0).length <= 0 && start !== 0)
@@ -327,6 +361,7 @@ export default function QuizPictureLetterGame() {
       state: { totalQuestions: questions.length, totalPoints: trace },
     });
   }
+
   if (isLoading) return;
   return (
     <div className="p-4 bg-amber-200 min-h-[1100px]">
@@ -416,15 +451,23 @@ export default function QuizPictureLetterGame() {
           }}
         >
           {arrayText.map((item, index) =>
-            item.status === 0 ? (
-              <div
-                className="bg-amber-400 h-[200px] w-[200px] flex items-center justify-center cursor-pointer text-4xl font-serif border-2 border-amber-500"
-                onClick={() => handleClickTextItem(index)}
-              >
-                {item.text}
-              </div>
-            ) : item.status === 1 ? (
-              <div className="bg-cyan-400 h-[200px] w-[200px] flex items-center justify-center border-8 border-green-400 text-4xl font-serif">
+            meBlock ? (
+              item.status === 0 ? (
+                <div
+                  className="bg-amber-400 h-[200px] w-[200px] flex items-center justify-center cursor-pointer text-4xl font-serif border-2 border-amber-500"
+                  onClick={() => handleClickTextItem(index)}
+                >
+                  {item.text}
+                </div>
+              ) : item.status === 1 ? (
+                <div className="bg-cyan-400 h-[200px] w-[200px] flex items-center justify-center border-8 border-green-400 text-4xl font-serif">
+                  {item.text}
+                </div>
+              ) : (
+                <div className="h-[200px] w-[200px]"></div>
+              )
+            ) : item.status === 0 ? (
+              <div className="bg-cyan-400 h-[200px] w-[200px] flex items-center justify-center text-4xl font-serif">
                 {item.text}
               </div>
             ) : (
@@ -432,18 +475,28 @@ export default function QuizPictureLetterGame() {
             )
           )}
           {arrayImage.map((item, index) =>
-            item.status === 0 ? (
+            meBlock ? (
+              item.status === 0 ? (
+                <img
+                  src={item.text}
+                  alt={item.id}
+                  className="h-[200px] w-[200px]flex items-center justify-center cursor-pointer border-2 border-amber-500"
+                  onClick={() => handleClickImageItem(index)}
+                />
+              ) : item.status === 1 ? (
+                <img
+                  src={item.text}
+                  alt={item.id}
+                  className="h-[200px] w-[200px] flex items-center justify-center border-8 border-green-400"
+                />
+              ) : (
+                <div className="h-[200px] w-[200px]"></div>
+              )
+            ) : item.status === 0 ? (
               <img
                 src={item.text}
                 alt={item.id}
-                className="h-[200px] w-[200px]flex items-center justify-center cursor-pointer border-2 border-amber-500"
-                onClick={() => handleClickImageItem(index)}
-              />
-            ) : item.status === 1 ? (
-              <img
-                src={item.text}
-                alt={item.id}
-                className="h-[200px] w-[200px] flex items-center justify-center border-8 border-green-400"
+                className="h-[200px] w-[200px] flex items-center justify-center"
               />
             ) : (
               <div className="h-[200px] w-[200px]"></div>
