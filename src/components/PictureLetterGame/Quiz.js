@@ -1,15 +1,54 @@
+import { child, get, ref, remove, set } from "firebase/database";
 import { useEffect, useRef, useState } from "react";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import {
+  useLocation,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
+import { db } from "../../firebase";
 import { getAllData } from "../../helper/helper";
-import { handleHeart } from "../../until/point";
+import { handleHeart, upsetPoint } from "../../until/point";
 import { correctSound, incorrectSound, playAudio } from "../../until/sound";
 import { formatTime } from "../../until/time";
 import TrueFalse from "../TrueFalse";
 
 export default function QuizPictureLetterGame() {
+  const location = useLocation();
+  const roomId = location.state.roomId;
+  const mode = location.state.mode === 1 ? true : false;
+  const [points, setPoints] = useState(0);
+  const [meName, setMeName] = useState(undefined);
+  const [notMeName, setNotMeName] = useState(undefined);
+  const [mePoint, setMePoint] = useState(undefined);
+  const [notMePoint, setNotMePoint] = useState(undefined);
+
+  function writeImageData(id, idChild, text, status) {
+    set(ref(db, "rooms/" + roomId + "/images/" + id), {
+      id: idChild,
+      text: text,
+      status: status,
+    });
+  }
+  function writeTextData(id, idChild, text, status) {
+    set(ref(db, "rooms/" + roomId + "/texts/" + id), {
+      id: idChild,
+      text: text,
+      status: status,
+    });
+  }
+  const user = JSON.parse(localStorage.getItem("user"));
+  function writeUserData(point) {
+    set(ref(db, "rooms/" + roomId + "/users/" + user.id), {
+      username: user.username,
+      points: point,
+    });
+  }
+
   const [searchParams] = useSearchParams();
   const roundId = searchParams.get("roundId");
   const [click, setClick] = useState(0);
+  const [start, setStart] = useState(0);
 
   const [isLoading, setIsLoading] = useState(true);
   const [questions, setQuestionsData] = useState([]);
@@ -27,6 +66,11 @@ export default function QuizPictureLetterGame() {
 
   const [arrayText, setArrayText] = useState([]);
   const [arrayImage, setArrayImage] = useState([]);
+  const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
+  const link = `/result`;
+
+  let index = 0;
 
   const fecthAllQuestion = async () => {
     try {
@@ -34,18 +78,25 @@ export default function QuizPictureLetterGame() {
         `${process.env.REACT_APP_SERVERHOST}/api/rounds/questions/${roundId}`
       );
       data.map((question) => {
-        arrayText.push({
-          id: question.id,
-          text: question.questionText,
-          status: 0,
-        });
-        setArrayText(arrayText);
-        arrayImage.push({
-          id: question.id,
-          text: question.questionImage,
-          status: 0,
-        });
-        setArrayImage(arrayImage);
+        if (mode) {
+          arrayText.push({
+            id: question.id,
+            text: question.questionText,
+            status: 0,
+          });
+          setArrayText(arrayText);
+          arrayImage.push({
+            id: question.id,
+            text: question.questionImage,
+            status: 0,
+          });
+          setArrayImage(arrayImage);
+        } else {
+          writeTextData(index, question.id, question.questionText, 0);
+          writeImageData(index, question.id, question.questionImage, 0);
+          writeUserData(points);
+          index = index + 1;
+        }
         return question;
       });
       arrayImage.sort(() => Math.random() - 0.5);
@@ -62,24 +113,108 @@ export default function QuizPictureLetterGame() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (!mode) {
+      get(child(ref(db), `rooms/${roomId}/images`))
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            setArrayImage(snapshot.val());
+          } else {
+            console.log("No data");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      get(child(ref(db), `rooms/${roomId}/texts`))
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            setArrayText(snapshot.val());
+          } else {
+            console.log("No data");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      get(child(ref(db), `rooms/${roomId}/users`))
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            setUsers(snapshot.val());
+          } else {
+            console.log("No data");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+    const me = Object.values(users).filter((item) => {
+      return item.username === user.username;
+    });
+    me.map((item) => {
+      setMeName(item.username);
+      setMePoint(item.points);
+      return item;
+    });
+    const notMe = Object.values(users).filter((item) => {
+      return item.username !== user.username;
+    });
+    notMe.map((item) => {
+      setNotMeName(item.username);
+      setNotMePoint(item.points);
+      return item;
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [choseAfter, choseFirst, choseSecond, fecthAllQuestion]);
+
   const handleClickTextItem = (id) => {
+    if (mode) {
+      arrayText[id].status = 1;
+    } else {
+      writeTextData(id, arrayText[id].id, arrayText[id].text, 1);
+    }
     setChoseAfter(choseFirst);
     setChoseFirst(id);
-    arrayText[id].status = 1;
     setClick(click + 1);
+    setStart(start + 1);
   };
   const handleClickImageItem = (id) => {
+    if (mode) {
+      arrayImage[id].status = 1;
+    } else {
+      writeImageData(id, arrayImage[id].id, arrayImage[id].text, 1);
+    }
     setChoseAfter(choseSecond);
     setChoseSecond(id);
-    arrayImage[id].status = 1;
     setClick(click + 1);
+    setStart(start + 1);
   };
 
   if (click % 2 === 0 && click !== 0) {
     if (choseFirst !== undefined && choseSecond !== undefined) {
       if (arrayText[choseFirst].id === arrayImage[choseSecond].id) {
-        arrayText[choseFirst].status = 2;
-        arrayImage[choseSecond].status = 2;
+        if (mode) {
+          arrayText[choseFirst].status = 2;
+          arrayImage[choseSecond].status = 2;
+          upsetPoint(true, user.id, questions[trace].id);
+        } else {
+          writeTextData(
+            choseFirst,
+            arrayText[choseFirst].id,
+            arrayText[choseFirst].text,
+            2
+          );
+          writeImageData(
+            choseSecond,
+            arrayImage[choseSecond].id,
+            arrayImage[choseSecond].text,
+            2
+          );
+          setPoints(points + 1);
+          writeUserData(points + 1);
+        }
         setShowModal(true);
         setTrace(trace + 1);
         setTitelModal("Correct");
@@ -93,15 +228,60 @@ export default function QuizPictureLetterGame() {
         setMessModal(`You answered the question wrong.`);
         setColorModal(false);
         playAudio(incorrectSound);
-        arrayText[choseFirst].status = 0;
-        arrayImage[choseSecond].status = 0;
+        if (mode) {
+          arrayText[choseFirst].status = 0;
+          arrayImage[choseSecond].status = 0;
+        } else {
+          writeTextData(
+            choseFirst,
+            arrayText[choseFirst].id,
+            arrayText[choseFirst].text,
+            0
+          );
+          writeImageData(
+            choseSecond,
+            arrayImage[choseSecond].id,
+            arrayImage[choseSecond].text,
+            0
+          );
+        }
       }
     } else if (choseFirst && choseSecond === undefined) {
-      arrayText[choseAfter].status = 0;
-      arrayText[choseFirst].status = 0;
+      if (mode) {
+        arrayText[choseAfter].status = 0;
+        arrayText[choseFirst].status = 0;
+      } else {
+        writeTextData(
+          choseAfter,
+          arrayText[choseAfter].id,
+          arrayText[choseAfter].text,
+          0
+        );
+        writeTextData(
+          choseFirst,
+          arrayText[choseFirst].id,
+          arrayText[choseFirst].text,
+          0
+        );
+      }
     } else if (choseSecond && choseFirst === undefined) {
-      arrayImage[choseAfter].status = 0;
-      arrayImage[choseSecond].status = 0;
+      if (mode) {
+        arrayImage[choseAfter].status = 0;
+        arrayImage[choseSecond].status = 0;
+      } else {
+        writeImageData(
+          choseAfter,
+          arrayImage[choseAfter].id,
+          arrayImage[choseAfter].text,
+          0
+        );
+        writeImageData(
+          choseSecond,
+          arrayImage[choseSecond].id,
+          arrayImage[choseSecond].text,
+          0
+        );
+      }
     }
     setChoseFirst(undefined);
     setChoseSecond(undefined);
@@ -128,19 +308,25 @@ export default function QuizPictureLetterGame() {
   }, []);
 
   const params = useParams();
-  const navigate = useNavigate();
   const linkQuit = `/gamepictureletter/${params.id}`;
   const handleQuitGame = () => {
     navigate(linkQuit);
   };
 
-  const link = `/result`;
-  if (questions.length <= trace || countdown <= 0 || incorrectGuesses <= 0) {
+  if (
+    questions.length <= trace ||
+    countdown <= 0 ||
+    incorrectGuesses <= 0 ||
+    (arrayImage.filter((item) => item.status === 0).length <= 0 && start !== 0)
+  ) {
+    const tasksRef = ref(db, "rooms/" + roomId);
+    remove(tasksRef).then(() => {
+      console.log("location removed");
+    });
     navigate(link, {
       state: { totalQuestions: questions.length, totalPoints: trace },
     });
   }
-
   if (isLoading) return;
   return (
     <div className="p-4 bg-amber-200 min-h-[1100px]">
@@ -160,7 +346,7 @@ export default function QuizPictureLetterGame() {
           onClick={handleQuitGame}
         >
           <svg
-            class="h-8 w-8 text-gray-500"
+            class="h-8 w-8 text-gray-500 "
             width="24"
             height="24"
             viewBox="0 0 24 24"
@@ -184,6 +370,44 @@ export default function QuizPictureLetterGame() {
         </div>
       </div>
       <div className="flex justify-center">
+        {mode === false ? (
+          <div className="h-[400px] w-[400px] p-10">
+            <div className="relative w-full">
+              <div className="rounded-[5%] md:h-96">
+                <div className=" duration-700 ease-in-out" data-carousel-item>
+                  <div class="wrapper bg-gray-400 antialiased text-gray-900">
+                    <div>
+                      <img
+                        src="https://firebasestorage.googleapis.com/v0/b/english-for-kids-daa46.appspot.com/o/files%2Fkid1.png?alt=media&token=0a5fec02-2619-4545-982e-581dd1236186&_gl=1*eyn5dh*_ga*ODgzMDU0MjMxLjE2ODQ1OTA5NjY.*_ga_CW55HF8NVT*MTY4NjU3MzMzMy40NC4xLjE2ODY1NzMzNjguMC4wLjA."
+                        alt=" random imgee"
+                        class="w-full object-cover object-center rounded-lg shadow-md"
+                      />
+                      <div class="relative px-4 -mt-16  ">
+                        <div class="bg-amber-300 p-6 rounded-lg shadow-lg">
+                          <div class="flex items-baseline">
+                            <span class="bg-teal-200 text-teal-800 text-xs px-2 inline-block rounded-full  uppercase font-semibold tracking-wide">
+                              Me
+                            </span>
+                          </div>
+                          <h4 class="mt-1 text-xl font-semibold uppercase leading-tight truncate">
+                            {meName}
+                          </h4>
+                          <div class="mt-4">
+                            <span class="text-teal-600 text-md font-semibold text-3xl">
+                              {mePoint}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div></div>
+        )}
         <div
           className="grid grid-cols-4 w-[805px] border-4 border-amber-400"
           style={{
@@ -226,6 +450,44 @@ export default function QuizPictureLetterGame() {
             )
           )}
         </div>
+        {mode === false ? (
+          <div className="h-[400px] w-[400px] p-10">
+            <div className="relative w-full">
+              <div className="rounded-[5%] md:h-96">
+                <div className=" duration-700 ease-in-out" data-carousel-item>
+                  <div class="wrapper bg-gray-400 antialiased text-gray-900">
+                    <div>
+                      <img
+                        src="https://firebasestorage.googleapis.com/v0/b/english-for-kids-daa46.appspot.com/o/files%2Fkid2.png?alt=media&token=c6673cd8-5271-47fc-aa40-6d6d92c29778&_gl=1*6bswip*_ga*ODgzMDU0MjMxLjE2ODQ1OTA5NjY.*_ga_CW55HF8NVT*MTY4NjU3MzMzMy40NC4xLjE2ODY1NzM0OTIuMC4wLjA."
+                        alt=" random imgee"
+                        class="w-full object-cover object-center rounded-lg shadow-md"
+                      />
+                      <div class="relative px-4 -mt-16  ">
+                        <div class="bg-amber-300 p-6 rounded-lg shadow-lg">
+                          <div class="flex items-baseline">
+                            <span class="bg-teal-200 text-teal-800 text-xs px-2 inline-block rounded-full  uppercase font-semibold tracking-wide">
+                              competitor
+                            </span>
+                          </div>
+                          <h4 class="mt-1 text-xl font-semibold uppercase leading-tight truncate">
+                            {notMeName}
+                          </h4>
+                          <div class="mt-4">
+                            <span class="text-teal-600 text-md font-semibold text-3xl">
+                              {notMePoint}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div></div>
+        )}
       </div>
     </div>
   );
