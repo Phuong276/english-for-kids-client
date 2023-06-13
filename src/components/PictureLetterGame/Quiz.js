@@ -98,8 +98,14 @@ export default function QuizPictureLetterGame() {
           });
           setArrayImage(arrayImage);
         } else {
+          arrayImage.push({
+            id: question.id,
+            text: question.questionImage,
+            status: 0,
+          });
+          setArrayImage(arrayImage);
           writeTextData(index, question.id, question.questionText, 0);
-          writeImageData(index, question.id, question.questionImage, 0);
+          // writeImageData(index, question.id, question.questionImage, 0);
           get(child(ref(db), `rooms/${roomId}/users`))
             .then((snapshot) => {
               if (snapshot.exists()) {
@@ -123,6 +129,9 @@ export default function QuizPictureLetterGame() {
         return question;
       });
       arrayImage.sort(() => Math.random() - 0.5);
+      arrayImage.map((item, index) =>
+        writeImageData(index, item.id, item.text, item.status)
+      );
       setQuestionsData(data);
       setIsLoading(false);
     } catch (error) {
@@ -451,7 +460,22 @@ export default function QuizPictureLetterGame() {
           }}
         >
           {arrayText.map((item, index) =>
-            meBlock ? (
+            mode ? (
+              item.status === 0 ? (
+                <div
+                  className="bg-amber-400 h-[200px] w-[200px] flex items-center justify-center cursor-pointer text-4xl font-serif border-2 border-amber-500"
+                  onClick={() => handleClickTextItem(index)}
+                >
+                  {item.text}
+                </div>
+              ) : item.status === 1 ? (
+                <div className="bg-cyan-400 h-[200px] w-[200px] flex items-center justify-center border-8 border-green-400 text-4xl font-serif">
+                  {item.text}
+                </div>
+              ) : (
+                <div className="h-[200px] w-[200px]"></div>
+              )
+            ) : meBlock ? (
               item.status === 0 ? (
                 <div
                   className="bg-amber-400 h-[200px] w-[200px] flex items-center justify-center cursor-pointer text-4xl font-serif border-2 border-amber-500"
@@ -475,7 +499,24 @@ export default function QuizPictureLetterGame() {
             )
           )}
           {arrayImage.map((item, index) =>
-            meBlock ? (
+            mode ? (
+              item.status === 0 ? (
+                <img
+                  src={item.text}
+                  alt={item.id}
+                  className="h-[200px] w-[200px]flex items-center justify-center cursor-pointer border-2 border-amber-500"
+                  onClick={() => handleClickImageItem(index)}
+                />
+              ) : item.status === 1 ? (
+                <img
+                  src={item.text}
+                  alt={item.id}
+                  className="h-[200px] w-[200px] flex items-center justify-center border-8 border-green-400"
+                />
+              ) : (
+                <div className="h-[200px] w-[200px]"></div>
+              )
+            ) : meBlock ? (
               item.status === 0 ? (
                 <img
                   src={item.text}
