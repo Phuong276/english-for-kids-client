@@ -33,7 +33,7 @@ export default function CreateQuestionAdmin() {
     toast.success("Set Image Success");
   };
 
-  const handleCreateRound = async (e) => {
+  const handleCreateQuestion = async (e) => {
     e.preventDefault();
     const UPDATE_USER_URL = "/api/questions";
     try {
@@ -53,7 +53,7 @@ export default function CreateQuestionAdmin() {
           },
         }
       );
-      toast.success("Update Success");
+      toast.success("Create Success");
     } catch (error) {
       console.log(error);
       toast.error(
@@ -153,7 +153,7 @@ export default function CreateQuestionAdmin() {
                 <button
                   type="submit"
                   class="font-medium text-blue-600 dark:text-blue-500 hover:underline pt-5"
-                  onClick={(e) => handleCreateRound(e)}
+                  onClick={(e) => handleCreateQuestion(e)}
                 >
                   Add Question
                 </button>

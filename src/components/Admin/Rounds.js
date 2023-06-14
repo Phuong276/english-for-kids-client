@@ -38,14 +38,15 @@ export default function RoundsAdmin() {
     navigate(link);
   };
 
-  const handleDeleteRound = (id) => {
-    axios
+  const handleDeleteRound = async (id) => {
+    await axios
       .delete(`${process.env.REACT_APP_SERVERHOST}/api/rounds/${id}`)
       .then((res) => {
         console.log(res);
         console.log(res.data);
       });
     toast.success("Delete Success");
+    fecthAllRound();
   };
 
   useEffect(() => {

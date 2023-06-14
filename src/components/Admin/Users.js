@@ -27,14 +27,15 @@ export default function UsersAdmin() {
     }
   };
 
-  const deleteData = (id) => {
-    axios
+  const deleteData = async (id) => {
+    await axios
       .delete(`${process.env.REACT_APP_SERVERHOST}/api/users/${id}`)
       .then((res) => {
         console.log(res);
         console.log(res.data);
       });
     toast.success("Delete Success");
+    fecthAllUser()
   };
 
   useEffect(() => {
