@@ -66,6 +66,10 @@ export default function RoundPictureLetterGame(props) {
     );
   }
 
+  const handleStopShow = () => {
+    setShow(false);
+  };
+
   return (
     <div>
       {show ? (
@@ -77,10 +81,11 @@ export default function RoundPictureLetterGame(props) {
               >
                 <div className="flex items-start justify-between p-6 border-b border-solid border-slate-600 rounded-t">
                   <h3 className="text-3xl font-semibold">Room</h3>
-                  <button className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none">
-                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-3xl block outline-none focus:outline-none">
-                      ×
-                    </span>
+                  <button
+                    className="p-1 ml-auto border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                    onClick={() => handleStopShow()}
+                  >
+                    X
                   </button>
                 </div>
                 <div className="relative p-12 flex-auto">
@@ -95,7 +100,7 @@ export default function RoundPictureLetterGame(props) {
                     <div className="flex pt-10 justify-center">
                       <div className="pr-10">
                         <button
-                          className="border-4 border-red-400 p-3"
+                          className="border-4 border-yellow-400 p-3 bg-yellow-300 rounded-full"
                           onClick={() => handlePlayAlone()}
                         >
                           Play Alone
@@ -103,7 +108,7 @@ export default function RoundPictureLetterGame(props) {
                       </div>
                       <div>
                         <button
-                          className="border-4 border-red-400 p-3"
+                          className="border-4 border-orange-400 p-3 bg-orange-300 rounded-full"
                           onClick={() => handlePlayWithFriend()}
                         >
                           Go to Room
