@@ -137,7 +137,7 @@ export default function QuizPicturePickerGame() {
           />
         </>
       ) : null}
-      <div className="flex">
+      <div className="flex p-3">
         <button
           className="border-[5px] border-cyan-500 bg-cyan-200 rounded-3xl hover:bg-cyan-300 w-[5%] pl-6 flex h-[50px]"
           onClick={handleQuitGame}
@@ -160,7 +160,7 @@ export default function QuizPicturePickerGame() {
         <div className="pl-[75%] pt-3 text-3xl font-bold">
           Time: {formatTime(countdown)}
         </div>
-        <div className="py-10 pt-2 text-4xl pl-4">
+        <div className="pt-2 text-4xl pl-4">
           <p className="text-pink-600 pb">{`${handleHeart(
             incorrectGuesses
           )}`}</p>

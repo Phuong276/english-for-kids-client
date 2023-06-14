@@ -126,9 +126,9 @@ export default function QuizScrambleGame() {
           />
         </>
       ) : null}
-      <div className="flex">
+      <div className="flex p-3">
         <button
-          className="border-[5px] border-cyan-500 bg-cyan-200 rounded-3xl hover:bg-cyan-300 w-[5%] pl-6 flex"
+          className="border-[5px] border-cyan-500 bg-cyan-200 rounded-3xl hover:bg-cyan-300 w-[5%] pl-6 flex h-[50px]"
           onClick={handleQuitGame}
         >
           <svg

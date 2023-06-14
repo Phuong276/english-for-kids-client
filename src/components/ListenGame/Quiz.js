@@ -135,7 +135,7 @@ export default function QuizListenGame() {
           />
         </>
       ) : null}
-      <div className="flex">
+      <div className="flex p-3">
         <button
           className="border-[5px] border-purple-500 bg-purple-200 rounded-3xl hover:bg-purple-300 w-[5%] pl-6 flex h-[50px]"
           onClick={Quit}
@@ -164,7 +164,7 @@ export default function QuizListenGame() {
           )}`}</p>
         </div>
       </div>
-      <div className="container mx-auto text-center pt-10 py-10">
+      <div className="container mx-auto text-center pt-5 py-10">
         <section className="py-10 pt-10">
           <div className="container mx-auto flex items-center flex-wrap pt-4">
             {startGame ? (
