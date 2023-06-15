@@ -5,6 +5,7 @@ import { correctSound, playAudio } from "../../until/sound";
 import { formatTime } from "../../until/time";
 import TrueFalse from "../TrueFalse";
 import QuestionsGrammarGame from "./Questions";
+import { upsetPoint } from "../../until/point";
 
 export default function QuizGrammarGame() {
   const [searchParams] = useSearchParams();
@@ -71,6 +72,8 @@ export default function QuizGrammarGame() {
       state: { totalQuestions: totalQuestions, totalPoints: point },
     });
   }
+  
+  const user = JSON.parse(window.localStorage.getItem("user"));
 
   if (answerText === questions[trace]?.answerText) {
     setTrace(trace + 1);
@@ -80,6 +83,7 @@ export default function QuizGrammarGame() {
     setMessModal("You answered the question correctly.");
     setColorModal(true);
     playAudio(correctSound);
+    upsetPoint(true, user.id, questions[trace].id);
   }
 
   const linkQuit = `/gamesgrammar/${params.id}`;

@@ -73,7 +73,7 @@ export default function My() {
         <div className="relative w-full">
           <div className="rounded-[5%] md:h-96">
             <div className=" duration-700 ease-in-out" data-carousel-item>
-              <div class="wrapper bg-amber-300 antialiased text-gray-900 rounded-[5%]">
+              <div class="wrapper bg-amber-200 antialiased text-gray-900 rounded-[5%]">
                 <div>
                   <div className="h-[400px] p-5">
                     <p>Username: </p>
@@ -121,11 +121,11 @@ export default function My() {
                       class="font-medium text-blue-600 dark:text-blue-500 hover:underline pt-3"
                       onClick={(e) => handleUpdateUser(e)}
                     >
-                      Update user
+                      Update
                     </button>
                   </div>
                   <div class="relative px-4 -mt-16">
-                    <div class="bg-amber-200 p-6 rounded-lg shadow-lg">
+                    <div class="bg-amber-100 p-6 rounded-lg shadow-lg">
                       <div class="flex items-baseline">
                         <span class="bg-teal-200 text-teal-800 text-xs px-2 inline-block rounded-full  uppercase font-semibold tracking-wide">
                           RANK

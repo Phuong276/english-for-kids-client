@@ -48,14 +48,20 @@ export default function NavBarAdmin() {
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <svg
-                  aria-hidden="true"
-                  class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 text-black"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
                 >
-                  <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-                  <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+                  {" "}
+                  <path stroke="none" d="M0 0h24v24H0z" />{" "}
+                  <line x1="4" y1="19" x2="20" y2="19" />{" "}
+                  <polyline points="4 15 8 9 12 11 16 6 20 10" />
                 </svg>
                 <span class="ml-3">Home</span>
               </a>
@@ -66,14 +72,19 @@ export default function NavBarAdmin() {
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <svg
-                  aria-hidden="true"
-                  class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 text-black"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
                 >
-                  <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-                  <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+                  {" "}
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />{" "}
+                  <circle cx="9" cy="7" r="4" />{" "}
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />{" "}
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                 </svg>
                 <span class="ml-3">Users</span>
               </a>
@@ -84,14 +95,22 @@ export default function NavBarAdmin() {
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 peer"
               >
                 <svg
-                  aria-hidden="true"
-                  class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 text-bliack"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
                 >
-                  <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-                  <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+                  {" "}
+                  <path stroke="none" d="M0 0h24v24H0z" />{" "}
+                  <rect x="2" y="6" width="20" height="12" rx="2" />{" "}
+                  <path d="M6 12h4m-2 -2v4" />{" "}
+                  <line x1="15" y1="11" x2="15" y2="11.01" />{" "}
+                  <line x1="18" y1="13" x2="18" y2="13.01" />
                 </svg>
                 <span class="ml-3">Games</span>
               </a>
@@ -115,14 +134,17 @@ export default function NavBarAdmin() {
                 onClick={logout}
               >
                 <svg
-                  aria-hidden="true"
-                  class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 text-red-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
                 >
-                  <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-                  <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+                  />
                 </svg>
                 <span class="ml-3">Log out</span>
               </a>

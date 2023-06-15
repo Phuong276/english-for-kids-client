@@ -97,7 +97,7 @@ export default function QuizHangmanGame() {
 
   if (isLoading) return;
   return (
-    <div className="bg-pink-100">
+    <div className="bg-pink-100 min-h-[1100px]">
       {showModal ? (
         <>
           <TrueFalse

@@ -62,7 +62,7 @@ export default function NavBar() {
                     href="/top"
                   >
                     <svg
-                      class="h-14 w-14 text-black"
+                      class="h-14 w-14 back-red-500"
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
@@ -103,9 +103,12 @@ export default function NavBar() {
             className="order-2 md:order-3 flex items-center"
             id="nav-content"
           >
-            <a className="inline-block no-underline hover:text-black" href="/my">
+            <a
+              className="inline-block no-underline hover:text-black"
+              href="/my"
+            >
               <svg
-                className="fill-current hover:text-black h-14 w-14"
+                className="h-14 w-14 back-red-500 "
                 xmlns="http://www.w3.org/2000/svg"
                 width="30"
                 height="30"
