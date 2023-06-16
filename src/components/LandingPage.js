@@ -53,7 +53,7 @@ export default function LandingPage() {
               </div>
             </nav>
           </div>
-          <div className="grid grid-cols-4 gap-16">
+          <div className="container m-auto grid grid-cols-1 gap-16 md:grid-cols-2 lg:grid-cols-4 sm:grid-cols-1">
             {games.map((item) => (
               <Games
                 key={item.id}

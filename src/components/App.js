@@ -7,6 +7,7 @@ import HomeHangmanGame from "./HangmanGame/Home";
 import QuizHangmanGame from "./HangmanGame/Quiz";
 import QuizListenGame from "./ListenGame/Quiz";
 import Upload from "./Firebase/Upload";
+import "../styles/App.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ToastContainer } from "react-toastify";

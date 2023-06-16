@@ -124,7 +124,7 @@ export default function QuizVocabGame() {
       ) : null}
       <div className="flex p-3">
         <button
-          className="border-[5px] border-gray-500 bg-orange-200 rounded-3xl hover:bg-orange-300 w-[5%] pl-6 flex h-[50px]"
+          className="border-[5px] border-gray-500 bg-orange-200 rounded-3xl hover:bg-orange-300 w-[100px] min-w-[100px] pl-6 flex h-[50px]"
           onClick={handleQuitGame}
         >
           <svg

@@ -67,7 +67,8 @@ export default function HomePictureLetterGame() {
                       />
                     </p>
                     <p className="my-4 text-slate-500 text-3xl leading-relaxed min-w-[600px] pt-10">
-                      Step 2: You need to click on the picture or the answer and chose answer/picture corresponding.
+                      Step 2: You need to click on the picture or the answer and
+                      chose answer/picture corresponding.
                       <img
                         src="https://firebasestorage.googleapis.com/v0/b/english-for-kids-daa46.appspot.com/o/files%2FScreenshot%20from%202023-06-15%2013-58-50.png?alt=media&token=fc405424-b95d-4fb2-aa44-1f7d11d22c0c"
                         alt=""
@@ -121,7 +122,7 @@ export default function HomePictureLetterGame() {
         <div className="container mx-auto">
           <section className="py-8 pl-20 pr-20">
             <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
-              <div className="grid grid-cols-4 gap-16">
+              <div className="container m-auto grid grid-cols-1 gap-16 md:grid-cols-2 lg:grid-cols-4 sm:grid-cols-1">
                 {rounds.map((item) => (
                   <RoundPictureLetterGame
                     gameId={params.id}

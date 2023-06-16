@@ -34,7 +34,7 @@ const Games = (props) => {
           className="hover:grow hover:shadow-lg rounded-[30%] hover:animate-pulse duration-200 w-[300px] h-[300px] border-8 border-lime-200"
           src={image}
         />
-        <div className="pt-2 flex items-center justify-center w-[300px] text-3xl font-mono text-center">
+        <div className="pt-2 flex items-center justify-center text-3xl font-mono text-center max-w-[300px]">
           {name}
         </div>
       </Link>

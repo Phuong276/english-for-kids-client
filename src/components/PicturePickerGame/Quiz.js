@@ -139,7 +139,7 @@ export default function QuizPicturePickerGame() {
       ) : null}
       <div className="flex p-3">
         <button
-          className="border-[5px] border-cyan-500 bg-cyan-200 rounded-3xl hover:bg-cyan-300 w-[5%] pl-6 flex h-[50px]"
+          className="border-[5px] border-cyan-500 bg-cyan-200 rounded-3xl hover:bg-cyan-300 w-[100px] min-w-[100px] pl-6 flex h-[50px]"
           onClick={handleQuitGame}
         >
           <svg

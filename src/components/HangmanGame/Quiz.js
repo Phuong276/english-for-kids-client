@@ -110,7 +110,7 @@ export default function QuizHangmanGame() {
       ) : null}
       <div className="p-3">
         <button
-          className="border-[5px] border-pink-500 bg-pink-200 rounded-3xl hover:bg-pink-300 w-[5%] pl-6 flex h-[50px]"
+          className="border-[5px] border-pink-500 bg-pink-200 rounded-3xl hover:bg-pink-300 w-[100px] min-w-[100px] pl-6 flex h-[50px]"
           onClick={handleQuitGame}
         >
           <svg

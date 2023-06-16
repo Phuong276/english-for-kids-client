@@ -87,7 +87,7 @@ export default function HomeVocabGame() {
       <div className="container mx-auto">
         <section className="py-8 pl-20 pr-20">
           <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
-            <div className="grid grid-cols-4 gap-16">
+            <div className="container m-auto grid grid-cols-1 gap-16 md:grid-cols-2 lg:grid-cols-4 sm:grid-cols-1">
               {rounds.map((item) => (
                 <RoundVocabGame
                   gameId={params.id}

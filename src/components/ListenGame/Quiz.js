@@ -137,7 +137,7 @@ export default function QuizListenGame() {
       ) : null}
       <div className="flex p-3">
         <button
-          className="border-[5px] border-purple-500 bg-purple-200 rounded-3xl hover:bg-purple-300 w-[5%] pl-6 flex h-[50px]"
+          className="border-[5px] border-purple-500 bg-purple-200 rounded-3xl hover:bg-purple-300 w-[100px] min-w-[100px] pl-6 flex h-[50px]"
           onClick={Quit}
         >
           <svg
@@ -168,7 +168,7 @@ export default function QuizListenGame() {
         <section className="py-10 pt-10">
           <div className="container mx-auto flex items-center flex-wrap pt-4">
             {startGame ? (
-              <div className="grid grid-cols-4 gap-16">
+              <div className="container m-auto grid grid-cols-1 gap-16 md:grid-cols-2 lg:grid-cols-4 sm:grid-cols-1">
                 {questions.map((item) => (
                   <QuestionListenGame
                     question={item}
@@ -177,7 +177,7 @@ export default function QuizListenGame() {
                 ))}
               </div>
             ) : (
-              <div className="grid grid-cols-4 gap-16">
+              <div className="container m-auto grid grid-cols-1 gap-16 md:grid-cols-2 lg:grid-cols-4 sm:grid-cols-1">
                 {questions.map((item) => (
                   <QuestionListenGame question={item} />
                 ))}
