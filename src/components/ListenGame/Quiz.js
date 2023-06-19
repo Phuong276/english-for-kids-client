@@ -15,8 +15,11 @@ export default function QuizListenGame() {
   const [audioChose, setAudioChose] = useState("chose");
   const [traceQuestion, setTraceQuestion] = useState(0);
   const [incorrectGuesses, setIncorrectGuesses] = useState(5);
+  const [audioTest, setAudioTest] = useState("");
+  const [audioTestId, setAudioTestId] = useState(0);
 
   const [questions, setQuestionsData] = useState([]);
+  const [questionText, setQuestionText] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [startGame, setStartGame] = useState(false);
 
@@ -81,18 +84,24 @@ export default function QuizListenGame() {
   }, [questions]);
 
   const handleStartGame = () => {
-    setStartGame(!startGame);
+    setStartGame(true);
     playAudio(listAudio[trace]);
     setAudioNow(listAudio[trace]);
   };
 
   const handleStopGame = () => {
-    setStartGame(!startGame);
+    setStartGame(false);
   };
 
   const handleSetAudioChose = (audio, id) => {
     setAudioChose(audio);
     setTraceQuestion(id);
+  };
+
+  const handleSetAudioChose2 = (questionText, audio, id) => {
+    setQuestionText(questionText);
+    setAudioTest(audio);
+    setAudioTestId(id);
   };
 
   const user = JSON.parse(window.localStorage.getItem("user"));
@@ -108,7 +117,6 @@ export default function QuizListenGame() {
   if (audioNow === audioChose) {
     setAudioChose("chose");
     setTrace(trace + 1);
-    setStartGame(!startGame);
     setShowModal(true);
     setTitelModal("Correct");
     setMessModal("You answered the question correctly.");
@@ -122,9 +130,13 @@ export default function QuizListenGame() {
     setIncorrectGuesses(incorrectGuesses - 1);
   }
 
+  const handlePlayAudioTest = () => {
+    playAudio(audioTest);
+  };
+
   if (isLoading) return;
   return (
-    <div className="bg-purple-100">
+    <div className="bg-purple-100 min-h-[1100px]">
       {showModal ? (
         <>
           <TrueFalse
@@ -164,23 +176,50 @@ export default function QuizListenGame() {
           )}`}</p>
         </div>
       </div>
-      <div className="container mx-auto text-center pt-5 py-10">
-        <section className="py-10 pt-10">
-          <div className="container mx-auto flex items-center flex-wrap pt-4">
+      <div className="container mx-auto text-center">
+        <section>
+          <div className="container mx-auto flex items-center flex-wrap">
             {startGame ? (
               <div className="container m-auto grid grid-cols-1 gap-16 md:grid-cols-2 lg:grid-cols-4 sm:grid-cols-1">
                 {questions.map((item) => (
                   <QuestionListenGame
                     question={item}
                     callbackSetAudioChose={handleSetAudioChose}
+                    startGame={startGame}
                   />
                 ))}
               </div>
             ) : (
-              <div className="container m-auto grid grid-cols-1 gap-16 md:grid-cols-2 lg:grid-cols-4 sm:grid-cols-1">
-                {questions.map((item) => (
-                  <QuestionListenGame question={item} />
-                ))}
+              <div>
+                <div className="flex text-center justify-center pb-10">
+                  <div className="text-6xl pr-5">{questionText}</div>
+                  <div>
+                    <svg
+                      class="h-16 w-16 text-black cursor-pointer"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      onClick={() => handlePlayAudioTest()}
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div className="container m-auto grid grid-cols-1 gap-16 md:grid-cols-2 lg:grid-cols-4 sm:grid-cols-1">
+                  {questions.map((item) => (
+                    <QuestionListenGame
+                      question={item}
+                      callbackSetAudioChose2={handleSetAudioChose2}
+                      startGame={startGame}
+                      audioTestId={audioTestId}
+                    />
+                  ))}
+                </div>
               </div>
             )}
           </div>
