@@ -61,7 +61,7 @@ export default function Result() {
                 </svg>
               )}
             </div>
-            <p class="px-5 text-center text-8xl font-normal text-gray-600 md:!px-0 xl:!px-8 pt-5">
+            <p class="px-5 text-center text-7xl font-normal text-gray-600 md:!px-0 xl:!px-8 pt-5">
               {totalPoints} {"/"} {totalQuestions}
             </p>
           </div>
