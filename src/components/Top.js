@@ -8,11 +8,7 @@ export default function Top() {
   const fecthData = async () => {
     try {
       const { data } = await getAllData(
-        `${process.env.REACT_APP_SERVERHOST}/api/points/users`,
-        {
-          pageIndex: 1,
-          pageSize: 100,
-        }
+        `${process.env.REACT_APP_SERVERHOST}/api/points/users`
       );
       setData(data);
       setIsLoading(false);
